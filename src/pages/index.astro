@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TopPresetBar from '../components/TopPresetBar.astro';
+import ScreenCanvasTool from '../components/ScreenCanvasTool.astro';
+import DownloadSection from '../components/DownloadSection.astro';
+import LeftSidebar from '../components/LeftSidebar.astro';
+import RightSidebar from '../components/RightSidebar.astro';
+import ContentSection from '../components/ContentSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t('siteTitle')} description={t('siteDescription')}>
+  <TopPresetBar activePreset="white-screen" />
+
+  <div class="container main-grid">
+    <LeftSidebar activeColorHex="#ffffff" />
+
+    <section class="center-content">
+      <ScreenCanvasTool initialColor="#ffffff" initialPreset="white-screen" />
+      
+      <div style="margin-top: 24px;">
+        <DownloadSection initialColor="#ffffff" />
+      </div>
+
+      <ContentSection presetId="white-screen" />
+
+      <FAQSection />
+    </section>
+
+    <RightSidebar />
+  </div>
+</Layout>

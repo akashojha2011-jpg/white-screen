@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+import { getLangFromUrl, useTranslations, getHreflangLinks } from '../i18n/utils';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  colorHex?: string;
+  screenSlug?: string;
+}
+
+const { title, description, canonicalUrl, colorHex = '#ffffff', screenSlug = 'white-screen' } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const pageTitle = title || t('siteTitle');
+const pageDescription = description || t('siteDescription');
+const currentCanonical = canonicalUrl || Astro.url.href;
+const hreflangs = getHreflangLinks(Astro.url);
+
+// JSON-LD Schemas for Search Dominance
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": pageTitle,
+  "url": currentCanonical,
+  "description": pageDescription,
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires HTML5 canvas and JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://whitescreen.dev"
+    },
+    ...(screenSlug && screenSlug !== 'white-screen' ? [
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": t('presetNames')[screenSlug] || screenSlug,
+        "item": currentCanonical
+      }
+    ] : [])
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang={lang} data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={currentCanonical} />
+
+    <!-- Hreflang Multi-Language Meta Tags -->
+    {hreflangs.map((item) => (
+      <link rel="alternate" hreflang={item.lang} href={item.href} />
+    ))}
+
+    <!-- OpenGraph & Social Cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={currentCanonical} />
+    <meta property="og:site_name" content="White Screen" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+    <!-- Early Dark Mode Theme Initialization -->
+    <script is:inline>
+      (function() {
+        const savedTheme = localStorage.getItem('ws_theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', dark);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <Header screenSlug={screenSlug} />
+    
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

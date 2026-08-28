@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/utils';
+import { languages } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((l) => l !== 'en')
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+---
+
+<Layout title={`Contact Us – ${t('siteTitle')}`} description={t('siteDescription')}>
+  <div class="container" style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+    <article class="seo-content-article">
+      <h1>Contact Us</h1>
+      <p>Have a question or feedback for WhiteScreen.dev? Send us a message.</p>
+
+      <form id="contact-form" style="display:flex; flex-direction:column; gap:16px; margin-top:24px;" onsubmit="event.preventDefault(); alert('Thank you for your message!');">
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:6px;">Your Name</label>
+          <input type="text" required placeholder="John Doe" style="width:100%; padding:12px 16px; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-main); color:var(--text-main);" />
+        </div>
+
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:6px;">Your Email Address</label>
+          <input type="email" required placeholder="john@example.com" style="width:100%; padding:12px 16px; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-main); color:var(--text-main);" />
+        </div>
+
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:6px;">Message</label>
+          <textarea rows="5" required placeholder="Write your message..." style="width:100%; padding:12px 16px; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-main); color:var(--text-main); font-family:inherit;"></textarea>
+        </div>
+
+        <button type="submit" class="primary-download-btn" style="width:fit-content; padding:12px 28px;">
+          Send Message
+        </button>
+      </form>
+    </article>
+  </div>
+</Layout>

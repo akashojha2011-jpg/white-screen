@@ -1,0 +1,55 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const faqs = t('faqs');
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f: any) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }))
+};
+---
+
+<div id="faq-section" class="seo-content-article" style="margin-top: 24px;">
+  <h2>{t('faqTitle')}</h2>
+  
+  <div class="faq-accordion">
+    {faqs.map((faq: any, idx: number) => (
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded={idx === 0 ? "true" : "false"}>
+          <span>{faq.q}</span>
+          <span style="font-size:1.2rem;">+</span>
+        </button>
+        <div class="faq-answer" style={idx === 0 ? "display:block;" : "display:none;"}>
+          {faq.a}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<script>
+  document.querySelectorAll('.faq-question').forEach((button) => {
+    button.addEventListener('click', () => {
+      const faqItem = button.closest('.faq-item');
+      const answer = faqItem?.querySelector('.faq-answer') as HTMLElement;
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+      button.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+      if (answer) {
+        answer.style.display = isExpanded ? 'none' : 'block';
+      }
+    });
+  });
+</script>

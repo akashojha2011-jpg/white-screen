@@ -1,0 +1,55 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+export interface Props {
+  presetId?: string;
+}
+
+const { presetId = 'white-screen' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<article class="seo-content-article">
+  <h1>{t('heroHeading')}</h1>
+  <p>{t('heroSubheading')}</p>
+
+  <h2 id="how-to-use">{t('howToUse')}</h2>
+  <p>{t('howToUseIntro')}</p>
+  <ol>
+    <li><strong>Step 1:</strong> {t('step1')}</li>
+    <li><strong>Step 2:</strong> {t('step2')}</li>
+    <li><strong>Step 3:</strong> {t('step3')}</li>
+  </ol>
+
+  <h2 id="why-use">{t('whyUse')}</h2>
+  
+  <h3>1. {t('cleanScreen')}</h3>
+  <p>{t('cleanScreenDesc')}</p>
+
+  <h3>2. {t('focusMode')}</h3>
+  <p>{t('focusModeDesc')}</p>
+
+  <h3>3. {t('zoomLighting')}</h3>
+  <p>{t('zoomLightingDesc')}</p>
+
+  <h3>4. {t('pixelTest')}</h3>
+  <p>{t('pixelTestDesc')}</p>
+
+  <h3>5. {t('photography')}</h3>
+  <p>{t('photographyDesc')}</p>
+
+  <h3>6. {t('tracingLight')}</h3>
+  <p>{t('tracingLightDesc')}</p>
+
+  <h2>{t('imagesDownloadTitle')}</h2>
+  <p>{t('imagesDownloadDesc')}</p>
+  <ul>
+    <li><strong>Full HD 1080p White Screen Wallpaper</strong> (1920×1080)</li>
+    <li><strong>2K Quad HD White Screen Image</strong> (2560×1440)</li>
+    <li><strong>4K Ultra HD Blank White Background</strong> (3840×2160)</li>
+    <li><strong>5K Retina White Screen Background</strong> (5120×2880)</li>
+    <li><strong>8K Ultra HD White Screen Wallpaper</strong> (7680×4320)</li>
+    <li><strong>Mobile & Tablet White Screen Images</strong> (1080×1920 & 2048×2048)</li>
+  </ul>
+</article>

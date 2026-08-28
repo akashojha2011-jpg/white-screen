@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopPresetBar from '../../components/TopPresetBar.astro';
+import ScreenCanvasTool from '../../components/ScreenCanvasTool.astro';
+import DownloadSection from '../../components/DownloadSection.astro';
+import LeftSidebar from '../../components/LeftSidebar.astro';
+import RightSidebar from '../../components/RightSidebar.astro';
+import ContentSection from '../../components/ContentSection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import { useTranslations } from '../../i18n/utils';
+import { languages } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  const paths = Object.keys(languages)
+    .filter((l) => l !== 'en')
+    .map((lang) => ({ params: { lang } }));
+  return paths;
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+---
+
+<Layout title={t('siteTitle')} description={t('siteDescription')}>
+  <TopPresetBar activePreset="white-screen" />
+
+  <div class="container main-grid">
+    <LeftSidebar activeColorHex="#ffffff" />
+
+    <section class="center-content">
+      <ScreenCanvasTool initialColor="#ffffff" initialPreset="white-screen" />
+      
+      <div style="margin-top: 24px;">
+        <DownloadSection initialColor="#ffffff" />
+      </div>
+
+      <ContentSection presetId="white-screen" />
+
+      <FAQSection />
+    </section>
+
+    <RightSidebar />
+  </div>
+</Layout>

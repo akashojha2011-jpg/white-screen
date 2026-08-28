@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/utils';
+import { languages } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((l) => l !== 'en')
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+---
+
+<Layout title={`About Us – ${t('siteTitle')}`} description={t('siteDescription')}>
+  <div class="container" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+    <article class="seo-content-article">
+      <h1>About WhiteScreen.dev</h1>
+      <p>
+        <strong>WhiteScreen.dev</strong> was created to provide a fast, clean, distraction-free <strong>fullscreen white screen tool</strong> accessible instantly on any device worldwide without popups or ads.
+      </p>
+
+      <h2>Our Mission</h2>
+      <p>
+        Whether you are testing laptop screens for dead pixels, looking for a soft key light during Zoom meetings, cleaning dust off a monitor, or tracing drawings, our tool provides an instant bright white screen.
+      </p>
+
+      <h2>Key Principles</h2>
+      <ul>
+        <li><strong>100% Free:</strong> No paywalls or registration.</li>
+        <li><strong>Privacy-First:</strong> Client-side rendering inside your browser.</li>
+        <li><strong>Multi-Language:</strong> Available across 14 global languages.</li>
+      </ul>
+    </article>
+  </div>
+</Layout>

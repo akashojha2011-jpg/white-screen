@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Terms & Conditions – White Screen" description="Read the Terms and Conditions for WhiteScreen.dev. Guidelines for using our online white screen and background generator tool.">
+  <div class="container" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+    <article class="seo-content-article">
+      <h1>Terms & Conditions</h1>
+      <p><em>Last Updated: August 28, 2026</em></p>
+
+      <p>
+        Welcome to <strong>WhiteScreen.dev</strong>. By accessing or using our website, tools, and services, you agree to comply with and be bound by the following Terms & Conditions.
+      </p>
+
+      <h2>1. Use of Service</h2>
+      <p>
+        WhiteScreen.dev provides a free, web-based tool for monitor cleaning, dead pixel testing, webcam lighting, and background image downloads. You are permitted to use this service for personal, educational, or commercial purposes free of charge.
+      </p>
+
+      <h2>2. Intellectual Property & Image Usage</h2>
+      <p>
+        All static blank color wallpapers generated using our client-side canvas tool are free to download and use for personal or commercial desktop/mobile wallpapers.
+      </p>
+
+      <h2>3. Disclaimer of Warranties</h2>
+      <p>
+        The tools and services on WhiteScreen.dev are provided "AS IS" without warranty of any kind. While our tools assist in identifying dead or stuck pixels, we do not guarantee repair of hardware defects.
+      </p>
+
+      <h2>4. Limitation of Liability</h2>
+      <p>
+        In no event shall WhiteScreen.dev be liable for any indirect, incidental, or consequential damages resulting from the use or inability to use our website.
+      </p>
+
+      <h2>5. Governing Law</h2>
+      <p>
+        These Terms shall be governed and construed in accordance with standard web technology and data protection standards.
+      </p>
+    </article>
+  </div>
+</Layout>

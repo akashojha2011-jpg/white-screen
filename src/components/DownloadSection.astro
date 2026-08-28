@@ -1,0 +1,152 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+export interface Props {
+  initialColor?: string;
+}
+
+const { initialColor = '#ffffff' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const formats = ['PNG', 'JPG', 'WEBP'];
+
+const sizes = [
+  { id: 'HD', label: 'HD', dims: '1920x1080', width: 1920, height: 1080 },
+  { id: '2K', label: '2K', dims: '2560x1440', width: 2560, height: 1440 },
+  { id: '4K', label: '4K', dims: '3840x2160', width: 3840, height: 2160 },
+  { id: '5K', label: '5K', dims: '5120x2880', width: 5120, height: 2880 },
+  { id: '8K', label: '8K', dims: '7680x4320', width: 7680, height: 4320 },
+  { id: 'Mobile', label: 'Mobile', dims: '1080x1920', width: 1080, height: 1920 },
+  { id: 'Square', label: 'Square', dims: '2048x2048', width: 2048, height: 2048 },
+];
+---
+
+<div id="download-section" class="download-config-grid" data-active-color={initialColor}>
+  <!-- Format Selection Column -->
+  <div>
+    <div class="config-group-title">{t('chooseFormat')}</div>
+    <div class="option-pills-row">
+      {formats.map((fmt, idx) => (
+        <button
+          class={`option-pill-btn btn-format-option ${idx === 0 ? 'selected' : ''}`}
+          data-format={fmt}
+        >
+          {fmt}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Resolution Selection Column -->
+  <div>
+    <div class="config-group-title">{t('chooseSize')}</div>
+    <div class="option-pills-row">
+      {sizes.map((s, idx) => (
+        <button
+          class={`option-pill-btn btn-size-option ${idx === 2 ? 'selected' : ''}`}
+          data-size-id={s.id}
+          data-width={s.width}
+          data-height={s.height}
+          data-dims={s.dims}
+        >
+          {s.label} ({s.dims})
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Primary Download Action Button -->
+  <div style="grid-column: 1 / -1; margin-top: 8px;">
+    <button id="btn-download-canvas" class="primary-download-btn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      <span id="download-btn-label">Download PNG 4K (3840x2160)</span>
+    </button>
+    
+    <div class="trust-badges-text" style="margin-top: 10px;">
+      ✓ 100% Free • No signup required • Ultra HD Crisp Resolution
+    </div>
+  </div>
+</div>
+
+<script>
+  let selectedFormat = 'PNG';
+  let selectedWidth = 3840;
+  let selectedHeight = 2160;
+  let selectedSizeId = '4K';
+  let selectedDims = '3840x2160';
+  let currentColor = '#ffffff';
+
+  const downloadBtnLabel = document.getElementById('download-btn-label');
+  const downloadSection = document.getElementById('download-section');
+
+  function updateDownloadButtonLabel() {
+    if (downloadBtnLabel) {
+      downloadBtnLabel.textContent = `Download ${selectedFormat} ${selectedSizeId} (${selectedDims})`;
+    }
+  }
+
+  // Format selection
+  document.querySelectorAll('.btn-format-option').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.btn-format-option').forEach((b) => b.classList.remove('selected'));
+      const target = e.currentTarget as HTMLButtonElement;
+      target.classList.add('selected');
+      selectedFormat = target.dataset.format || 'PNG';
+      updateDownloadButtonLabel();
+    });
+  });
+
+  // Size selection
+  document.querySelectorAll('.btn-size-option').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.btn-size-option').forEach((b) => b.classList.remove('selected'));
+      const target = e.currentTarget as HTMLButtonElement;
+      target.classList.add('selected');
+      selectedSizeId = target.dataset.sizeId || '4K';
+      selectedWidth = parseInt(target.dataset.width || '3840');
+      selectedHeight = parseInt(target.dataset.height || '2160');
+      selectedDims = target.dataset.dims || '3840x2160';
+      updateDownloadButtonLabel();
+    });
+  });
+
+  // Listen to color changes from tool
+  window.addEventListener('ws:color-updated', (e: any) => {
+    currentColor = e.detail.color || '#ffffff';
+  });
+
+  // High-Res Wallpaper Generator & Download Trigger
+  document.getElementById('btn-download-canvas')?.addEventListener('click', () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = selectedWidth;
+    canvas.height = selectedHeight;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Fill background color
+    ctx.fillStyle = currentColor;
+    ctx.fillRect(0, 0, selectedWidth, selectedHeight);
+
+    let mimeType = 'image/png';
+    let fileExt = 'png';
+
+    if (selectedFormat === 'JPG') {
+      mimeType = 'image/jpeg';
+      fileExt = 'jpg';
+    } else if (selectedFormat === 'WEBP') {
+      mimeType = 'image/webp';
+      fileExt = 'webp';
+    }
+
+    const dataUrl = canvas.toDataURL(mimeType, 0.95);
+    const link = document.createElement('a');
+    link.download = `white-screen-${selectedSizeId.toLowerCase()}-${selectedWidth}x${selectedHeight}.${fileExt}`;
+    link.href = dataUrl;
+    link.click();
+  });
+</script>

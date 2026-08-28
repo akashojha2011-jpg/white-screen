@@ -1,0 +1,80 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+export interface Props {
+  activeColorHex?: string;
+}
+
+const { activeColorHex = '#ffffff' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const solidColors = [
+  { name: t('presetNames')['white-screen'] || 'White Background', hex: '#ffffff', id: 'white' },
+  { name: t('presetNames')['black-screen'] || 'Black Background', hex: '#000000', id: 'black' },
+  { name: t('presetNames')['orange-screen'] || 'Orange Background', hex: '#f97316', id: 'orange' },
+  { name: t('presetNames')['purple-screen'] || 'Purple Background', hex: '#a855f7', id: 'purple' },
+  { name: 'Gold Background', hex: '#eab308', id: 'gold' },
+  { name: t('presetNames')['yellow-screen'] || 'Yellow Background', hex: '#fde047', id: 'yellow' },
+  { name: t('presetNames')['blue-screen'] || 'Blue Background', hex: '#2563eb', id: 'blue' },
+  { name: t('presetNames')['red-screen'] || 'Red Background', hex: '#ef4444', id: 'red' },
+  { name: t('presetNames')['pink-screen'] || 'Pink Background', hex: '#ec4899', id: 'pink' },
+  { name: t('presetNames')['green-screen'] || 'Green Background', hex: '#22c55e', id: 'green' },
+  { name: 'Light Blue Background', hex: '#38bdf8', id: 'light-blue' },
+  { name: 'Brown Background', hex: '#78350f', id: 'brown' },
+  { name: 'Grey Background', hex: '#64748b', id: 'grey' },
+  { name: 'Neon Background', hex: '#39ff14', id: 'neon' },
+  { name: 'Olive Background', hex: '#808000', id: 'olive' },
+  { name: 'Coral Background', hex: '#ff7f50', id: 'coral' },
+  { name: 'Navy Background', hex: '#000080', id: 'navy' },
+  { name: 'Mint Background', hex: '#98ff98', id: 'mint' },
+  { name: 'Aqua Background', hex: '#00ffff', id: 'aqua' },
+  { name: 'Teal Background', hex: '#008080', id: 'teal' },
+  { name: 'Cream Background', hex: '#fffdd0', id: 'cream' },
+  { name: 'Beige Background', hex: '#f5f5dc', id: 'beige' },
+  { name: 'Lavender Background', hex: '#e6e6fa', id: 'lavender' },
+  { name: 'Cyan Background', hex: '#00ffff', id: 'cyan' },
+  { name: 'Maroon Background', hex: '#800000', id: 'maroon' },
+  { name: 'Violet Background', hex: '#8f00ff', id: 'violet' },
+];
+---
+
+<aside class="left-sidebar card-box">
+  <div class="sidebar-title">
+    <span>{t('solidColorBackgrounds')}</span>
+    <span style="font-size:0.75rem; color:var(--text-muted); font-weight:500;">{solidColors.length} Colors</span>
+  </div>
+
+  <div class="sidebar-list">
+    {solidColors.map((color) => (
+      <button
+        class={`sidebar-item btn-sidebar-color ${color.hex === activeColorHex ? 'active' : ''}`}
+        data-color={color.hex}
+        data-id={color.id}
+      >
+        <div class="sidebar-item-left">
+          <span class="color-dot" style={`background-color: ${color.hex};`}></span>
+          <span>{color.name}</span>
+        </div>
+        <span style="font-size:0.75rem; opacity:0.6;">›</span>
+      </button>
+    ))}
+  </div>
+</aside>
+
+<script>
+  document.querySelectorAll('.btn-sidebar-color').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const color = target.dataset.color || '#ffffff';
+      const id = target.dataset.id || 'white';
+
+      document.querySelectorAll('.btn-sidebar-color').forEach((b) => b.classList.remove('active'));
+      target.classList.add('active');
+
+      window.dispatchEvent(new CustomEvent('ws:change-color', {
+        detail: { color, presetId: id }
+      }));
+    });
+  });
+</script>

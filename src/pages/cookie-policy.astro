@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Cookie Policy – White Screen" description="Read the Cookie Policy for WhiteScreen.dev. Information regarding browser storage and cookies.">
+  <div class="container" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+    <article class="seo-content-article">
+      <h1>Cookie Policy</h1>
+      <p><em>Last Updated: August 28, 2026</em></p>
+
+      <p>
+        <strong>WhiteScreen.dev</strong> does not use tracking cookies or third-party advertising cookies.
+      </p>
+
+      <h2>Browser LocalStorage</h2>
+      <p>
+        We use browser <code>localStorage</code> to store minimal functional settings strictly on your local browser:
+      </p>
+      <ul>
+        <li><code>ws_theme</code>: Remembers your preferred Dark Mode or Light Mode interface theme.</li>
+      </ul>
+
+      <h2>Managing Cookies & Storage</h2>
+      <p>
+        You can clear or block local storage data at any time through your web browser's security settings.
+      </p>
+    </article>
+  </div>
+</Layout>

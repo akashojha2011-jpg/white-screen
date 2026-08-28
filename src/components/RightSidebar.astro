@@ -1,0 +1,60 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const themes = [
+  { name: 'Sky Background', color: '#87ceeb', icon: '☁️' },
+  { name: 'Gradient Background', color: 'linear-gradient(135deg, #a855f7, #3b82f6)', icon: '🎨' },
+  { name: 'Space Background', color: '#090a0f', icon: '🌌' },
+  { name: 'Forest Background', color: '#133b1f', icon: '🌲' },
+  { name: 'Fire Background', color: '#d97706', icon: '🔥' },
+  { name: 'Wood Background', color: '#854d0e', icon: '🪵' },
+  { name: 'Water Background', color: '#0284c7', icon: '💧' },
+  { name: 'Paper Background', color: '#f5f5f4', icon: '📜' },
+  { name: 'City Background', color: '#334155', icon: '🏙️' },
+  { name: 'Ocean Background', color: '#0369a1', icon: '🌊' },
+  { name: 'Galaxy Background', color: '#312e81', icon: '✨' },
+  { name: 'Sunset Background', color: '#f43f5e', icon: '🌅' },
+  { name: 'Silver Background', color: '#cbd5e1', icon: '🪙' },
+  { name: 'Snow Background', color: '#f8fafc', icon: '❄️' },
+  { name: 'Carbon Fiber', color: '#1e293b', icon: '🏁' },
+  { name: 'Concrete Background', color: '#94a3b8', icon: '🧱' },
+];
+---
+
+<aside class="right-sidebar card-box">
+  <div class="sidebar-title">
+    <span>{t('themeBackgrounds')}</span>
+    <span style="font-size:0.75rem; color:var(--text-muted); font-weight:500;">{themes.length} Themes</span>
+  </div>
+
+  <div class="sidebar-list">
+    {themes.map((theme) => (
+      <button
+        class="sidebar-item btn-sidebar-theme"
+        data-color={theme.color}
+      >
+        <div class="sidebar-item-left">
+          <span style="font-size:1.1rem; width:20px; text-align:center;">{theme.icon}</span>
+          <span>{theme.name}</span>
+        </div>
+        <span style="font-size:0.75rem; opacity:0.6;">›</span>
+      </button>
+    ))}
+  </div>
+</aside>
+
+<script>
+  document.querySelectorAll('.btn-sidebar-theme').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const color = target.dataset.color || '#ffffff';
+
+      window.dispatchEvent(new CustomEvent('ws:change-color', {
+        detail: { color, presetId: 'theme' }
+      }));
+    });
+  });
+</script>

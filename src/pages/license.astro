@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="License Agreement – White Screen" description="Review the free open usage license for WhiteScreen.dev generated wallpapers and tools.">
+  <div class="container" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+    <article class="seo-content-article">
+      <h1>License Agreement</h1>
+      <p><em>Last Updated: August 28, 2026</em></p>
+
+      <p>
+        All blank color images, wallpapers, and canvas outputs created using <strong>WhiteScreen.dev</strong> are released under a permissive royalty-free license.
+      </p>
+
+      <h2>What is Allowed:</h2>
+      <ul>
+        <li>Use generated wallpapers for personal, desktop, tablet, and mobile device backgrounds.</li>
+        <li>Use images in commercial graphic design projects, digital mockups, and presentations.</li>
+        <li>Incorporate images into video recordings, Zoom background presets, and streams without attribution.</li>
+      </ul>
+
+      <h2>What is NOT Allowed:</h2>
+      <ul>
+        <li>Reselling blank white background images on stock media sites as standalone items.</li>
+        <li>Automated scraping or abusive API requests targeting our web infrastructure.</li>
+      </ul>
+    </article>
+  </div>
+</Layout>

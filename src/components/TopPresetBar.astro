@@ -1,0 +1,60 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+export interface Props {
+  activePreset?: string;
+}
+
+const { activePreset = 'white-screen' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const presets = [
+  { id: 'white-screen', name: t('presetNames')['white-screen'], color: '#ffffff' },
+  { id: 'blue-screen', name: t('presetNames')['blue-screen'], color: '#2563eb' },
+  { id: 'green-screen', name: t('presetNames')['green-screen'], color: '#22c55e' },
+  { id: 'red-screen', name: t('presetNames')['red-screen'], color: '#ef4444' },
+  { id: 'black-screen', name: t('presetNames')['black-screen'], color: '#000000' },
+  { id: 'yellow-screen', name: t('presetNames')['yellow-screen'], color: '#eab308' },
+  { id: 'orange-screen', name: t('presetNames')['orange-screen'], color: '#f97316' },
+  { id: 'pink-screen', name: t('presetNames')['pink-screen'], color: '#ec4899' },
+  { id: 'purple-screen', name: t('presetNames')['purple-screen'], color: '#a855f7' },
+  { id: 'zoom-lighting', name: t('presetNames')['zoom-lighting'], color: '#fef08a' },
+  { id: 'pixel-test', name: t('presetNames')['pixel-test'], color: '#38bdf8' },
+];
+---
+
+<div class="top-presets-bar">
+  <div class="container presets-container">
+    {presets.map((preset) => (
+      <button
+        class={`preset-pill ${preset.id === activePreset ? 'active' : ''}`}
+        data-preset-id={preset.id}
+        data-color={preset.color}
+        title={preset.name}
+      >
+        <span class="color-dot" style={`background-color: ${preset.color};`}></span>
+        <span>{preset.name}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Dynamic preset switcher across the tool interface
+  document.querySelectorAll('.preset-pill').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const color = target.dataset.color || '#ffffff';
+      const presetId = target.dataset.presetId || 'white-screen';
+
+      document.querySelectorAll('.preset-pill').forEach((b) => b.classList.remove('active'));
+      target.classList.add('active');
+
+      // Dispatch custom event for screen tool canvas
+      window.dispatchEvent(new CustomEvent('ws:change-color', {
+        detail: { color, presetId }
+      }));
+    });
+  });
+</script>

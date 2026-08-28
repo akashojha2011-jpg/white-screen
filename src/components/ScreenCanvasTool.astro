@@ -1,0 +1,196 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+export interface Props {
+  initialColor?: string;
+  initialPreset?: string;
+}
+
+const { initialColor = '#ffffff', initialPreset = 'white-screen' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="screen-display-wrapper">
+  <!-- Interactive Display Preview Box -->
+  <div id="screen-preview-box" class="screen-preview-box" style={`background-color: ${initialColor};`}>
+    <div class="fullscreen-trigger-badge">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+      </svg>
+      <span>{t('viewFullscreen')}</span>
+    </div>
+  </div>
+
+  <!-- Interactive Controls Bar -->
+  <div class="quick-actions-row">
+    <button id="btn-fullscreen-trigger" class="action-btn-card">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+        </svg>
+        <span>{t('fullscreen')}</span>
+      </div>
+      <span style="font-size:0.8rem; color:var(--text-muted);">{t('viewInFullscreen')}</span>
+    </button>
+
+    <div class="action-btn-card">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2a10 10 0 0 0 0 20z"></path>
+        </svg>
+        <span>{t('customColorPickerTitle')}</span>
+      </div>
+      <input type="color" id="hex-color-picker" value={initialColor} style="cursor:pointer; width:32px; height:32px; border:none; border-radius:6px; background:none;" />
+    </div>
+  </div>
+
+  <!-- Special Mode Control Sliders (Zoom Lighting / Pixel Test) -->
+  <div id="zoom-lighting-controls" class="card-box" style="display: none; margin-top: -8px;">
+    <div style="font-weight:700; margin-bottom:10px;">💡 {t('presetNames')['zoom-lighting']} Setup</div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+      <div>
+        <label style="font-size:0.85rem; font-weight:600; color:var(--text-muted);">Warmth / Temperature</label>
+        <input type="range" id="warmth-slider" min="0" max="100" value="40" style="width:100%; margin-top:6px;" />
+      </div>
+      <div>
+        <label style="font-size:0.85rem; font-weight:600; color:var(--text-muted);">Brightness Light Level</label>
+        <input type="range" id="brightness-slider" min="20" max="100" value="90" style="width:100%; margin-top:6px;" />
+      </div>
+    </div>
+  </div>
+
+  <div id="pixel-test-controls" class="card-box" style="display: none; margin-top: -8px;">
+    <div style="font-weight:700; margin-bottom:10px;">🔍 {t('presetNames')['pixel-test']} Auto Cycle</div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button id="btn-start-pixel-cycle" class="option-pill-btn selected" style="padding:10px 20px;">
+        ▶ Start RGB Auto Cycle (5s Interval)
+      </button>
+      <span style="font-size:0.85rem; color:var(--text-muted);">Click anywhere to inspect stuck or dead pixels.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Native Fullscreen Overlay Box -->
+<div id="fullscreen-overlay" class="fullscreen-overlay" style={`background-color: ${initialColor};`}>
+  <div class="fullscreen-notice" id="fullscreen-notice">
+    {t('exitFullscreen')}
+  </div>
+</div>
+
+<script>
+  let currentColor = '#ffffff';
+  let activePreset = 'white-screen';
+  let pixelCycleTimer: any = null;
+
+  const previewBox = document.getElementById('screen-preview-box');
+  const fullscreenOverlay = document.getElementById('fullscreen-overlay');
+  const hexPicker = document.getElementById('hex-color-picker') as HTMLInputElement;
+  const fullscreenNotice = document.getElementById('fullscreen-notice');
+  const zoomControls = document.getElementById('zoom-lighting-controls');
+  const pixelControls = document.getElementById('pixel-test-controls');
+  const warmthSlider = document.getElementById('warmth-slider') as HTMLInputElement;
+  const brightnessSlider = document.getElementById('brightness-slider') as HTMLInputElement;
+
+  function updateColor(color: string, presetId: string = 'custom') {
+    currentColor = color;
+    activePreset = presetId;
+
+    if (previewBox) previewBox.style.backgroundColor = color;
+    if (fullscreenOverlay) fullscreenOverlay.style.backgroundColor = color;
+    if (hexPicker) hexPicker.value = color;
+
+    // Toggle special controls
+    if (zoomControls) zoomControls.style.display = presetId === 'zoom-lighting' ? 'block' : 'none';
+    if (pixelControls) pixelControls.style.display = presetId === 'pixel-test' ? 'block' : 'none';
+
+    // Broadcast for download canvas generator
+    window.dispatchEvent(new CustomEvent('ws:color-updated', {
+      detail: { color, presetId }
+    }));
+  }
+
+  // Handle Preset Changes from Top Pill Bar or Sidebar
+  window.addEventListener('ws:change-color', (e: any) => {
+    const { color, presetId } = e.detail;
+    updateColor(color, presetId);
+  });
+
+  // Handle Hex Picker Input
+  hexPicker?.addEventListener('input', (e) => {
+    const color = (e.target as HTMLInputElement).value;
+    updateColor(color, 'custom');
+  });
+
+  // Enter Fullscreen Mode
+  function openFullscreen() {
+    if (!fullscreenOverlay) return;
+
+    if (fullscreenOverlay.requestFullscreen) {
+      fullscreenOverlay.requestFullscreen().catch(() => {
+        fullscreenOverlay.classList.add('active');
+      });
+    } else {
+      fullscreenOverlay.classList.add('active');
+    }
+
+    fullscreenOverlay.classList.add('active');
+
+    // Auto fade notice
+    if (fullscreenNotice) {
+      fullscreenNotice.style.opacity = '1';
+      setTimeout(() => {
+        fullscreenNotice.style.opacity = '0';
+      }, 3000);
+    }
+  }
+
+  function closeFullscreen() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    }
+    fullscreenOverlay?.classList.remove('active');
+  }
+
+  previewBox?.addEventListener('click', openFullscreen);
+  document.getElementById('btn-fullscreen-trigger')?.addEventListener('click', openFullscreen);
+  fullscreenOverlay?.addEventListener('click', closeFullscreen);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeFullscreen();
+  });
+
+  // Zoom Lighting Adjustments
+  function applyZoomLighting() {
+    const warmth = parseInt(warmthSlider?.value || '40');
+    const brightness = parseInt(brightnessSlider?.value || '90');
+
+    // Convert warmth to warm soft white (RGB calculation)
+    const r = Math.round(255 * (brightness / 100));
+    const g = Math.round((255 - (warmth * 0.4)) * (brightness / 100));
+    const b = Math.round((255 - (warmth * 0.8)) * (brightness / 100));
+
+    const hex = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+    updateColor(hex, 'zoom-lighting');
+  }
+
+  warmthSlider?.addEventListener('input', applyZoomLighting);
+  brightnessSlider?.addEventListener('input', applyZoomLighting);
+
+  // RGB Pixel Test Auto-Cycling
+  const rgbColors = ['#ff0000', '#00ff00', '#0000ff', '#ffffff', '#000000'];
+  let colorIdx = 0;
+
+  document.getElementById('btn-start-pixel-cycle')?.addEventListener('click', () => {
+    if (pixelCycleTimer) {
+      clearInterval(pixelCycleTimer);
+      pixelCycleTimer = null;
+    }
+    openFullscreen();
+    pixelCycleTimer = setInterval(() => {
+      colorIdx = (colorIdx + 1) % rgbColors.length;
+      updateColor(rgbColors[colorIdx], 'pixel-test');
+    }, 3000);
+  });
+</script>

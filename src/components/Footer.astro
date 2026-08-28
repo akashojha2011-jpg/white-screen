@@ -1,0 +1,78 @@
+---
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import { languages } from '../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand & Mission -->
+      <div>
+        <div class="logo-group" style="margin-bottom: 12px;">
+          <span class="logo-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+            </svg>
+          </span>
+          <span>White Screen</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+          Distraction-free online white screen tool and wallpaper downloader. Designed for monitor cleaning, dead pixel testing, Zoom video call lighting, drawing tracing, and focus.
+        </p>
+      </div>
+
+      <!-- Quick Screen Tools -->
+      <div class="footer-col">
+        <h4>Screen Tools</h4>
+        <ul>
+          <li><a href={translatePath('/')}>White Screen</a></li>
+          <li><a href={translatePath('/#download-section')}>Download Wallpapers</a></li>
+          <li><a href={translatePath('/#how-to-use')}>How to Use</a></li>
+          <li><a href={translatePath('/#why-use')}>Why White Screen?</a></li>
+          <li><a href={translatePath('/#faq-section')}>FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Available Languages -->
+      <div class="footer-col">
+        <h4>{t('availableLanguages')}</h4>
+        <ul>
+          {Object.entries(languages).map(([code, item]) => {
+            const path = code === 'en' ? '/' : `/${code}`;
+            return (
+              <li>
+                <a href={path}>{item.name}</a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      <!-- Legal & Company Links -->
+      <div class="footer-col">
+        <h4>Legal & Contact</h4>
+        <ul>
+          <li><a href={translatePath('/about')}>About Us</a></li>
+          <li><a href={translatePath('/contact')}>Contact Us</a></li>
+          <li><a href={translatePath('/privacy-policy')}>Privacy Policy</a></li>
+          <li><a href={translatePath('/terms-and-conditions')}>Terms & Conditions</a></li>
+          <li><a href={translatePath('/license')}>License</a></li>
+          <li><a href={translatePath('/cookie-policy')}>Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        © {new Date().getFullYear()} WhiteScreen.dev. All rights reserved. Fast, distraction-free tool.
+      </div>
+      <div style="display:flex; gap:16px;">
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>
