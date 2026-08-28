@@ -156,7 +156,7 @@ export const ui: Record<string, TranslationDict> = {
       },
       {
         q: "How do I turn my display into a white screen?",
-        a: "Simply visit WhiteScreen.dev and click anywhere on the screen box or click the 'Full Screen' button. Your monitor will instantly turn into a distraction-free white screen."
+        a: "Simply visit TheWhiteScreen.org and click anywhere on the screen box or click the 'Full Screen' button. Your monitor will instantly turn into a distraction-free white screen."
       },
       {
         q: "How does a white screen help with monitor cleaning?",
@@ -871,7 +871,7 @@ export const ui: Record<string, TranslationDict> = {
   },
   ar: {
     siteTitle: "شاشة بيضاء – أداة خلفية الشاشة البيضاء بالكامل",
-    siteDescription: "أداة شاشة بيضاء مجانية عبر الإنترنت لتنظيف الشاشة، واختبار البكسلات الميتة، وإضاءة مكالمات فيديو زوم، وتحميل خلفيات بيضاء 4K.",
+    siteDescription: "أداة شاشة بيضاء مجانية عبر الإنترنت لتنظيف الشاشة، وااختبار البكسلات الميتة، وإضاءة مكالمات فيديو زوم، وتحميل خلفيات بيضاء 4K.",
     heroHeading: "شاشة بيضاء – أداة ملء الشاشة",
     heroSubheading: "استخدم شاشة بيضاء ناصعة لتنظيف الغبار من الشاشة، واكتشاف البكسلات التالفة، وإضاءة وجهك أثناء مكالمات الفيديو.",
     fullscreen: "ملء الشاشة",
@@ -1044,7 +1044,7 @@ export const ui: Record<string, TranslationDict> = {
     exploreOtherTools: "다른 색상 도구",
     availableLanguages: "지원 언어",
     viewAllColors: "모든 색상",
-    viewAllThemes: "모든 테마",
+    viewAll테마: "모든 테마",
     howToUse: "화이트 스크린 사용법",
     howToUseIntro: "PC, Mac, 태블릿, 스마트폰에서 쉽게 사용할 수 있습니다:",
     step1: "컴퓨터나 스마트폰에서 이 페이지를 열어주세요.",

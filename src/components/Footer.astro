@@ -54,7 +54,7 @@ const translatePath = useTranslatedPath(lang);
 
       <!-- Legal & Company Links -->
       <div class="footer-col">
-        <h4>Legal & Contact</h4>
+        <h4>Legal & Sitemap</h4>
         <ul>
           <li><a href={translatePath('/about')}>About Us</a></li>
           <li><a href={translatePath('/contact')}>Contact Us</a></li>
@@ -62,15 +62,17 @@ const translatePath = useTranslatedPath(lang);
           <li><a href={translatePath('/terms-and-conditions')}>Terms & Conditions</a></li>
           <li><a href={translatePath('/license')}>License</a></li>
           <li><a href={translatePath('/cookie-policy')}>Cookie Policy</a></li>
+          <li><a href="/sitemap.xml" target="_blank" rel="noopener">Sitemap XML</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div>
-        © {new Date().getFullYear()} WhiteScreen.dev. All rights reserved. Fast, distraction-free tool.
+        © {new Date().getFullYear()} TheWhiteScreen.org. All rights reserved. Fast, distraction-free tool.
       </div>
       <div style="display:flex; gap:16px;">
+        <a href="/sitemap.xml" target="_blank" rel="noopener">Sitemap</a>
         <a href="#top">Back to top ↑</a>
       </div>
     </div>

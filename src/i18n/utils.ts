@@ -25,7 +25,7 @@ export function useTranslatedPath(lang: keyof typeof ui) {
   };
 }
 
-export function getHreflangLinks(url: URL, siteOrigin: string = 'https://whitescreen.dev') {
+export function getHreflangLinks(url: URL, siteOrigin: string = 'https://thewhitescreen.org') {
   const currentPath = url.pathname;
   const cleanPath = currentPath.replace(/^\/(en|fr|de|es|pt|tr|id|pl|nl|it|ar|ja|ko|ru)(\/|$)/, '/');
   const normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
