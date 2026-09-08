@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { useTranslations } from '../../i18n/utils';
 import { languages } from '../../i18n/ui';
+import { getLegalContent } from '../../i18n/legalTranslations';
 
 export function getStaticPaths() {
   return Object.keys(languages)
@@ -10,14 +10,31 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as any);
+const content = getLegalContent(lang || 'en').cookie;
 ---
 
-<Layout title={`Cookie Policy – ${t('siteTitle')}`} description={t('siteDescription')}>
+<Layout title={`${content.title} – White Screen`} description={content.metaDescription}>
   <div class="container" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
     <article class="seo-content-article">
-      <h1>Cookie Policy</h1>
-      <p>We use minimal local browser storage strictly to remember your Dark/Light interface theme setting.</p>
+      <h1>{content.title}</h1>
+      {content.lastUpdated && <p><em>{content.lastUpdated}</em></p>}
+      {content.paragraphs.map((p) => (
+        <p>{p}</p>
+      ))}
+
+      {content.sections.map((sec) => (
+        <>
+          <h2>{sec.heading}</h2>
+          {sec.content && <p>{sec.content}</p>}
+          {sec.bullets && (
+            <ul>
+              {sec.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          )}
+        </>
+      ))}
     </article>
   </div>
 </Layout>

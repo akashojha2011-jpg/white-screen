@@ -1,36 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl } from '../i18n/utils';
+import { getLegalContent } from '../i18n/legalTranslations';
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const content = getLegalContent(lang).about;
 ---
 
-<Layout title="About Us – White Screen" description="Learn about TheWhiteScreen.org - the fast, free, distraction-free online white screen background tool.">
+<Layout title={`${content.title} – White Screen`} description={content.metaDescription}>
   <div class="container" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
     <article class="seo-content-article">
-      <h1>About TheWhiteScreen.org</h1>
-      <p>
-        <strong>TheWhiteScreen.org</strong> was created with a single mission: to provide an ultra-fast, clean, distraction-free <strong>fullscreen white screen tool</strong> accessible instantly on any device worldwide without popups, sign-up forms, or ads.
-      </p>
+      <h1>{content.title}</h1>
+      {content.paragraphs.map((p) => (
+        <p>{p}</p>
+      ))}
 
-      <h2>Our Story & Mission</h2>
-      <p>
-        Whether you are a developer testing laptop screens for dead pixels, a professional looking for a soft key light during Zoom meetings, a student cleaning dust off a monitor, or an artist tracing drawings, having an instant pure white screen is essential. We built TheWhiteScreen.org using static-first architecture (Astro.js) to guarantee 100/100 performance and zero loading lag.
-      </p>
-
-      <h2>Key Principles</h2>
-      <ul>
-        <li><strong>100% Free & No Sign-Up:</strong> No hidden paywalls, subscriptions, or login requirements.</li>
-        <li><strong>Privacy-First:</strong> All image generation and screen rendering occurs 100% client-side in your browser. We never collect or store your data.</li>
-        <li><strong>Global Accessibility:</strong> Fully localized across 14 global languages with ultra-low latency.</li>
-        <li><strong>High-Resolution Exports:</strong> Download high-definition blank white wallpapers up to 8K Ultra HD resolution in PNG, JPG, or WEBP formats.</li>
-      </ul>
-
-      <h2>Contact & Support</h2>
-      <p>
-        Have feedback, feature requests, or questions? Visit our <a href="/contact" style="color:var(--accent-color); font-weight:600;">Contact Us page</a> to get in touch with our team.
-      </p>
+      {content.sections.map((sec) => (
+        <>
+          <h2>{sec.heading}</h2>
+          {sec.content && <p>{sec.content}</p>}
+          {sec.bullets && (
+            <ul>
+              {sec.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          )}
+        </>
+      ))}
     </article>
   </div>
 </Layout>

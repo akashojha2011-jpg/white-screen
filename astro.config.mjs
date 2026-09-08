@@ -2,7 +2,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://thewhitescreen.org',
+  site: 'https://www.thewhitescreen.org',
+  trailingSlash: 'always',
   integrations: [sitemap()],
   i18n: {
     defaultLocale: 'en',

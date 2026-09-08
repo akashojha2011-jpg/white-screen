@@ -1,33 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl } from '../i18n/utils';
+import { getLegalContent } from '../i18n/legalTranslations';
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const content = getLegalContent(lang).license;
 ---
 
-<Layout title="License Agreement – White Screen" description="Review the free open usage license for TheWhiteScreen.org generated wallpapers and tools.">
+<Layout title={`${content.title} – White Screen`} description={content.metaDescription}>
   <div class="container" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
     <article class="seo-content-article">
-      <h1>License Agreement</h1>
-      <p><em>Last Updated: August 28, 2026</em></p>
+      <h1>{content.title}</h1>
+      {content.lastUpdated && <p><em>{content.lastUpdated}</em></p>}
+      {content.paragraphs.map((p) => (
+        <p>{p}</p>
+      ))}
 
-      <p>
-        All blank color images, wallpapers, and canvas outputs created using <strong>TheWhiteScreen.org</strong> are released under a permissive royalty-free license.
-      </p>
-
-      <h2>What is Allowed:</h2>
-      <ul>
-        <li>Use generated wallpapers for personal, desktop, tablet, and mobile device backgrounds.</li>
-        <li>Use images in commercial graphic design projects, digital mockups, and presentations.</li>
-        <li>Incorporate images into video recordings, Zoom background presets, and streams without attribution.</li>
-      </ul>
-
-      <h2>What is NOT Allowed:</h2>
-      <ul>
-        <li>Reselling blank white background images on stock media sites as standalone items.</li>
-        <li>Automated scraping or abusive API requests targeting our web infrastructure.</li>
-      </ul>
+      {content.sections.map((sec) => (
+        <>
+          <h2>{sec.heading}</h2>
+          {sec.content && <p>{sec.content}</p>}
+          {sec.bullets && (
+            <ul>
+              {sec.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          )}
+        </>
+      ))}
     </article>
   </div>
 </Layout>

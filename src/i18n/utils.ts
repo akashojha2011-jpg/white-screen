@@ -25,10 +25,13 @@ export function useTranslatedPath(lang: keyof typeof ui) {
   };
 }
 
-export function getHreflangLinks(url: URL, siteOrigin: string = 'https://thewhitescreen.org') {
+export function getHreflangLinks(url: URL, siteOrigin: string = 'https://www.thewhitescreen.org') {
   const currentPath = url.pathname;
   const cleanPath = currentPath.replace(/^\/(en|fr|de|es|pt|tr|id|pl|nl|it|ar|ja|ko|ru)(\/|$)/, '/');
-  const normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
+  let normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
+  if (!normalizedPath.endsWith('/')) {
+    normalizedPath += '/';
+  }
 
   const hreflangs: Array<{ lang: string; href: string }> = [];
 
@@ -37,7 +40,8 @@ export function getHreflangLinks(url: URL, siteOrigin: string = 'https://thewhit
     if (langCode === defaultLang) {
       href = `${siteOrigin}${normalizedPath}`;
     } else {
-      href = `${siteOrigin}/${langCode}${normalizedPath === '/' ? '' : normalizedPath}`;
+      const subPath = normalizedPath === '/' ? '/' : normalizedPath;
+      href = `${siteOrigin}/${langCode}${subPath}`;
     }
     hreflangs.push({ lang: langCode, href });
   }

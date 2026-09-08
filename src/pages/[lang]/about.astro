@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { useTranslations } from '../../i18n/utils';
 import { languages } from '../../i18n/ui';
+import { getLegalContent } from '../../i18n/legalTranslations';
 
 export function getStaticPaths() {
   return Object.keys(languages)
@@ -10,28 +10,30 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as any);
+const content = getLegalContent(lang || 'en').about;
 ---
 
-<Layout title={`About Us – ${t('siteTitle')}`} description={t('siteDescription')}>
+<Layout title={`${content.title} – White Screen`} description={content.metaDescription}>
   <div class="container" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
     <article class="seo-content-article">
-      <h1>About TheWhiteScreen.org</h1>
-      <p>
-        <strong>TheWhiteScreen.org</strong> was created to provide a fast, clean, distraction-free <strong>fullscreen white screen tool</strong> accessible instantly on any device worldwide without popups or ads.
-      </p>
+      <h1>{content.title}</h1>
+      {content.paragraphs.map((p) => (
+        <p>{p}</p>
+      ))}
 
-      <h2>Our Mission</h2>
-      <p>
-        Whether you are testing laptop screens for dead pixels, looking for a soft key light during Zoom meetings, cleaning dust off a monitor, or tracing drawings, our tool provides an instant bright white screen.
-      </p>
-
-      <h2>Key Principles</h2>
-      <ul>
-        <li><strong>100% Free:</strong> No paywalls or registration.</li>
-        <li><strong>Privacy-First:</strong> Client-side rendering inside your browser.</li>
-        <li><strong>Multi-Language:</strong> Available across 14 global languages.</li>
-      </ul>
+      {content.sections.map((sec) => (
+        <>
+          <h2>{sec.heading}</h2>
+          {sec.content && <p>{sec.content}</p>}
+          {sec.bullets && (
+            <ul>
+              {sec.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          )}
+        </>
+      ))}
     </article>
   </div>
 </Layout>

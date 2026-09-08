@@ -19,8 +19,12 @@ const t = useTranslations(lang);
 
 const pageTitle = title || t('siteTitle');
 const pageDescription = description || t('siteDescription');
-const currentCanonical = canonicalUrl || Astro.url.href;
-const hreflangs = getHreflangLinks(Astro.url, 'https://thewhitescreen.org');
+let rawCanonical = canonicalUrl || Astro.url.href;
+if (!rawCanonical.endsWith('/') && !rawCanonical.split('/').pop()?.includes('.')) {
+  rawCanonical += '/';
+}
+const currentCanonical = rawCanonical;
+const hreflangs = getHreflangLinks(Astro.url, 'https://www.thewhitescreen.org');
 
 // JSON-LD Schemas for Search Dominance
 const webAppSchema = {
@@ -47,7 +51,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://thewhitescreen.org"
+      "item": "https://www.thewhitescreen.org/"
     },
     ...(screenSlug && screenSlug !== 'white-screen' ? [
       {
