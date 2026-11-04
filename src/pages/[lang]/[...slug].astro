@@ -1,0 +1,50 @@
+---
+import { NON_DEFAULT_LANGUAGES, type LanguageCode } from '../../i18n/config';
+import { SLUG_REGISTRY } from '../../i18n/slugs';
+import PageView from '../../components/PageView.astro';
+
+export async function getStaticPaths() {
+  const paths: Array<{
+    params: { lang: LanguageCode; slug: string };
+    props: {
+      pageId: string;
+      pageType: 'color' | 'tool' | 'wallpaper' | 'theme' | 'guide' | 'legal';
+      lang: LanguageCode;
+    };
+  }> = [];
+
+  for (const lang of NON_DEFAULT_LANGUAGES) {
+    const validPages = SLUG_REGISTRY.filter((p) => p.type !== 'home' && p.slugs[lang]);
+
+    for (const page of validPages) {
+      paths.push({
+        params: {
+          lang,
+          slug: page.slugs[lang] as string,
+        },
+        props: {
+          pageId: page.id,
+          pageType: page.type,
+          lang,
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+export interface Props {
+  pageId: string;
+  pageType: 'color' | 'tool' | 'wallpaper' | 'theme' | 'guide' | 'legal';
+  lang: LanguageCode;
+}
+
+const { pageId, pageType, lang } = Astro.props;
+---
+
+<PageView
+  pageId={pageId}
+  pageType={pageType}
+  lang={lang}
+/>

@@ -1,0 +1,64 @@
+---
+import type { LanguageCode } from '../i18n/config';
+import { getRelativePath, SITE_ORIGIN } from '../i18n/slugs';
+import { getUI } from '../i18n/ui';
+
+export interface BreadcrumbItem {
+  name: string;
+  url?: string;
+}
+
+export interface Props {
+  lang: LanguageCode;
+  items: BreadcrumbItem[];
+}
+
+const { lang, items } = Astro.props;
+const ui = getUI(lang);
+const homePath = lang === 'en' ? '/' : `/${lang}/`;
+
+const fullBreadcrumbs = [
+  { name: ui.nav.home, url: homePath },
+  ...items
+];
+
+// JSON-LD BreadcrumbList
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": fullBreadcrumbs.map((crumb, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "name": crumb.name,
+    ...(crumb.url ? { "item": `${SITE_ORIGIN}${crumb.url}` } : {})
+  }))
+};
+---
+
+<nav aria-label="Breadcrumb" class="my-4 text-xs font-medium text-slate-500 dark:text-slate-400">
+  <ol class="flex flex-wrap items-center gap-1.5 list-none p-0 m-0">
+    {fullBreadcrumbs.map((crumb, idx) => {
+      const isLast = idx === fullBreadcrumbs.length - 1;
+      return (
+        <li class="flex items-center gap-1.5">
+          {idx > 0 && (
+            <svg class="w-3.5 h-3.5 text-slate-400 dark:text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          )}
+          {crumb.url && !isLast ? (
+            <a href={crumb.url} class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              {crumb.name}
+            </a>
+          ) : (
+            <span class="text-slate-800 dark:text-slate-200 font-semibold" aria-current={isLast ? "page" : undefined}>
+              {crumb.name}
+            </span>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

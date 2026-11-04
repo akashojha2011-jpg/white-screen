@@ -1,1180 +1,620 @@
-export const languages: Record<string, { name: string }> = {
-  en: { name: 'English' },
-  fr: { name: 'France' },
-  de: { name: 'Germany' },
-  es: { name: 'Spain' },
-  pt: { name: 'Portugal' },
-  tr: { name: 'Turkey' },
-  id: { name: 'Indonesia' },
-  pl: { name: 'Poland' },
-  nl: { name: 'Netherlands' },
-  it: { name: 'Italy' },
-  ar: { name: 'العربية' },
-  ja: { name: 'Japanese' },
-  ko: { name: '한국어' },
-  ru: { name: 'Russian' }
-};
+import type { LanguageCode } from './config';
 
-export const defaultLang = 'en';
-
-export interface TranslationDict {
-  siteTitle: string;
-  siteDescription: string;
-  heroHeading: string;
-  heroSubheading: string;
-  fullscreen: string;
-  viewFullscreen: string;
-  clickToFullscreen: string;
-  exitFullscreen: string;
-  download: string;
-  chooseFormat: string;
-  chooseSize: string;
-  downloadButtonText: (format: string, size: string, dimensions: string) => string;
-  freeNoSignup: string;
-  watchVideoVersion: string;
-  solidColorBackgrounds: string;
-  themeBackgrounds: string;
-  discoverMore: string;
-  exploreOtherTools: string;
-  availableLanguages: string;
-  viewAllColors: string;
-  viewAllThemes: string;
-  howToUse: string;
-  howToUseIntro: string;
-  step1: string;
-  step2: string;
-  step3: string;
-  whyUse: string;
-  cleanScreen: string;
-  cleanScreenDesc: string;
-  focusMode: string;
-  focusModeDesc: string;
-  zoomLighting: string;
-  zoomLightingDesc: string;
-  pixelTest: string;
-  pixelTestDesc: string;
-  photography: string;
-  photographyDesc: string;
-  tracingLight: string;
-  tracingLightDesc: string;
-  imagesDownloadTitle: string;
-  imagesDownloadDesc: string;
-  customColorPickerTitle: string;
-  selectHexColor: string;
-  favorites: string;
-  addToFavorites: string;
-  removeFromFavorites: string;
-  noFavoritesYet: string;
-  presetNames: Record<string, string>;
-  navLinks: {
+export interface UIDictionary {
+  meta: {
+    siteName: string;
+    siteSlogan: string;
+  };
+  nav: {
+    home: string;
+    colors: string;
+    tools: string;
+    wallpapers: string;
+    themes: string;
+    guides: string;
     about: string;
     contact: string;
+  };
+  tool: {
+    fullscreenBtn: string;
+    exitFullscreenBtn: string;
+    clickToFullscreen: string;
+    tapToFullscreen: string;
+    pressEscToExit: string;
+    brightnessLabel: string;
+    warmthLabel: string;
+    colorPickerLabel: string;
+    hexInputPlaceholder: string;
+    autoCycleBtn: string;
+    stopCycleBtn: string;
+    cycleSpeedLabel: string;
+    secondsLabel: string;
+    wakeLockActive: string;
+    wakeLockUnsupported: string;
+    shortcutsTitle: string;
+    shortcutFullscreen: string;
+    shortcutColors: string;
+    shortcutCycle: string;
+    shortcutEsc: string;
+  };
+  download: {
+    title: string;
+    subtitle: string;
+    chooseFormat: string;
+    chooseResolution: string;
+    buttonText: string;
+    generating: string;
+    success: string;
+    resolutions: {
+      fhd: string;
+      qhd: string;
+      uhd4k: string;
+      retina5k: string;
+      uhd8k: string;
+      mobile: string;
+      square: string;
+    };
+  };
+  sections: {
+    howToUseTitle: string;
+    whyUseTitle: string;
+    specsTitle: string;
+    relatedToolsTitle: string;
+    faqTitle: string;
+    guidesTitle: string;
+    colorsTitle: string;
+    themesTitle: string;
+    step1Title: string;
+    step1Desc: string;
+    step2Title: string;
+    step2Desc: string;
+    step3Title: string;
+    step3Desc: string;
+  };
+  footer: {
+    description: string;
+    toolsColumn: string;
+    colorsColumn: string;
+    resourcesColumn: string;
+    legalColumn: string;
+    allRightsReserved: string;
     privacy: string;
     terms: string;
+    cookies: string;
     license: string;
-    cookie: string;
+    contact: string;
+    about: string;
   };
-  faqTitle: string;
-  faqs: Array<{ q: string; a: string }>;
 }
 
-export const ui: Record<string, TranslationDict> = {
+export const UI_TRANSLATIONS: Record<LanguageCode, UIDictionary> = {
   en: {
-    siteTitle: "White Screen – Fullscreen Bright White Display & Background Tool",
-    siteDescription: "Online white screen tool for monitor cleaning, dead pixel test, Zoom video call lighting, drawing tracing, and 4K/8K white wallpaper downloads. Simple, 100% free & instant.",
-    heroHeading: "White Screen – Fullscreen Background Tool",
-    heroSubheading: "Bright white screen online tool. Use it to clean your monitor, test for dead pixels, brighten Zoom video calls, or trace drawings. No ads, 100% free.",
-    fullscreen: "Full Screen",
-    viewFullscreen: "View in full screen",
-    clickToFullscreen: "Click anywhere to enter fullscreen white screen mode",
-    exitFullscreen: "Press ESC or click anywhere to exit fullscreen white screen",
-    download: "Download White Wallpaper",
-    chooseFormat: "1. Choose Format",
-    chooseSize: "2. Choose Resolution",
-    downloadButtonText: (format, size, dimensions) => `Download ${format} ${size} (${dimensions})`,
-    freeNoSignup: "100% Free • No signup required • Ultra HD Crisp Output",
-    watchVideoVersion: "Watch 10-Hour White Screen Video Version",
-    solidColorBackgrounds: "Solid Color Backgrounds",
-    themeBackgrounds: "Theme Backgrounds",
-    discoverMore: "Discover More Tools",
-    exploreOtherTools: "Explore Other Color Screen Tools",
-    availableLanguages: "Available in Your Language",
-    viewAllColors: "View All Colors",
-    viewAllThemes: "View All Themes",
-    howToUse: "How to Use a White Screen",
-    howToUseIntro: "Using our online white screen generator is effortless on any desktop PC, Mac, iPad, tablet, or smartphone:",
-    step1: "Open this page on your desktop PC, Mac, tablet, or mobile phone.",
-    step2: "Click anywhere on the display preview box or click the 'Full Screen' button.",
-    step3: "Use the bright white light for display cleaning, video meeting illumination, or pixel testing. Press ESC or tap anywhere to exit fullscreen mode.",
-    whyUse: "Why Do You Need a White Screen?",
-    cleanScreen: "Monitor Cleaning & Dust Detection",
-    cleanScreenDesc: "Displaying a blank white screen at 100% brightness makes dust particles, water spots, greasy fingerprints, and smudges immediately visible on LCD, LED, and OLED laptop screens so you can wipe them clean safely.",
-    focusMode: "Focus Backdrop & Anti-Glare Light",
-    focusModeDesc: "Turn off visual distractions and create a clean ambient light source for studying, reading, or photography backdrops.",
-    zoomLighting: "Zoom & Webcam Video Call Ring Light",
-    zoomLightingDesc: "Turn your secondary computer monitor into a soft webcam fill light or ring light for Zoom, Microsoft Teams, Google Meet, or live streaming video calls to brighten your face evenly.",
-    pixelTest: "Dead & Stuck Pixel Detector",
-    pixelTestDesc: "Identify stuck, defective, or dead pixels on LCD, OLED, and LED screens with full bright white and RGB color checks.",
-    photography: "Photography Backlight & Soft Diffuser",
-    photographyDesc: "Provides a uniform neutral white light source for macro photography, product shoots, and tabletop lighting.",
-    tracingLight: "Drawing & Artwork Tracing Lightbox",
-    tracingLightDesc: "Turn your iPad, laptop, or desktop monitor into an illuminated lightbox for sketching, drawing, and calligraphy tracing.",
-    imagesDownloadTitle: "Download High-Res White Screen Wallpapers",
-    imagesDownloadDesc: "Generate and save custom white wallpaper files in PNG, JPG, or WEBP formats in HD, 2K, 4K, 5K, 8K, Mobile, or Square ratios.",
-    customColorPickerTitle: "Custom Screen Color Customizer",
-    selectHexColor: "Choose any custom HEX / RGB screen color:",
-    favorites: "Favorites",
-    addToFavorites: "Add to Favorites",
-    removeFromFavorites: "Remove from Favorites",
-    noFavoritesYet: "No saved screen colors yet.",
-    presetNames: {
-      "white-screen": "White Screen",
-      "blue-screen": "Blue Screen",
-      "green-screen": "Green Screen",
-      "red-screen": "Red Screen",
-      "black-screen": "Black Screen",
-      "yellow-screen": "Yellow Screen",
-      "orange-screen": "Orange Screen",
-      "pink-screen": "Pink Screen",
-      "purple-screen": "Purple Screen",
-      "zoom-lighting": "Zoom Lighting",
-      "pixel-test": "Pixel Test"
+    meta: {
+      siteName: "TheWhiteScreen.org",
+      siteSlogan: "Universal Fullscreen Display & Screen Color Utility",
     },
-    navLinks: {
-      about: "About Us",
-      contact: "Contact Us",
+    nav: {
+      home: "White Screen",
+      colors: "Color Screens",
+      tools: "Screen Tools",
+      wallpapers: "Wallpapers",
+      themes: "Themes",
+      guides: "Guides",
+      about: "About",
+      contact: "Contact",
+    },
+    tool: {
+      fullscreenBtn: "Go Fullscreen",
+      exitFullscreenBtn: "Exit Fullscreen",
+      clickToFullscreen: "Click anywhere to toggle full screen",
+      tapToFullscreen: "Tap screen to enter fullscreen display",
+      pressEscToExit: "Press ESC or click anywhere to exit",
+      brightnessLabel: "Screen Brightness",
+      warmthLabel: "Lighting Warmth (Zoom)",
+      colorPickerLabel: "Custom Color",
+      hexInputPlaceholder: "HEX / RGB",
+      autoCycleBtn: "Start RGB Pixel Cycle",
+      stopCycleBtn: "Stop Pixel Cycle",
+      cycleSpeedLabel: "Cycle Interval",
+      secondsLabel: "seconds",
+      wakeLockActive: "Screen Wake Lock Active (Display Won't Sleep)",
+      wakeLockUnsupported: "Screen Wake Lock not supported in this browser",
+      shortcutsTitle: "Keyboard Shortcuts",
+      shortcutFullscreen: "F key: Toggle fullscreen",
+      shortcutColors: "Keys 1-9: Quick color preset",
+      shortcutCycle: "Arrow keys: Step color spectrum",
+      shortcutEsc: "ESC key: Exit fullscreen view",
+    },
+    download: {
+      title: "Download Blank Screen Wallpaper",
+      subtitle: "Generate and save ultra-crisp blank background images in lossless quality for desktop, tablet, and mobile devices.",
+      chooseFormat: "1. Select Image Format",
+      chooseResolution: "2. Select Resolution",
+      buttonText: "Download Wallpaper Image",
+      generating: "Rendering canvas...",
+      success: "Image downloaded successfully!",
+      resolutions: {
+        fhd: "1080p Full HD (1920 × 1080)",
+        qhd: "2K Quad HD (2560 × 1440)",
+        uhd4k: "4K Ultra HD (3840 × 2160)",
+        retina5k: "5K Retina (5120 × 2880)",
+        uhd8k: "8K Ultra HD (7680 × 4320)",
+        mobile: "Mobile Portrait (1080 × 1920)",
+        square: "Square Display (2048 × 2048)",
+      },
+    },
+    sections: {
+      howToUseTitle: "How to Use This Screen Tool",
+      whyUseTitle: "Key Use Cases & Practical Applications",
+      specsTitle: "Color Values & Display Specifications",
+      relatedToolsTitle: "Related Screen Utilities & Colors",
+      faqTitle: "Frequently Asked Questions",
+      guidesTitle: "Technical Display Guides & Tutorials",
+      colorsTitle: "Explore Solid Screen Colors",
+      themesTitle: "Explore Background Themes",
+      step1Title: "1. Open on Any Device",
+      step1Desc: "Access this tool directly in Chrome, Safari, Firefox, or Edge on PC, Mac, iPad, iPhone, or Android.",
+      step2Title: "2. Activate Fullscreen Mode",
+      step2Desc: "Click the 'Go Fullscreen' button or tap the preview window to eliminate browser tabs and taskbars.",
+      step3Title: "3. Clean, Test, or Illuminate",
+      step3Desc: "Use the pure illumination to inspect monitor dust, spot dead pixels, or soften webcam lighting.",
+    },
+    footer: {
+      description: "TheWhiteScreen.org is an open-access, zero-ad screen utility providing pure color canvases, display calibration tools, and high-resolution wallpaper downloads.",
+      toolsColumn: "Display Tools",
+      colorsColumn: "Screen Colors",
+      resourcesColumn: "Guides & Themes",
+      legalColumn: "Trust & Legal",
+      allRightsReserved: "All rights reserved. Free online display utility.",
       privacy: "Privacy Policy",
       terms: "Terms & Conditions",
+      cookies: "Cookie Policy",
       license: "License",
-      cookie: "Cookie Policy"
+      contact: "Contact Us",
+      about: "About Us",
     },
-    faqTitle: "Frequently Asked Questions About White Screen",
-    faqs: [
-      {
-        q: "What is a white screen online tool used for?",
-        a: "A white screen tool creates a pure white fullscreen canvas. It is widely used to clean computer monitors, test displays for dead pixels, provide front lighting for Zoom video calls, trace drawings, or eliminate visual background clutter."
-      },
-      {
-        q: "How do I turn my display into a white screen?",
-        a: "Simply visit TheWhiteScreen.org and click anywhere on the screen box or click the 'Full Screen' button. Your monitor will instantly turn into a distraction-free white screen."
-      },
-      {
-        q: "How does a white screen help with monitor cleaning?",
-        a: "When a display shows a pure white background at maximum brightness, dust particles, fingerprints, water spots, and smudges stand out clearly, making it easy to wipe the display clean."
-      },
-      {
-        q: "Can I use a white screen as light for Zoom video calls?",
-        a: "Yes! Placing a white screen on a secondary monitor or laptop facing you provides a soft, natural key light that illuminates your face during webcam meetings."
-      },
-      {
-        q: "Is it possible to download white screen wallpapers in 4K and 8K?",
-        a: "Yes. You can select PNG, JPG, or WEBP format and download high-resolution blank white wallpapers in 1080p HD, 2K, 4K, 5K, 8K, Mobile, or Square ratios."
-      }
-    ]
   },
-  fr: {
-    siteTitle: "Écran Blanc – Outil Fond Blanc Plein Écran",
-    siteDescription: "Outil écran blanc en ligne gratuit pour nettoyer votre écran, tester les pixels morts, éclairer vos visioconférences Zoom et télécharger des fonds d'écran blancs 4K.",
-    heroHeading: "Écran Blanc – Outil Arrière-Plan Plein Écran",
-    heroSubheading: "Utilisez un fond blanc pur pour le nettoyage de l'écran, le test de pixels et l'éclairage de vos visioconférences. 100% gratuit.",
-    fullscreen: "Plein Écran",
-    viewFullscreen: "Afficher en plein écran",
-    clickToFullscreen: "Cliquez n'importe où pour passer en plein écran",
-    exitFullscreen: "Appuyez sur Échap ou cliquez pour quitter",
-    download: "Télécharger l'Image Blanche",
-    chooseFormat: "1. Choisir le Format",
-    chooseSize: "2. Choisir la Résolution",
-    downloadButtonText: (format, size, dimensions) => `Télécharger ${format} ${size} (${dimensions})`,
-    freeNoSignup: "100% Gratuit • Sans inscription",
-    watchVideoVersion: "Voir la vidéo de 10 heures",
-    solidColorBackgrounds: "Couleurs Unies",
-    themeBackgrounds: "Fonds Thématiques",
-    discoverMore: "Découvrir Plus",
-    exploreOtherTools: "Autres Outils Écran",
-    availableLanguages: "Disponible dans Votre Langue",
-    viewAllColors: "Toutes les couleurs",
-    viewAllThemes: "Tous les thèmes",
-    howToUse: "Comment Utiliser l'Écran Blanc",
-    howToUseIntro: "L'utilisation de notre générateur d'écran blanc en ligne est simple sur PC, Mac, tablette ou smartphone :",
-    step1: "Ouvrez cette page sur votre ordinateur, tablette ou smartphone.",
-    step2: "Cliquez sur l'aperçu ou sur le bouton 'Plein Écran'.",
-    step3: "Utilisez la lumière blanche pour le nettoyage, l'éclairage vidéo ou le test de pixels. Appuyez sur Échap pour quitter.",
-    whyUse: "Pourquoi Utiliser un Écran Blanc ?",
-    cleanScreen: "Nettoyage d'Écran et Détection de Poussière",
-    cleanScreenDesc: "L'affichage d'un écran blanc pur à 100% de luminosité fait ressortir immédiatement la poussière, les traces de doigts et les taches.",
-    focusMode: "Mode Concentration et Anti-Distraction",
-    focusModeDesc: "Éliminez les distractions visuelles et créez un environnement de travail pur et lumineux.",
-    zoomLighting: "Éclairage pour Visioconférences Zoom et Webcam",
-    zoomLightingDesc: "Transformez votre second écran en lumière douce pour illuminer votre visage pendant les appels vidéo Zoom et Teams.",
-    pixelTest: "Test de Pixels Morts ou Bloqués",
-    pixelTestDesc: "Détectez facilement les pixels défectueux ou bloqués sur vos écrans LCD, LED et OLED.",
-    photography: "Rétroéclairage Photographie",
-    photographyDesc: "Source de lumière blanche neutre pour la photographie macro et la présentation de produits.",
-    tracingLight: "Table Lumineuse pour Dessin",
-    tracingLightDesc: "Transformez votre tablette ou écran en table lumineuse pour décalquer et repasser vos dessins.",
-    imagesDownloadTitle: "Télécharger Fonds d'Écran Blancs Haute Définition",
-    imagesDownloadDesc: "Téléchargez des images blanches neutres en formats PNG, JPG ou WEBP aux résolutions HD, 2K, 4K, 5K et 8K.",
-    customColorPickerTitle: "Sélecteur de Couleur Personnalisé",
-    selectHexColor: "Choisissez une couleur HEX / RGB :",
-    favorites: "Favoris",
-    addToFavorites: "Ajouter aux favoris",
-    removeFromFavorites: "Retirer des favoris",
-    noFavoritesYet: "Aucune couleur sauvegardée.",
-    presetNames: {
-      "white-screen": "Écran Blanc",
-      "blue-screen": "Écran Bleu",
-      "green-screen": "Écran Vert",
-      "red-screen": "Écran Rouge",
-      "black-screen": "Écran Noir",
-      "yellow-screen": "Écran Jaune",
-      "orange-screen": "Écran Orange",
-      "pink-screen": "Écran Rose",
-      "purple-screen": "Écran Violet",
-      "zoom-lighting": "Éclairage Zoom",
-      "pixel-test": "Test Pixels"
-    },
-    navLinks: {
-      about: "À Propos",
-      contact: "Contact",
-      privacy: "Confidentialité",
-      terms: "Conditions",
-      license: "Licence",
-      cookie: "Cookies"
-    },
-    faqTitle: "Foire Aux Questions Sur l'Écran Blanc",
-    faqs: [
-      {
-        q: "À quoi sert un outil d'écran blanc en ligne ?",
-        a: "Il permet de nettoyer son écran, de tester les pixels morts, d'éclairer son visage en visio Zoom et de décalquer des dessins."
-      },
-      {
-        q: "Comment mettre mon écran totalement blanc ?",
-        a: "Cliquez simplement n'importe où sur l’écran ou sur le bouton 'Plein Écran'."
-      }
-    ]
-  },
-  de: {
-    siteTitle: "Weißer Bildschirm – Vollbild Hintergrund & Licht Tool",
-    siteDescription: "Kostenloses Online-Tool für weißen Bildschirm zum Reinigen des Monitors, Pixelfehler-Testen, Zoom-Videobeleuchtung und 4K/8K Bild-Download.",
-    heroHeading: "Weißer Bildschirm – Vollbild Tool",
-    heroSubheading: "Nutzen Sie eine helle weiße Fläche zur Reinigung Ihres Displays, zur Pixelfehlersuche oder als Softbox für Videocalls.",
-    fullscreen: "Vollbild",
-    viewFullscreen: "Im Vollbild anzeigen",
-    clickToFullscreen: "Klicken Sie für Vollbildmodus",
-    exitFullscreen: "ESC drücken zum Beenden",
-    download: "Weißes Bild Herunterladen",
-    chooseFormat: "1. Format wählen",
-    chooseSize: "2. Auflösung wählen",
-    downloadButtonText: (format, size, dimensions) => `${format} ${size} Herunterladen (${dimensions})`,
-    freeNoSignup: "100% Kostenlos • Keine Registrierung",
-    watchVideoVersion: "10-Stunden Video ansehen",
-    solidColorBackgrounds: "Einfarbige Hintergründe",
-    themeBackgrounds: "Themen Hintergründe",
-    discoverMore: "Weitere Tools",
-    exploreOtherTools: "Andere Farb-Tools",
-    availableLanguages: "In Ihrer Sprache",
-    viewAllColors: "Alle Farben",
-    viewAllThemes: "Alle Themen",
-    howToUse: "Anleitung zum Weißen Bildschirm",
-    howToUseIntro: "Die Nutzung auf PC, Mac, Tablet oder Smartphone ist kinderleicht:",
-    step1: "Öffnen Sie diese Seite auf Ihrem Computer oder Smartphone.",
-    step2: "Klicken Sie auf das Vorschaubild oder auf 'Vollbild'.",
-    step3: "Verwenden Sie die weiße Fläche zur Reinigung oder Beleuchtung. Drücken Sie ESC zum Beenden.",
-    whyUse: "Warum ein weißer Bildschirm?",
-    cleanScreen: "Monitor-Reinigung & Stauberfassung",
-    cleanScreenDesc: "Ein vollweißer Bildschirm bei 100% Helligkeit macht Staub, Fingerabdrücke und Flecken sofort sichtbar.",
-    focusMode: "Fokus-Hintergrund & Blendschutz",
-    focusModeDesc: "Schalten Sie visuelle Ablenkungen aus und schaffen Sie eine ruhige Arbeitsumgebung.",
-    zoomLighting: "Zoom Videobeleuchtung & Softbox",
-    zoomLightingDesc: "Nutzen Sie Ihren Zweitbildschirm als Ausleuchtung für Webcams bei Zoom- oder Teams-Meetings.",
-    pixelTest: "Pixelfehler-Suche",
-    pixelTestDesc: "Spüren Sie defekte oder hängende Pixel auf LCD-, LED- und OLED-Bildschirmen auf.",
-    photography: "Fotografie Hintergrund & Licht",
-    photographyDesc: "Gleichmäßige weiße Lichtquelle für Produktaufnahmen und Makrofotografie.",
-    tracingLight: "Zeichen-Leuchttisch",
-    tracingLightDesc: "Verwandeln Sie Ihren Bildschirm in einen Leuchttisch zum Abpausen von Zeichnungen.",
-    imagesDownloadTitle: "Weißes Hintergrundbild Herunterladen (4K/8K)",
-    imagesDownloadDesc: "Laden Sie weiße Bilder in PNG, JPG oder WEBP in HD, 2K, 4K und 8K herunter.",
-    customColorPickerTitle: "Farbe anpassen",
-    selectHexColor: "Wählen Sie eine HEX / RGB Farbe:",
-    favorites: "Favoriten",
-    addToFavorites: "Zu Favoriten",
-    removeFromFavorites: "Aus Favoriten entfernen",
-    noFavoritesYet: "Keine Favoriten gespeichert.",
-    presetNames: {
-      "white-screen": "Weißer Bildschirm",
-      "blue-screen": "Blauer Bildschirm",
-      "green-screen": "Grüner Bildschirm",
-      "red-screen": "Roter Bildschirm",
-      "black-screen": "Schwarzer Bildschirm",
-      "yellow-screen": "Gelber Bildschirm",
-      "orange-screen": "Oranger Bildschirm",
-      "pink-screen": "Rosa Bildschirm",
-      "purple-screen": "Violetter Bildschirm",
-      "zoom-lighting": "Zoom Beleuchtung",
-      "pixel-test": "Pixel Test"
-    },
-    navLinks: {
-      about: "Über Uns",
-      contact: "Kontakt",
-      privacy: "Datenschutz",
-      terms: "AGB",
-      license: "Lizenz",
-      cookie: "Cookies"
-    },
-    faqTitle: "Häufig gestellte Fragen zu weißem Bildschirm",
-    faqs: [
-      {
-        q: "Wofür wird ein weißer Bildschirm verwendet?",
-        a: "Er dient zur Reinigung von Displays, zur Suche nach Pixelfehlern und als Beleuchtung für Videokonferenzen."
-      }
-    ]
-  },
+
   es: {
-    siteTitle: "Pantalla Blanca – Herramienta de Fondo Blanco a Pantalla Completa",
-    siteDescription: "Herramienta gratuita de pantalla blanca para limpiar monitores, probar píxeles muertos, iluminación para Zoom y descarga de fondos de pantalla en 4K.",
-    heroHeading: "Pantalla Blanca – Herramienta de Fondo",
-    heroSubheading: "Usa una pantalla blanca brillante para limpiar tu monitor, detectar píxeles muertos o iluminar tus videollamadas. 100% gratis.",
-    fullscreen: "Pantalla Completa",
-    viewFullscreen: "Ver en pantalla completa",
-    clickToFullscreen: "Haz clic para modo pantalla completa",
-    exitFullscreen: "Presiona ESC para salir",
-    download: "Descargar Fondo Blanco",
-    chooseFormat: "1. Elegir Formato",
-    chooseSize: "2. Elegir Resolución",
-    downloadButtonText: (format, size, dimensions) => `Descargar ${format} ${size} (${dimensions})`,
-    freeNoSignup: "100% Gratis • Sin registro",
-    watchVideoVersion: "Ver video de 10 horas",
-    solidColorBackgrounds: "Colores Sólidos",
-    themeBackgrounds: "Fondos Temáticos",
-    discoverMore: "Descubrir Más",
-    exploreOtherTools: "Otras Herramientas",
-    availableLanguages: "En Tu Idioma",
-    viewAllColors: "Todos los Colores",
-    viewAllThemes: "Todos los Temas",
-    howToUse: "Cómo Usar la Pantalla Blanca",
-    howToUseIntro: "Usar nuestra herramienta es muy sencillo en cualquier PC, Mac o móvil:",
-    step1: "Abre esta página en tu navegador.",
-    step2: "Haz clic en la pantalla o en el botón 'Pantalla Completa'.",
-    step3: "Usa el fondo blanco para limpiar tu monitor o iluminar. Presiona ESC para salir.",
-    whyUse: "¿Por qué Usar una Pantalla Blanca?",
-    cleanScreen: "Limpieza de Pantalla y Detección de Polvo",
-    cleanScreenDesc: "Una pantalla blanca brillante hace visibles las huellas dactilares y el polvo para limpiarlos de forma segura.",
-    focusMode: "Modo Enfoque sin Distracciones",
-    focusModeDesc: "Elimina las distracciones con un fondo blanco neutro.",
-    zoomLighting: "Luz para Videollamadas de Zoom",
-    zoomLightingDesc: "Utiliza tu pantalla como luz de relleno para iluminar tu rostro en reuniones virtuales.",
-    pixelTest: "Prueba de Píxeles Muertos",
-    pixelTestDesc: "Encuentra píxeles defectuosos o atascados en pantallas LCD y OLED.",
-    photography: "Fondo para Fotografía",
-    photographyDesc: "Fuente de luz blanca uniforme para fotografía de productos.",
-    tracingLight: "Mesa de Luz para Dibujo",
-    tracingLightDesc: "Convierte tu pantalla en una mesa de luz para calcar dibujos.",
-    imagesDownloadTitle: "Descargar Fondos de Pantalla Blancos (4K/8K)",
-    imagesDownloadDesc: "Descarga fondos blancos en formatos PNG, JPG o WEBP en resolución 4K y 8K.",
-    customColorPickerTitle: "Personalizar Color",
-    selectHexColor: "Elige un color HEX / RGB:",
-    favorites: "Favoritos",
-    addToFavorites: "Añadir a favoritos",
-    removeFromFavorites: "Quitar de favoritos",
-    noFavoritesYet: "No hay colores guardados.",
-    presetNames: {
-      "white-screen": "Pantalla Blanca",
-      "blue-screen": "Pantalla Azul",
-      "green-screen": "Pantalla Verde",
-      "red-screen": "Pantalla Roja",
-      "black-screen": "Pantalla Negra",
-      "yellow-screen": "Pantalla Amarilla",
-      "orange-screen": "Pantalla Naranja",
-      "pink-screen": "Pantalla Rosa",
-      "purple-screen": "Pantalla Morada",
-      "zoom-lighting": "Luz Zoom",
-      "pixel-test": "Test Píxeles"
+    meta: {
+      siteName: "TheWhiteScreen.org",
+      siteSlogan: "Utilidad Universal de Pantalla Completa y Colores de Monitor",
     },
-    navLinks: {
+    nav: {
+      home: "Pantalla Blanca",
+      colors: "Pantallas de Colores",
+      tools: "Herramientas de Pantalla",
+      wallpapers: "Fondos de Pantalla",
+      themes: "Temas",
+      guides: "Guías",
       about: "Nosotros",
       contact: "Contacto",
-      privacy: "Privacidad",
-      terms: "Términos",
-      license: "Licencia",
-      cookie: "Cookies"
     },
-    faqTitle: "Preguntas Frecuentes Sobre la Pantalla Blanca",
-    faqs: [
-      {
-        q: "¿Para qué sirve una pantalla blanca online?",
-        a: "Sirve para limpiar el monitor, detectar píxeles muertos e iluminar tu rostro en videollamadas."
-      }
-    ]
+    tool: {
+      fullscreenBtn: "Pantalla Completa",
+      exitFullscreenBtn: "Salir de Pantalla Completa",
+      clickToFullscreen: "Haz clic en cualquier lugar para alternar pantalla completa",
+      tapToFullscreen: "Toca la pantalla para ver en pantalla completa",
+      pressEscToExit: "Presiona ESC o haz clic para salir",
+      brightnessLabel: "Brillo de Pantalla",
+      warmthLabel: "Calidez de Luz (Zoom)",
+      colorPickerLabel: "Color Personalizado",
+      hexInputPlaceholder: "HEX / RGB",
+      autoCycleBtn: "Iniciar Ciclo de Píxeles RGB",
+      stopCycleBtn: "Detener Ciclo de Píxeles",
+      cycleSpeedLabel: "Intervalo de Ciclo",
+      secondsLabel: "segundos",
+      wakeLockActive: "Bloqueo de Suspensión Activo (La pantalla no se apagará)",
+      wakeLockUnsupported: "Bloqueo de suspensión no compatible con este navegador",
+      shortcutsTitle: "Atajos de Teclado",
+      shortcutFullscreen: "Tecla F: Alternar pantalla completa",
+      shortcutColors: "Teclas 1-9: Color rápido preestablecido",
+      shortcutCycle: "Flechas: Recorrer espectro de color",
+      shortcutEsc: "Tecla ESC: Salir de pantalla completa",
+    },
+    download: {
+      title: "Descargar Fondo de Pantalla Liso",
+      subtitle: "Genera y guarda imágenes de fondo blanco puro y colores lisos en alta resolución para escritorio, tabletas y móviles.",
+      chooseFormat: "1. Selecciona Formato de Imagen",
+      chooseResolution: "2. Selecciona Resolución",
+      buttonText: "Descargar Fondo de Pantalla",
+      generating: "Renderizando imagen...",
+      success: "¡Imagen descargada exitosamente!",
+      resolutions: {
+        fhd: "1080p Full HD (1920 × 1080)",
+        qhd: "2K Quad HD (2560 × 1440)",
+        uhd4k: "4K Ultra HD (3840 × 2160)",
+        retina5k: "5K Retina (5120 × 2880)",
+        uhd8k: "8K Ultra HD (7680 × 4320)",
+        mobile: "Móvil Vertical (1080 × 1920)",
+        square: "Pantalla Cuadrada (2048 × 2048)",
+      },
+    },
+    sections: {
+      howToUseTitle: "Cómo Usar Esta Herramienta de Pantalla",
+      whyUseTitle: "Usos Principales y Aplicaciones Prácticas",
+      specsTitle: "Valores de Color y Especificaciones Técnicas",
+      relatedToolsTitle: "Herramientas y Colores Relacionados",
+      faqTitle: "Preguntas Frecuentes",
+      guidesTitle: "Guías Técnicas y Tutoriales de Pantallas",
+      colorsTitle: "Explorar Pantallas de Colores Sólidos",
+      themesTitle: "Explorar Fondos Temáticos",
+      step1Title: "1. Abre en Cualquier Dispositivo",
+      step1Desc: "Accede directamente desde Chrome, Safari, Firefox o Edge en PC, Mac, iPad, iPhone o Android.",
+      step2Title: "2. Activa el Modo Pantalla Completa",
+      step2Desc: "Haz clic en 'Pantalla Completa' o en la vista previa para ocultar barras del navegador y menús.",
+      step3Title: "3. Limpia, Prueba o Ilumina",
+      step3Desc: "Usa la luz uniforme para limpiar el monitor, detectar píxeles muertos o iluminar tus videollamadas.",
+    },
+    footer: {
+      description: "TheWhiteScreen.org es una herramienta web gratuita sin publicidad que proporciona fondos de pantalla pura, utilidades de calibración y descargas en alta definición.",
+      toolsColumn: "Herramientas de Monitor",
+      colorsColumn: "Colores de Pantalla",
+      resourcesColumn: "Guías y Temas",
+      legalColumn: "Legal y Confianza",
+      allRightsReserved: "Todos los derechos reservados. Herramienta de pantalla gratuita.",
+      privacy: "Política de Privacidad",
+      terms: "Términos y Condiciones",
+      cookies: "Política de Cookies",
+      license: "Licencia de Uso",
+      contact: "Contacto",
+      about: "Acerca de Nosotros",
+    },
   },
-  pt: {
-    siteTitle: "Tela Branca – Ferramenta de Fundo Branco em Tela Cheia",
-    siteDescription: "Ferramenta gratuita de tela branca para limpar monitores, testar pixels mortos, iluminação para chamadas no Zoom e download de papéis de parede 4K.",
-    heroHeading: "Tela Branca – Ferramenta em Tela Cheia",
-    heroSubheading: "Use uma tela branca brilhante para limpar a tela do computador, testar pixels e iluminar vídeochamadas. Gratuito e sem cadastro.",
-    fullscreen: "Tela Cheia",
-    viewFullscreen: "Ver em tela cheia",
-    clickToFullscreen: "Clique para tela cheia",
-    exitFullscreen: "Pressione ESC para sair",
-    download: "Baixar Fundo Branco",
-    chooseFormat: "1. Escolher Formato",
-    chooseSize: "2. Escolher Resolução",
-    downloadButtonText: (format, size, dimensions) => `Baixar ${format} ${size} (${dimensions})`,
-    freeNoSignup: "100% Gratuito • Sem cadastro",
-    watchVideoVersion: "Assistir Vídeo de 10 Horas",
-    solidColorBackgrounds: "Cores Sólidas",
-    themeBackgrounds: "Fundos Temáticos",
-    discoverMore: "Descubra Mais",
-    exploreOtherTools: "Outras Ferramentas",
-    availableLanguages: "No Seu Idioma",
-    viewAllColors: "Todas as Cores",
-    viewAllThemes: "Todos os Temas",
-    howToUse: "Como Usar a Tela Branca",
-    howToUseIntro: "Usar nossa ferramenta é simples em qualquer dispositivo:",
-    step1: "Abra esta página no seu computador ou celular.",
-    step2: "Clique na caixa de pré-visualização para tela cheia.",
-    step3: "Use o fundo para limpar a tela ou iluminar. Pressione ESC para sair.",
-    whyUse: "Por que Usar uma Tela Branca?",
-    cleanScreen: "Limpeza de Tela e Detecção de Poeira",
-    cleanScreenDesc: "Uma tela branca em 100% de brilho revela marcas de dedos e poeira no monitor.",
-    focusMode: "Modo Foco Sem Distrações",
-    focusModeDesc: "Crie um ambiente de trabalho limpo e focado.",
-    zoomLighting: "Luz para Chamadas de Vídeo no Zoom",
-    zoomLightingDesc: "Use a tela como iluminação suave para videochamadas.",
-    pixelTest: "Teste de Pixels Mortos",
-    pixelTestDesc: "Encontre pixels defeituosos em monitores novos.",
-    photography: "Iluminação para Fotografia",
-    photographyDesc: "Fonte de luz neutra para fotos de produtos.",
-    tracingLight: "Mesa de Luz para Desenho",
-    tracingLightDesc: "Transforme o monitor em mesa de luz para decalque.",
-    imagesDownloadTitle: "Baixar Papel de Parede Branco (4K/8K)",
-    imagesDownloadDesc: "Baixe imagens brancas em alta definição nos formatos PNG, JPG e WEBP.",
-    customColorPickerTitle: "Seletor de Cor",
-    selectHexColor: "Escolha uma cor HEX / RGB:",
-    favorites: "Favoritos",
-    addToFavorites: "Adicionar aos Favoritos",
-    removeFromFavorites: "Remover dos Favoritos",
-    noFavoritesYet: "Nenhuma cor salva.",
-    presetNames: {
-      "white-screen": "Tela Branca",
-      "blue-screen": "Tela Azul",
-      "green-screen": "Tela Verde",
-      "red-screen": "Tela Vermelha",
-      "black-screen": "Tela Preta",
-      "yellow-screen": "Tela Amarela",
-      "orange-screen": "Tela Laranja",
-      "pink-screen": "Tela Rosa",
-      "purple-screen": "Tela Roxa",
-      "zoom-lighting": "Luz Zoom",
-      "pixel-test": "Teste Pixels"
+
+  fr: {
+    meta: {
+      siteName: "TheWhiteScreen.org",
+      siteSlogan: "Utilitaire Universel d'Écran Plein Écran et Couleurs d'Affichage",
     },
-    navLinks: {
+    nav: {
+      home: "Écran Blanc",
+      colors: "Écrans Colorés",
+      tools: "Outils d'Écran",
+      wallpapers: "Fonds d'Écran",
+      themes: "Thèmes",
+      guides: "Guides",
+      about: "À Propos",
+      contact: "Contact",
+    },
+    tool: {
+      fullscreenBtn: "Passer en Plein Écran",
+      exitFullscreenBtn: "Quitter le Plein Écran",
+      clickToFullscreen: "Cliquez n'importe où pour basculer en plein écran",
+      tapToFullscreen: "Touchez l'écran pour afficher en plein écran",
+      pressEscToExit: "Appuyez sur Échap ou cliquez pour quitter",
+      brightnessLabel: "Luminosité de l'Écran",
+      warmthLabel: "Chaleur de Lumière (Zoom)",
+      colorPickerLabel: "Couleur Personnalisée",
+      hexInputPlaceholder: "HEX / RGB",
+      autoCycleBtn: "Démarrer le Cycle de Pixels RGB",
+      stopCycleBtn: "Arrêter le Cycle de Pixels",
+      cycleSpeedLabel: "Intervalle de Cycle",
+      secondsLabel: "secondes",
+      wakeLockActive: "Verrouillage de Veille Actif (L'écran ne s'éteindra pas)",
+      wakeLockUnsupported: "Verrouillage de veille non pris en charge par ce navigateur",
+      shortcutsTitle: "Raccourcis Clavier",
+      shortcutFullscreen: "Touche F : Basculer en plein écran",
+      shortcutColors: "Touches 1-9 : Couleurs prédéfinies",
+      shortcutCycle: "Flèches : Parcourir le spectre des couleurs",
+      shortcutEsc: "Touche Échap : Quitter le plein écran",
+    },
+    download: {
+      title: "Télécharger un Fond d'Écran Uni",
+      subtitle: "Générez et téléchargez des images blanches ou colorées pures en très haute résolution pour ordinateur, tablette et smartphone.",
+      chooseFormat: "1. Sélectionner le Format d'Image",
+      chooseResolution: "2. Sélectionner la Résolution",
+      buttonText: "Télécharger le Fond d'Écran",
+      generating: "Création de l'image...",
+      success: "Image téléchargée avec succès !",
+      resolutions: {
+        fhd: "1080p Full HD (1920 × 1080)",
+        qhd: "2K Quad HD (2560 × 1440)",
+        uhd4k: "4K Ultra HD (3840 × 2160)",
+        retina5k: "5K Retina (5120 × 2880)",
+        uhd8k: "8K Ultra HD (7680 × 4320)",
+        mobile: "Mobile Portrait (1080 × 1920)",
+        square: "Affichage Carré (2048 × 2048)",
+      },
+    },
+    sections: {
+      howToUseTitle: "Comment Utiliser Cet Outil d'Écran",
+      whyUseTitle: "Cas d'Usage Principaux et Applications Pratiques",
+      specsTitle: "Valeurs de Couleur et Caractéristiques Techniques",
+      relatedToolsTitle: "Outils d'Écran et Couleurs Connexes",
+      faqTitle: "Foire Aux Questions",
+      guidesTitle: "Guides Techniques et Tutoriels pour Écrans",
+      colorsTitle: "Explorer les Écrans aux Couleurs Unies",
+      themesTitle: "Explorer les Thèmes d'Arrière-Plan",
+      step1Title: "1. Ouvrez sur N'importe Quel Appareil",
+      step1Desc: "Accessible directement dans Chrome, Safari, Firefox ou Edge sur PC, Mac, iPad, iPhone ou Android.",
+      step2Title: "2. Activez le Mode Plein Écran",
+      step2Desc: "Cliquez sur 'Passer en Plein Écran' pour masquer les onglets du navigateur et les barres système.",
+      step3Title: "3. Nettoyez, Testez ou Éclairez",
+      step3Desc: "Utilisez la lumière uniforme pour nettoyer votre moniteur, détecter les pixels morts ou éclairer vos visios.",
+    },
+    footer: {
+      description: "TheWhiteScreen.org est un utilitaire d'affichage en ligne gratuit et sans publicité, fournissant des fonds unis, des tests d'écran et des téléchargements d'images haute résolution.",
+      toolsColumn: "Outils Moniteur",
+      colorsColumn: "Couleurs d'Écran",
+      resourcesColumn: "Guides & Thèmes",
+      legalColumn: "Légal & Confiance",
+      allRightsReserved: "Tous droits réservés. Outil d'affichage gratuit en ligne.",
+      privacy: "Politique de Confidentialité",
+      terms: "Conditions Générales",
+      cookies: "Politique de Cookies",
+      license: "Licence d'Utilisation",
+      contact: "Nous Contacter",
+      about: "À Propos",
+    },
+  },
+
+  de: {
+    meta: {
+      siteName: "TheWhiteScreen.org",
+      siteSlogan: "Universelles Vollbild-Tool für Bildschirmfarben und Display-Tests",
+    },
+    nav: {
+      home: "Weißer Bildschirm",
+      colors: "Farbbildschirme",
+      tools: "Display-Tools",
+      wallpapers: "Hintergrundbilder",
+      themes: "Themen",
+      guides: "Ratgeber",
+      about: "Über uns",
+      contact: "Kontakt",
+    },
+    tool: {
+      fullscreenBtn: "Vollbild Aktivieren",
+      exitFullscreenBtn: "Vollbild Beenden",
+      clickToFullscreen: "Klicken Sie auf den Bildschirm für Vollbild",
+      tapToFullscreen: "Tippen Sie auf den Bildschirm für Vollbild",
+      pressEscToExit: "ESC drücken oder klicken zum Beenden",
+      brightnessLabel: "Bildschirmhelligkeit",
+      warmthLabel: "Lichtwärme (Zoom)",
+      colorPickerLabel: "Benutzerdefinierte Farbe",
+      hexInputPlaceholder: "HEX / RGB",
+      autoCycleBtn: "RGB-Pixeldurchlauf Starten",
+      stopCycleBtn: "Pixeldurchlauf Stoppen",
+      cycleSpeedLabel: "Intervall",
+      secondsLabel: "Sekunden",
+      wakeLockActive: "Bildschirm-Wachmodus Aktiv (Display schaltet nicht ab)",
+      wakeLockUnsupported: "Wachmodus wird von diesem Browser nicht unterstützt",
+      shortcutsTitle: "Tastaturkürzel",
+      shortcutFullscreen: "Taste F: Vollbild umschalten",
+      shortcutColors: "Tasten 1-9: Schnelle Farbauswahl",
+      shortcutCycle: "Pfeiltasten: Farbspektrum durchschalten",
+      shortcutEsc: "Taste ESC: Vollbildmodus verlassen",
+    },
+    download: {
+      title: "Einfarbiges Hintergrundbild Herunterladen",
+      subtitle: "Erstellen und speichern Sie reinweiße und farbige Wallpaper in verlustfreier Qualität für Desktop, Tablets und Smartphones.",
+      chooseFormat: "1. Bildformat Wählen",
+      chooseResolution: "2. Auflösung Wählen",
+      buttonText: "Hintergrundbild Herunterladen",
+      generating: "Bild wird gerendert...",
+      success: "Bild erfolgreich heruntergeladen!",
+      resolutions: {
+        fhd: "1080p Full HD (1920 × 1080)",
+        qhd: "2K Quad HD (2560 × 1440)",
+        uhd4k: "4K Ultra HD (3840 × 2160)",
+        retina5k: "5K Retina (5120 × 2880)",
+        uhd8k: "8K Ultra HD (7680 × 4320)",
+        mobile: "Smartphone Hochformat (1080 × 1920)",
+        square: "Quadratisches Display (2048 × 2048)",
+      },
+    },
+    sections: {
+      howToUseTitle: "So Nutzen Sie Dieses Bildschirm-Tool",
+      whyUseTitle: "Wichtige Anwendungsbereiche und Praxisbeispiele",
+      specsTitle: "Farbwerte und Technische Spezifikationen",
+      relatedToolsTitle: "Verwandte Display-Tools und Farben",
+      faqTitle: "Häufig Gestellte Fragen",
+      guidesTitle: "Technische Monitor-Ratgeber und Anleitungen",
+      colorsTitle: "Einfarbige Vollbildschirme Entdecken",
+      themesTitle: "Hintergrund-Themen Entdecken",
+      step1Title: "1. Auf Beliebigem Gerät Öffnen",
+      step1Desc: "Direkt in Chrome, Safari, Firefox oder Edge auf PC, Mac, iPad, iPhone oder Android nutzen.",
+      step2Title: "2. Vollbildmodus Starten",
+      step2Desc: "Klicken Sie auf 'Vollbild Aktivieren', um Browserleisten und Systemmenüs vollständig auszublenden.",
+      step3Title: "3. Reinigen, Prüfen oder Ausleuchten",
+      step3Desc: "Nutzen Sie das gleichmäßige Licht zum Entfernen von Staub, Finden defekter Pixel oder als Videolicht.",
+    },
+    footer: {
+      description: "TheWhiteScreen.org ist ein kostenloses, werbefreies Display-Werkzeug mit einfarbigen Bildschirmen, Monitor-Tests und hochauflösenden Wallpaper-Downloads.",
+      toolsColumn: "Display-Werkzeuge",
+      colorsColumn: "Bildschirmfarben",
+      resourcesColumn: "Ratgeber & Themen",
+      legalColumn: "Rechtliches & Vertrauen",
+      allRightsReserved: "Alle Rechte vorbehalten. Kostenloses Online-Display-Tool.",
+      privacy: "Datenschutzerklärung",
+      terms: "Allgemeine Geschäftsbedingungen",
+      cookies: "Cookie-Richtlinie",
+      license: "Lizenzbestimmungen",
+      contact: "Kontakt",
+      about: "Über Uns",
+    },
+  },
+
+  pt: {
+    meta: {
+      siteName: "TheWhiteScreen.org",
+      siteSlogan: "Utilitário Universal de Tela Cheia e Cores para Monitores",
+    },
+    nav: {
+      home: "Tela Branca",
+      colors: "Telas Coloridas",
+      tools: "Ferramentas de Tela",
+      wallpapers: "Papéis de Parede",
+      themes: "Temas",
+      guides: "Guias",
       about: "Sobre",
       contact: "Contato",
-      privacy: "Privacidade",
-      terms: "Termos",
-      license: "Licença",
-      cookie: "Cookies"
     },
-    faqTitle: "Perguntas Frequentes Sobre Tela Branca",
-    faqs: [
-      {
-        q: "Para que serve uma tela branca online?",
-        a: "Serve para limpar a tela do computador, testar pixels mortos e iluminar videochamadas."
-      }
-    ]
+    tool: {
+      fullscreenBtn: "Tela Cheia",
+      exitFullscreenBtn: "Sair da Tela Cheia",
+      clickToFullscreen: "Clique em qualquer lugar para tela cheia",
+      tapToFullscreen: "Toque na tela para entrar em tela cheia",
+      pressEscToExit: "Pressione ESC ou clique para sair",
+      brightnessLabel: "Brilho da Tela",
+      warmthLabel: "Calor da Luz (Zoom)",
+      colorPickerLabel: "Cor Personalizada",
+      hexInputPlaceholder: "HEX / RGB",
+      autoCycleBtn: "Iniciar Ciclo de Pixels RGB",
+      stopCycleBtn: "Parar Ciclo de Pixels",
+      cycleSpeedLabel: "Intervalo do Ciclo",
+      secondsLabel: "segundos",
+      wakeLockActive: "Bloqueio de Suspensão Ativo (A tela não vai apagar)",
+      wakeLockUnsupported: "Bloqueio de suspensão não suportado neste navegador",
+      shortcutsTitle: "Atalhos de Teclado",
+      shortcutFullscreen: "Tecla F: Alternar tela cheia",
+      shortcutColors: "Teclas 1-9: Cores pré-definidas",
+      shortcutCycle: "Setas: Percorrer espectro de cores",
+      shortcutEsc: "Tecla ESC: Sair da tela cheia",
+    },
+    download: {
+      title: "Baixar Papel de Parede Liso",
+      subtitle: "Gere e baixe imagens de fundo branco e cores lisas em altíssima resolução para computadores, tablets e smartphones.",
+      chooseFormat: "1. Selecionar Formato da Imagem",
+      chooseResolution: "2. Selecionar Resolução",
+      buttonText: "Baixar Papel de Parede",
+      generating: "Renderizando imagem...",
+      success: "Imagem baixada com sucesso!",
+      resolutions: {
+        fhd: "1080p Full HD (1920 × 1080)",
+        qhd: "2K Quad HD (2560 × 1440)",
+        uhd4k: "4K Ultra HD (3840 × 2160)",
+        retina5k: "5K Retina (5120 × 2880)",
+        uhd8k: "8K Ultra HD (7680 × 4320)",
+        mobile: "Celular Vertical (1080 × 1920)",
+        square: "Display Quadrado (2048 × 2048)",
+      },
+    },
+    sections: {
+      howToUseTitle: "Como Usar Esta Ferramenta de Tela",
+      whyUseTitle: "Principais Casos de Uso e Aplicações Práticas",
+      specsTitle: "Valores de Cor e Especificações Técnicas",
+      relatedToolsTitle: "Ferramentas de Tela e Cores Relacionadas",
+      faqTitle: "Perguntas Frequentes",
+      guidesTitle: "Guias Técnicos e Tutoriais para Monitores",
+      colorsTitle: "Explorar Telas de Cores Sólidas",
+      themesTitle: "Explorar Temas de Fundo",
+      step1Title: "1. Abra em Qualquer Dispositivo",
+      step1Desc: "Acesse diretamente no Chrome, Safari, Firefox ou Edge no PC, Mac, iPad, iPhone ou Android.",
+      step2Title: "2. Ative o Modo Tela Cheia",
+      step2Desc: "Clique em 'Tela Cheia' ou na pré-visualização para ocultar barras do navegador e menús.",
+      step3Title: "3. Limpe, Teste ou Ilumine",
+      step3Desc: "Use a luz pura para limpar o monitor, encontrar pixels mortos ou iluminar videoconferências.",
+    },
+    footer: {
+      description: "TheWhiteScreen.org é uma ferramenta online gratuita e sem anúncios que oferece fundos de tela pura, calibradores de display e papéis de parede em alta definição.",
+      toolsColumn: "Ferramentas de Monitor",
+      colorsColumn: "Cores de Tela",
+      resourcesColumn: "Guias & Temas",
+      legalColumn: "Legal & Confiança",
+      allRightsReserved: "Todos os direitos reservados. Utilitário de tela gratuito.",
+      privacy: "Política de Privacidade",
+      terms: "Termos e Condições",
+      cookies: "Política de Cookies",
+      license: "Licença de Uso",
+      contact: "Fale Conosco",
+      about: "Sobre Nós",
+    },
   },
-  tr: {
-    siteTitle: "Beyaz Ekran – Tam Ekran Parlak Arka Plan Aracı",
-    siteDescription: "Monitör temizliği, ölü piksel testi, Zoom aydınlatması ve 4K/8K beyaz duvar kağıdı indirme için ücretsiz tam ekran beyaz ekran aracı.",
-    heroHeading: "Beyaz Ekran – Tam Ekran Aracı",
-    heroSubheading: "Ekranınızı temizlemek, ölü pikselleri bulmak veya görüntülü aramalarda yüzünüzü aydınlatmak için saf beyaz ekran kullanın.",
-    fullscreen: "Tam Ekran",
-    viewFullscreen: "Tam ekranda görüntüle",
-    clickToFullscreen: "Tam ekran için tıklayın",
-    exitFullscreen: "Çıkmak için ESC tuşuna basın",
-    download: "Beyaz Görsel İndir",
-    chooseFormat: "1. Format Seçin",
-    chooseSize: "2. Çözünürlük Seçin",
-    downloadButtonText: (format, size, dimensions) => `${format} ${size} İndir (${dimensions})`,
-    freeNoSignup: "%100 Ücretsiz • Kayıtsız",
-    watchVideoVersion: "10 Saatlik Videoyu İzle",
-    solidColorBackgrounds: "Düz Renkler",
-    themeBackgrounds: "Temalı Arka Planlar",
-    discoverMore: "Daha Fazla Araç",
-    exploreOtherTools: "Diğer Renk Araçları",
-    availableLanguages: "Kendi Dilinizde",
-    viewAllColors: "Tüm Renkler",
-    viewAllThemes: "Tüm Temalar",
-    howToUse: "Beyaz Ekran Nasıl Kullanılır?",
-    howToUseIntro: "Online beyaz ekran aracımızı kullanmak çok kolaydır:",
-    step1: "Bu sayfayı bilgisayarınızda veya telefonunuzda açın.",
-    step2: "Ekrana veya 'Tam Ekran' butonuna tıklayın.",
-    step3: "Beyaz ışığı ekran temizliği veya ışık olarak kullanın. Çıkmak için ESC tuşuna basın.",
-    whyUse: "Neden Beyaz Ekran Kullanılır?",
-    cleanScreen: "Ekran Temizliği ve Toz Tespiti",
-    cleanScreenDesc: "%100 parlaklıktaki beyaz ekran parmak izlerini ve tozu anında gösterir.",
-    focusMode: "Odaklanma Modu",
-    focusModeDesc: "Dikkatinizi dağıtmayan sade bir çalışma ortamı oluşturun.",
-    zoomLighting: "Zoom Görüntülü Görüşme Işığı",
-    zoomLightingDesc: "İkinci ekranınızı görüntülü görüşmeler için yüz aydınlatma ışığı yapın.",
-    pixelTest: "Ölü Piksel Testi",
-    pixelTestDesc: "Ekranınızdaki kusurlu veya ölü pikselleri kolayca tespit edin.",
-    photography: "Fotoğrafçılık İçin Arka Işık",
-    photographyDesc: "Ürün çekimleri için nötr beyaz ışık kaynağı.",
-    tracingLight: "Çizim Kopyalama Kutusu",
-    tracingLightDesc: "Ekranınızı çizim kopyalamak için ışıklı masaya dönüştürün.",
-    imagesDownloadTitle: "Beyaz Duvar Kağıdı İndir (4K/8K)",
-    imagesDownloadDesc: "PNG, JPG veya WEBP formatında yüksek çözünürlüklü beyaz görseller indirin.",
-    customColorPickerTitle: "Özel Renk Seçici",
-    selectHexColor: "İstediğiniz HEX / RGB rengini seçin:",
-    favorites: "Favoriler",
-    addToFavorites: "Favorilere Ekle",
-    removeFromFavorites: "Favorilerden Çıkar",
-    noFavoritesYet: "Kaydedilmiş renk yok.",
-    presetNames: {
-      "white-screen": "Beyaz Ekran",
-      "blue-screen": "Mavi Ekran",
-      "green-screen": "Yeşil Ekran",
-      "red-screen": "Kırmızı Ekran",
-      "black-screen": "Siyah Ekran",
-      "yellow-screen": "Sarı Ekran",
-      "orange-screen": "Turuncu Ekran",
-      "pink-screen": "Pembe Ekran",
-      "purple-screen": "Mor Ekran",
-      "zoom-lighting": "Zoom Işığı",
-      "pixel-test": "Piksel Testi"
-    },
-    navLinks: {
-      about: "Hakkımızda",
-      contact: "İletişim",
-      privacy: "Gizlilik",
-      terms: "Koşullar",
-      license: "Lisans",
-      cookie: "Çerezler"
-    },
-    faqTitle: "Beyaz Ekran Hakkında Sıkça Sorulan Sorular",
-    faqs: [
-      {
-        q: "Beyaz ekran ne işe yarar?",
-        a: "Ekran temizleme, ölü piksel tespiti ve görüntülü aramalarda yüz aydınlatma için kullanılır."
-      }
-    ]
-  },
+
   id: {
-    siteTitle: "Layar Putih – Alat Latar Belakang Layar Penuh",
-    siteDescription: "Alat layar putih bersih untuk membersihkan monitor, tes piksel mati, pencahayaan video call Zoom, dan unduh wallpaper putih 4K gratis.",
-    heroHeading: "Layar Putih – Alat Layar Penuh",
-    heroSubheading: "Gunakan layar putih terang untuk membersihkan debu di layar, memeriksa piksel mati, atau sebagai lampu video call.",
-    fullscreen: "Layar Penuh",
-    viewFullscreen: "Tampilkan Layar Penuh",
-    clickToFullscreen: "Klik untuk layar penuh",
-    exitFullscreen: "Tekan ESC untuk keluar",
-    download: "Unduh Gambar Putih",
-    chooseFormat: "1. Pilih Format",
-    chooseSize: "2. Pilih Resolusi",
-    downloadButtonText: (format, size, dimensions) => `Unduh ${format} ${size} (${dimensions})`,
-    freeNoSignup: "100% Gratis • Tanpa Daftar",
-    watchVideoVersion: "Tonton Video 10 Jam",
-    solidColorBackgrounds: "Warna Polos",
-    themeBackgrounds: "Latar Belakang Tema",
-    discoverMore: "Alat Lainnya",
-    exploreOtherTools: "Alat Warna Lain",
-    availableLanguages: "Dalam Bahasa Anda",
-    viewAllColors: "Semua Warna",
-    viewAllThemes: "Semua Tema",
-    howToUse: "Cara Menggunakan Layar Putih",
-    howToUseIntro: "Menggunakan layar putih sangat mudah di laptop atau HP:",
-    step1: "Buka halaman ini di komputer atau smartphone Anda.",
-    step2: "Klik pada layar atau tombol 'Layar Penuh'.",
-    step3: "Gunakan cahaya putih untuk membersihkan layar atau penerangan. Tekan ESC untuk keluar.",
-    whyUse: "Mengapa Perlu Layar Putih?",
-    cleanScreen: "Membersihkan Layar & Debu",
-    cleanScreenDesc: "Layar putih terang memudahkan Anda melihat sidik jari dan debu pada layar.",
-    focusMode: "Mode Fokus Tanpa Gangguan",
-    focusModeDesc: "Buat lingkungan kerja yang tenang dan bebas gangguan.",
-    zoomLighting: "Lampu Penerang Video Call Zoom",
-    zoomLightingDesc: "Gunakan layar sebagai lampu penerang wajah saat video call.",
-    pixelTest: "Deteksi Piksel Mati",
-    pixelTestDesc: "Temukan piksel rusak atau macet pada monitor baru.",
-    photography: "Pencahayaan Fotografi",
-    photographyDesc: "Sumber cahaya putih netral untuk foto produk.",
-    tracingLight: "Papan Sinar Menjiplak Gambar",
-    tracingLightDesc: "Ubah layar Anda menjadi papan sinar untuk menjiplak gambar.",
-    imagesDownloadTitle: "Unduh Wallpaper Putih (4K/8K)",
-    imagesDownloadDesc: "Unduh gambar putih polos dalam format PNG, JPG, atau WEBP.",
-    customColorPickerTitle: "Pilih Warna Kustom",
-    selectHexColor: "Pilih warna HEX / RGB:",
-    favorites: "Favorit",
-    addToFavorites: "Tambah ke Favorit",
-    removeFromFavorites: "Hapus dari Favorit",
-    noFavoritesYet: "Belum ada warna tersimpan.",
-    presetNames: {
-      "white-screen": "Layar Putih",
-      "blue-screen": "Layar Biru",
-      "green-screen": "Layar Hijau",
-      "red-screen": "Layar Merah",
-      "black-screen": "Layar Hitam",
-      "yellow-screen": "Layar Kuning",
-      "orange-screen": "Layar Oranye",
-      "pink-screen": "Layar Merah Muda",
-      "purple-screen": "Layar Ungu",
-      "zoom-lighting": "Lampu Zoom",
-      "pixel-test": "Tes Piksel"
+    meta: {
+      siteName: "TheWhiteScreen.org",
+      siteSlogan: "Alat Layar Penuh dan Warna Layar Monitor Universal",
     },
-    navLinks: {
+    nav: {
+      home: "Layar Putih",
+      colors: "Warna Layar",
+      tools: "Alat Layar",
+      wallpapers: "Wallpaper",
+      themes: "Tema",
+      guides: "Panduan",
       about: "Tentang",
       contact: "Kontak",
-      privacy: "Privasi",
-      terms: "Syarat",
-      license: "Lisensi",
-      cookie: "Cookie"
     },
-    faqTitle: "Pertanyaan Umum Tentang Layar Putih",
-    faqs: [
-      {
-        q: "Untuk apa layar putih digunakan?",
-        a: "Digunakan untuk membersihkan monitor, tes piksel mati, dan lampu penerang video call."
-      }
-    ]
+    tool: {
+      fullscreenBtn: "Layar Penuh",
+      exitFullscreenBtn: "Keluar Layar Penuh",
+      clickToFullscreen: "Klik di mana saja untuk mengaktifkan layar penuh",
+      tapToFullscreen: "Ketuk layar untuk menampilkan layar penuh",
+      pressEscToExit: "Tekan ESC atau klik untuk keluar",
+      brightnessLabel: "Kecerahan Layar",
+      warmthLabel: "Kehangatan Cahaya (Zoom)",
+      colorPickerLabel: "Warna Kustom",
+      hexInputPlaceholder: "HEX / RGB",
+      autoCycleBtn: "Mulai Siklus Piksel RGB",
+      stopCycleBtn: "Hentikan Siklus Piksel",
+      cycleSpeedLabel: "Interval Siklus",
+      secondsLabel: "detik",
+      wakeLockActive: "Kunci Bangun Layar Aktif (Layar Tidak Akan Tidur)",
+      wakeLockUnsupported: "Kunci bangun layar tidak didukung di peramban ini",
+      shortcutsTitle: "Pintasan Keyboard",
+      shortcutFullscreen: "Tombol F: Beralih layar penuh",
+      shortcutColors: "Tombol 1-9: Pilih warna cepat",
+      shortcutCycle: "Tombol Panah: Geser spektrum warna",
+      shortcutEsc: "Tombol ESC: Keluar dari layar penuh",
+    },
+    download: {
+      title: "Unduh Wallpaper Layar Polos",
+      subtitle: "Buat dan simpan gambar latar belakang putih polos dan warna solid berkualitas tinggi tanpa kompresi untuk laptop, tablet, dan smartphone.",
+      chooseFormat: "1. Pilih Format Gambar",
+      chooseResolution: "2. Pilih Resolusi",
+      buttonText: "Unduh Gambar Wallpaper",
+      generating: "Membuat gambar...",
+      success: "Gambar berhasil diunduh!",
+      resolutions: {
+        fhd: "1080p Full HD (1920 × 1080)",
+        qhd: "2K Quad HD (2560 × 1440)",
+        uhd4k: "4K Ultra HD (3840 × 2160)",
+        retina5k: "5K Retina (5120 × 2880)",
+        uhd8k: "8K Ultra HD (7680 × 4320)",
+        mobile: "Ponsel Potret (1080 × 1920)",
+        square: "Layar Persegi (2048 × 2048)",
+      },
+    },
+    sections: {
+      howToUseTitle: "Cara Menggunakan Alat Layar Ini",
+      whyUseTitle: "Fungsi Utama dan Penggunaan Praktis",
+      specsTitle: "Nilai Warna dan Spesifikasi Tampilan",
+      relatedToolsTitle: "Alat Layar dan Warna Terkait",
+      faqTitle: "Pertanyaan yang Sering Diajukan (FAQ)",
+      guidesTitle: "Panduan Teknis dan Tutorial Layar Monitor",
+      colorsTitle: "Jelajahi Pilihan Warna Layar Polos",
+      themesTitle: "Jelajahi Tema Latar Belakang",
+      step1Title: "1. Buka di Perangkat Mana Pun",
+      step1Desc: "Gunakan langsung di Chrome, Safari, Firefox, atau Edge pada PC, Mac, iPad, iPhone, atau Android.",
+      step2Title: "2. Aktifkan Mode Layar Penuh",
+      step2Desc: "Klik 'Layar Penuh' atau ketuk area tampilan untuk menyembunyikan tab peramban dan taskbar.",
+      step3Title: "3. Bersihkan, Uji, atau Terangi",
+      step3Desc: "Gunakan cahaya seragam untuk membersihkan monitor, mencari piksel mati, atau menerangi wajah saat video call.",
+    },
+    footer: {
+      description: "TheWhiteScreen.org adalah alat layar online gratis tanpa iklan yang menyediakan kanvas warna polos, kalibrasi layar, dan unduhan wallpaper resolusi tinggi.",
+      toolsColumn: "Alat Layar",
+      colorsColumn: "Pilihan Warna",
+      resourcesColumn: "Panduan & Tema",
+      legalColumn: "Legalitas & Privasi",
+      allRightsReserved: "Hak cipta dilindungi undang-undang. Alat layar online gratis.",
+      privacy: "Kebijakan Privasi",
+      terms: "Syarat & Ketentuan",
+      cookies: "Kebijakan Cookie",
+      license: "Lisensi Penggunaan",
+      contact: "Hubungi Kami",
+      about: "Tentang Kami",
+    },
   },
-  pl: {
-    siteTitle: "Biały Ekran – Pełnoekranowe Narzędzie Tła",
-    siteDescription: "Darmowe narzędzie z białym ekranem do czyszczenia monitora, testowania martwych pikseli, oświetlenia Zoom i pobierania tapet 4K.",
-    heroHeading: "Biały Ekran – Narzędzie Pełnoekranowe",
-    heroSubheading: "Użyj czystego białego ekranu do czyszczenia wyświetlacza, szukania uszkodzonych pikseli i doświetlania kamery internetowej.",
-    fullscreen: "Pełny Ekran",
-    viewFullscreen: "Wyświetl na pełnym ekranie",
-    clickToFullscreen: "Kliknij, aby włączyć pełny ekran",
-    exitFullscreen: "Naciśnij ESC, aby wyjść",
-    download: "Pobierz Białe Tło",
-    chooseFormat: "1. Wybierz Format",
-    chooseSize: "2. Wybierz Rozdzielczość",
-    downloadButtonText: (format, size, dimensions) => `Pobierz ${format} ${size} (${dimensions})`,
-    freeNoSignup: "100% Darmowe • Bez rejestracji",
-    watchVideoVersion: "Obejrzyj wideo 10h",
-    solidColorBackgrounds: "Jednolite Kolory",
-    themeBackgrounds: "Tła Tematyczne",
-    discoverMore: "Więcej Narzędzi",
-    exploreOtherTools: "Inne Kolory Ekranu",
-    availableLanguages: "W Twoim Języku",
-    viewAllColors: "Wszystkie Kolory",
-    viewAllThemes: "Wszystkie Motywy",
-    howToUse: "Jak Używać Białego Ekranu",
-    howToUseIntro: "Nasz biały ekran działa natychmiastowo na komputerach i telefonach:",
-    step1: "Otwórz tę stronę na komputerze lub smartfonie.",
-    step2: "Kliknij ekran lub przycisk 'Pełny Ekran'.",
-    step3: "Użyj jasnego światła do czyszczenia lub oświetlenia. Naciśnij ESC, aby wyjść.",
-    whyUse: "Dlaczego Warto Używać Białego Ekranu?",
-    cleanScreen: "Czyszczenie Monitora i Wykrywanie Kurzu",
-    cleanScreenDesc: "Biały ekran o pełnej jasności ujawnia kurz i odciski palców na matrycy.",
-    focusMode: "Tryb Skupienia Bez Rozpraszaczy",
-    focusModeDesc: "Stwórz czyste środowisko pracy bez zbędnych elementów.",
-    zoomLighting: "Światło do Rozmów Wideo Zoom",
-    zoomLightingDesc: "Użyj ekranu jako miękkiego światła doświetlającego twarz podczas rozmów wideo.",
-    pixelTest: "Test Martwych Pikseli",
-    pixelTestDesc: "Wykrywaj uszkodzone piksele na nowych monitorach.",
-    photography: "Oświetlenie do Fotografii",
-    photographyDesc: "Jednolite źródło białego światła do zdjęć produktów.",
-    tracingLight: "Podświetlana Deska do Rysowania",
-    tracingLightDesc: "Zmień ekran w podświetlaną deskę do odrysowywania szkiców.",
-    imagesDownloadTitle: "Pobierz Białą Tapetę (4K/8K)",
-    imagesDownloadDesc: "Pobieraj białe obrazy w formatach PNG, JPG i WEBP w rozdzielczości 4K.",
-    customColorPickerTitle: "Wybierz Własny Kolor",
-    selectHexColor: "Wybierz kolor HEX / RGB:",
-    favorites: "Ulubione",
-    addToFavorites: "Dodaj do ulubionych",
-    removeFromFavorites: "Usuń z ulubionych",
-    noFavoritesYet: "Brak zapisanych kolorów.",
-    presetNames: {
-      "white-screen": "Biały Ekran",
-      "blue-screen": "Niebieski Ekran",
-      "green-screen": "Zielony Ekran",
-      "red-screen": "Czerwony Ekran",
-      "black-screen": "Czarny Ekran",
-      "yellow-screen": "Żółty Ekran",
-      "orange-screen": "Pomarańczowy Ekran",
-      "pink-screen": "Różowy Ekran",
-      "purple-screen": "Fioletowy Ekran",
-      "zoom-lighting": "Światło Zoom",
-      "pixel-test": "Test Pikseli"
-    },
-    navLinks: {
-      about: "O nas",
-      contact: "Kontakt",
-      privacy: "Prywatność",
-      terms: "Regulamin",
-      license: "Licencja",
-      cookie: "Ciasteczka"
-    },
-    faqTitle: "Najczęściej Zadawane Pytania o Biały Ekran",
-    faqs: [
-      {
-        q: "Do czego służy biały ekran online?",
-        a: "Służy do czyszczenia monitora, testowania pikseli i doświetlania twarzy w rozmowach wideo."
-      }
-    ]
-  },
-  nl: {
-    siteTitle: "Wit Scherm – Volledig Scherm Achtergrond Tool",
-    siteDescription: "Gratis online wit scherm tool voor het schoonmaken van monitoren, testen op dode pixels, Zoom belichting en 4K achtergrond downloads.",
-    heroHeading: "Wit Scherm – Volledig Scherm Tool",
-    heroSubheading: "Gebruik een helder wit scherm om stof en vlekken op je scherm te zien, dode pixels te testen of als lamp voor videogesprekken.",
-    fullscreen: "Volledig Scherm",
-    viewFullscreen: "Bekijk in volledig scherm",
-    clickToFullscreen: "Klik voor volledig scherm",
-    exitFullscreen: "Druk op ESC om te sluiten",
-    download: "Download Witte Afbeelding",
-    chooseFormat: "1. Kies Formaat",
-    chooseSize: "2. Kies Resolutie",
-    downloadButtonText: (format, size, dimensions) => `Download ${format} ${size} (${dimensions})`,
-    freeNoSignup: "100% Gratis • Geen registratie",
-    watchVideoVersion: "Bekijk 10 uur video",
-    solidColorBackgrounds: "Effen Kleuren",
-    themeBackgrounds: "Thema Achtergronden",
-    discoverMore: "Meer Tools",
-    exploreOtherTools: "Andere Kleurenschermen",
-    availableLanguages: "In Jouw Taal",
-    viewAllColors: "Alle Kleuren",
-    viewAllThemes: "Alle Thema's",
-    howToUse: "Hoe het Witte Scherm te Gebruiken",
-    howToUseIntro: "Onze tool werkt direct op elke pc, Mac of mobiel:",
-    step1: "Open deze pagina op je computer of telefoon.",
-    step2: "Klik op het scherm of op 'Volledig Scherm'.",
-    step3: "Gebruik het witte licht voor schoonmaken of verlichting. Druk op ESC om te sluiten.",
-    whyUse: "Waarom een Wit Scherm Gebruiken?",
-    cleanScreen: "Scherm Schoonmaken & Stof Detecteren",
-    cleanScreenDesc: "Een helder wit scherm maakt vingerafdrukken en stof direct zichtbaar op je monitor.",
-    focusMode: "Focus Modus Zonder Afleiding",
-    focusModeDesc: "Creëer een rustige werkomgeving zonder visuele afleidingen.",
-    zoomLighting: "Verlichting voor Zoom Videogesprekken",
-    zoomLightingDesc: "Gebruik je monitor als zachte lamp om je gezicht te belichten tijdens webcamgesprekken.",
-    pixelTest: "Dode Pixel Test",
-    pixelTestDesc: "Spoor defecte of vastzittende pixels eenvoudig op.",
-    photography: "Fotografie Belichting",
-    photographyDesc: "Neutrale witte lichtbron voor productfotografie.",
-    tracingLight: "Lichtbak voor Tekenen",
-    tracingLightDesc: "Verander je scherm in een lichtbak om tekeningen over te trekken.",
-    imagesDownloadTitle: "Download Witte Achtergrond (4K/8K)",
-    imagesDownloadDesc: "Download witte afbeeldingen in PNG, JPG of WEBP in 4K resolutie.",
-    customColorPickerTitle: "Aangepaste Kleur",
-    selectHexColor: "Kies een HEX / RGB kleur:",
-    favorites: "Favorieten",
-    addToFavorites: "Toevoegen aan favorieten",
-    removeFromFavorites: "Verwijderen uit favorieten",
-    noFavoritesYet: "Nog geen favorieten.",
-    presetNames: {
-      "white-screen": "Wit Scherm",
-      "blue-screen": "Blauw Scherm",
-      "green-screen": "Groen Scherm",
-      "red-screen": "Rood Scherm",
-      "black-screen": "Zwart Scherm",
-      "yellow-screen": "Geel Scherm",
-      "orange-screen": "Oranje Scherm",
-      "pink-screen": "Roze Scherm",
-      "purple-screen": "Paars Scherm",
-      "zoom-lighting": "Zoom Licht",
-      "pixel-test": "Pixel Test"
-    },
-    navLinks: {
-      about: "Over ons",
-      contact: "Contact",
-      privacy: "Privacy",
-      terms: "Voorwaarden",
-      license: "Licentie",
-      cookie: "Cookies"
-    },
-    faqTitle: "Veelgestelde Vragen Over Wit Scherm",
-    faqs: [
-      {
-        q: "Waarvoor gebruik je een wit scherm online?",
-        a: "Het wordt gebruikt voor schermreiniging, dode pixel tests en webcamverlichting."
-      }
-    ]
-  },
-  it: {
-    siteTitle: "Schermo Bianco – Strumento Sfondo a Schermo Intero",
-    siteDescription: "Strumento schermo bianco online per pulire il monitor, testare pixel morti, illuminare videochiamate Zoom e scaricare sfondi bianchi 4K.",
-    heroHeading: "Schermo Bianco – Strumento a Schermo Intero",
-    heroSubheading: "Usa uno schermo bianco brillante per pulire il display, trovare pixel difettosi o illuminare il viso durante le chiamate Zoom.",
-    fullscreen: "Schermo Intero",
-    viewFullscreen: "Visualizza a schermo intero",
-    clickToFullscreen: "Clicca per la modalità schermo intero",
-    exitFullscreen: "Premi ESC per uscire",
-    download: "Scarica Sfondo Bianco",
-    chooseFormat: "1. Scegli Formato",
-    chooseSize: "2. Scegli Risoluzione",
-    downloadButtonText: (format, size, dimensions) => `Scarica ${format} ${size} (${dimensions})`,
-    freeNoSignup: "100% Gratuito • Senza registrazione",
-    watchVideoVersion: "Guarda il video di 10 ore",
-    solidColorBackgrounds: "Colori Solidi",
-    themeBackgrounds: "Sfondi Tematici",
-    discoverMore: "Altri Strumenti",
-    exploreOtherTools: "Altri Colori Schermo",
-    availableLanguages: "Nella Tua Lingua",
-    viewAllColors: "Tutti i Colori",
-    viewAllThemes: "Tutti i Temi",
-    howToUse: "Come Usare lo Schermo Bianco",
-    howToUseIntro: "Usare il nostro schermo bianco è semplicissimo su qualsiasi dispositivo:",
-    step1: "Apri questa pagina sul tuo computer o smartphone.",
-    step2: "Clicca sullo schermo o sul pulsante 'Schermo Intero'.",
-    step3: "Usa la luce bianca per pulire il display o per l'illuminazione. Premi ESC per uscire.",
-    whyUse: "Perché Usare uno Schermo Bianco?",
-    cleanScreen: "Pulizia del Monitor e Polvere",
-    cleanScreenDesc: "Uno schermo bianco luminoso rende subito visibili impronte e polvere sul display.",
-    focusMode: "Modalità Concentrazione Senza Distrazioni",
-    focusModeDesc: "Crea un ambiente di lavoro pulito e senza elementi di disturbo.",
-    zoomLighting: "Luce per Videochiamate Zoom e Webcam",
-    zoomLightingDesc: "Usa lo schermo come luce di riempimento per illuminare il viso in videochiamata.",
-    pixelTest: "Test Pixel Morti",
-    pixelTestDesc: "Trova facilmente pixel difettosi o bloccati sul monitor.",
-    photography: "Luce di Sfondo per Fotografia",
-    photographyDesc: "Fonte di luce bianca neutra per foto di prodotti.",
-    tracingLight: "Tavola Luminosa per Disegno",
-    tracingLightDesc: "Trasforma lo schermo in una tavola luminosa per ricalcare disegni.",
-    imagesDownloadTitle: "Scarica Sfondi Bianchi (4K/8K)",
-    imagesDownloadDesc: "Scarica immagini bianche in formato PNG, JPG o WEBP a risoluzione 4K.",
-    customColorPickerTitle: "Selettore Colore",
-    selectHexColor: "Scegli un colore HEX / RGB:",
-    favorites: "Preferiti",
-    addToFavorites: "Aggiungi ai preferiti",
-    removeFromFavorites: "Rimuovi dai preferiti",
-    noFavoritesYet: "Nessun colore salvato.",
-    presetNames: {
-      "white-screen": "Schermo Bianco",
-      "blue-screen": "Schermo Blu",
-      "green-screen": "Schermo Verde",
-      "red-screen": "Schermo Rosso",
-      "black-screen": "Schermo Nero",
-      "yellow-screen": "Schermo Giallo",
-      "orange-screen": "Schermo Arancione",
-      "pink-screen": "Schermo Rosa",
-      "purple-screen": "Schermo Viola",
-      "zoom-lighting": "Luce Zoom",
-      "pixel-test": "Test Pixel"
-    },
-    navLinks: {
-      about: "Chi Siamo",
-      contact: "Contatti",
-      privacy: "Privacy",
-      terms: "Termini",
-      license: "Licenza",
-      cookie: "Cookie"
-    },
-    faqTitle: "Domande Frequenti sullo Schermo Bianco",
-    faqs: [
-      {
-        q: "A cosa serve uno schermo bianco online?",
-        a: "Serve per pulire il monitor, individuare pixel difettosi e illuminare il viso nelle videochiamate."
-      }
-    ]
-  },
-  ar: {
-    siteTitle: "شاشة بيضاء – أداة خلفية الشاشة البيضاء بالكامل",
-    siteDescription: "أداة شاشة بيضاء مجانية عبر الإنترنت لتنظيف الشاشة، وااختبار البكسلات الميتة، وإضاءة مكالمات فيديو زوم، وتحميل خلفيات بيضاء 4K.",
-    heroHeading: "شاشة بيضاء – أداة ملء الشاشة",
-    heroSubheading: "استخدم شاشة بيضاء ناصعة لتنظيف الغبار من الشاشة، واكتشاف البكسلات التالفة، وإضاءة وجهك أثناء مكالمات الفيديو.",
-    fullscreen: "ملء الشاشة",
-    viewFullscreen: "عرض في ملء الشاشة",
-    clickToFullscreen: "انقر للدخول في وضع ملء الشاشة",
-    exitFullscreen: "اضغط ESC للخروج",
-    download: "تحميل صورة بيضاء",
-    chooseFormat: "1. اختر التنسيق",
-    chooseSize: "2. اختر الدقة",
-    downloadButtonText: (format, size, dimensions) => `تحميل ${format} ${size} (${dimensions})`,
-    freeNoSignup: "مجاني 100% • بدون تسجيل",
-    watchVideoVersion: "مشاهدة فيديو 10 ساعات",
-    solidColorBackgrounds: "ألوان صلبة",
-    themeBackgrounds: "خلفيات موضوعية",
-    discoverMore: "المزيد من الأدوات",
-    exploreOtherTools: "أدوات شاشة أخرى",
-    availableLanguages: "بلغتك",
-    viewAllColors: "جميع الألوان",
-    viewAllThemes: "جميع السيمات",
-    howToUse: "كيفية استخدام الشاشة البيضاء",
-    howToUseIntro: "استخدام أداتنا سهل للغاية على أي جهاز:",
-    step1: "افتح هذه الصفحة على جهاز الكمبيوتر أو الهاتف.",
-    step2: "انقر على مربع العرض أو زر 'ملء الشاشة'.",
-    step3: "استخدم الضوء الأبيض للتنظيف أو الإضاءة. اضغط ESC للخروج.",
-    whyUse: "لماذا تحتاج إلى شاشة بيضاء؟",
-    cleanScreen: "تنظيف الشاشة واكتشاف الغبار",
-    cleanScreenDesc: "تُظهر الشاشة البيضاء الناصعة الغبار وبصمات الأصابع بوضوح لتنظيفها بأمان.",
-    focusMode: "وضع التركيز بدون تشتيت",
-    focusModeDesc: "خلق بيئة عمل هادئة وخالية من التشتيت Visual.",
-    zoomLighting: "إضاءة لمكالمات فيديو زوم",
-    zoomLightingDesc: "استخدم الشاشة كضوء ناعم لإضاءة وجهك أثناء مكالمات الفيديو.",
-    pixelTest: "اختبار البكسلات الميتة",
-    pixelTestDesc: "اكتشف البكسلات التالفة أو الميتة على شاشتك.",
-    photography: "إضاءة تصوير الفوتوغرافي",
-    photographyDesc: "مصدر ضوء أبيض موحد لتصوير المنتجات.",
-    tracingLight: "طاولة مضاءة للرسم",
-    tracingLightDesc: "حول شاشتك إلى طاولة مضاءة لشف الرسومات.",
-    imagesDownloadTitle: "تحميل خلفيات بيضاء (4K/8K)",
-    imagesDownloadDesc: "تحميل صور بيضاء عالية الدقة بصيغ PNG و JPG و WEBP.",
-    customColorPickerTitle: "مخصص الألوان",
-    selectHexColor: "اختر لون HEX / RGB:",
-    favorites: "المفضلة",
-    addToFavorites: "إضافة إلى المفضلة",
-    removeFromFavorites: "إزالة من المفضلة",
-    noFavoritesYet: "لا توجد ألوان محفوظة.",
-    presetNames: {
-      "white-screen": "شاشة بيضاء",
-      "blue-screen": "شاشة زرقاء",
-      "green-screen": "شاشة خضراء",
-      "red-screen": "شاشة حمراء",
-      "black-screen": "شاشة سوداء",
-      "yellow-screen": "شاشة صفراء",
-      "orange-screen": "شاشة برتقالية",
-      "pink-screen": "شاشة وردية",
-      "purple-screen": "شاشة بنفسجية",
-      "zoom-lighting": "إضاءة زوم",
-      "pixel-test": "اختبار البكسل"
-    },
-    navLinks: {
-      about: "من نحن",
-      contact: "اتصل بنا",
-      privacy: "الخصوصية",
-      terms: "الشروط",
-      license: "الترخيص",
-      cookie: "الكوكيز"
-    },
-    faqTitle: "الأسئلة الشائعة حول الشاشة البيضاء",
-    faqs: [
-      {
-        q: "فيما تستخدم الشاشة البيضاء عبر الإنترنت؟",
-        a: "تستخدم لتنظيف الشاشة، واكتشاف البكسلات الميتة، وإضاءة مكالمات الفيديو."
-      }
-    ]
-  },
-  ja: {
-    siteTitle: "ホワイトスクリーン – 全画面白背景＆ディスプレイツール",
-    siteDescription: "モニターの掃除、ドット抜けテスト、Zoomの顔照らしライト、イラストトレース、4K/8K白壁紙ダウンロードに対応した無料のホワイトスクリーンツール。",
-    heroHeading: "ホワイトスクリーン – 全画面背景ツール",
-    heroSubheading: "画面のホコリ汚れチェック、ドット抜け検査、Web会議の照明、イラストの写し絵に使える無料の真っ白な画面表示ツール。",
-    fullscreen: "全画面表示",
-    viewFullscreen: "全画面で表示",
-    clickToFullscreen: "クリックして全画面表示に切り替え",
-    exitFullscreen: "ESCキーまたはクリックで終了",
-    download: "白い画像をダウンロード",
-    chooseFormat: "1. フォーマットを選択",
-    chooseSize: "2. 解像度を選択",
-    downloadButtonText: (format, size, dimensions) => `${format} ${size} をダウンロード (${dimensions})`,
-    freeNoSignup: "100% 無料 • 登録不要",
-    watchVideoVersion: "10時間動画を見る",
-    solidColorBackgrounds: "単色背景",
-    themeBackgrounds: "テーマ背景",
-    discoverMore: "その他のツール",
-    exploreOtherTools: "他のカラーツール",
-    availableLanguages: "対応言語",
-    viewAllColors: "すべての色",
-    viewAllThemes: "すべてのテーマ",
-    howToUse: "ホワイトスクリーンの使い方",
-    howToUseIntro: "PC、Mac、タブレット、スマホで簡単に利用できます：",
-    step1: "お使いのブラウザでこのページを開きます。",
-    step2: "画面枠または'全画面表示'ボタンをクリックします。",
-    step3: "ディスプレイの清掃、照明、ドット抜け検査に活用します。ESCで終了します。",
-    whyUse: "なぜホワイトスクリーンを使うのか？",
-    cleanScreen: "画面の掃除とホコリチェック",
-    cleanScreenDesc: "100%明るさの白い画面で指紋やホコリをはっきり浮き上がらせます。",
-    focusMode: "集中モード",
-    focusModeDesc: "視覚的なノイズを排除して作業に集中できる環境を作ります。",
-    zoomLighting: "ZoomやWeb会議の顔照らしライト",
-    zoomLightingDesc: "サブモニターをWebカメラの顔照らしライトとして活用できます。",
-    pixelTest: "ドット抜け検査（ピクセルテスト）",
-    pixelTestDesc: "液晶モニターの常時点灯やドット欠けを早期発見できます。",
-    photography: "撮影用ライティング",
-    photographyDesc: "物撮りやマクロ撮影の柔らかい白バックライトとして利用可能。",
-    tracingLight: "トレース台（イラスト写し絵）",
-    tracingLightDesc: "画面の上に紙を置いてイラストや文字をトレースできます。",
-    imagesDownloadTitle: "白い背景画像のダウンロード（4K/8K）",
-    imagesDownloadDesc: "HD、2K、4K、8K解像度の真っ白な画像をPNG、JPG、WEBPで保存できます。",
-    customColorPickerTitle: "カラーカスタマイズ",
-    selectHexColor: "お好みのHEX/RGBカラーを選択:",
-    favorites: "お気に入り",
-    addToFavorites: "お気に入りに追加",
-    removeFromFavorites: "お気に入りから削除",
-    noFavoritesYet: "保存された色はありません。",
-    presetNames: {
-      "white-screen": "ホワイトスクリーン",
-      "blue-screen": "ブルースクリーン",
-      "green-screen": "グリーンスクリーン",
-      "red-screen": "レッドスクリーン",
-      "black-screen": "ブラックスクリーン",
-      "yellow-screen": "イエロースクリーン",
-      "orange-screen": "オレンジスクリーン",
-      "pink-screen": "ピンクスクリーン",
-      "purple-screen": "パープルスクリーン",
-      "zoom-lighting": "Zoom用照明",
-      "pixel-test": "ドット抜けテスト"
-    },
-    navLinks: {
-      about: "概要",
-      contact: "お問い合わせ",
-      privacy: "プライバシー",
-      terms: "利用規約",
-      license: "ライセンス",
-      cookie: "Cookie"
-    },
-    faqTitle: "ホワイトスクリーンに関するよくある質問",
-    faqs: [
-      {
-        q: "ホワイトスクリーンツールは何に使われますか？",
-        a: "液晶画面の掃除、ドット抜けチェック、Web会議の顔照明、イラストのトレースなどに使われます。"
-      }
-    ]
-  },
-  ko: {
-    siteTitle: "화이트 스크린 – 전체 화면 하얀 배경 도구",
-    siteDescription: "모니터 먼지 청소, 불량 화소 테스트, Zoom 영상 통화 조명, 4K 하얀 배경화면 다운로드를 위한 무료 온라인 화이트 스크린 도구.",
-    heroHeading: "화이트 스크린 – 전체 화면 도구",
-    heroSubheading: "깨끗한 흰색 화면으로 모니터 얼룩을 닦아내고, 불량 화소를 검사하고, 웹캠 조명으로 활용해보세요.",
-    fullscreen: "전체 화면",
-    viewFullscreen: "전체 화면으로 보기",
-    clickToFullscreen: "클릭하여 전체 화면 전환",
-    exitFullscreen: "ESC를 눌러 나가기",
-    download: "흰색 이미지 다운로드",
-    chooseFormat: "1. 포맷 선택",
-    chooseSize: "2. 해상도 선택",
-    downloadButtonText: (format, size, dimensions) => `${format} ${size} 다운로드 (${dimensions})`,
-    freeNoSignup: "100% 무료 • 가입 필요 없음",
-    watchVideoVersion: "10시간 비디오 보기",
-    solidColorBackgrounds: "단색 배경",
-    themeBackgrounds: "테마 배경",
-    discoverMore: "더 많은 도구",
-    exploreOtherTools: "다른 색상 도구",
-    availableLanguages: "지원 언어",
-    viewAllColors: "모든 색상",
-    viewAll테마: "모든 테마",
-    howToUse: "화이트 스크린 사용법",
-    howToUseIntro: "PC, Mac, 태블릿, 스마트폰에서 쉽게 사용할 수 있습니다:",
-    step1: "컴퓨터나 스마트폰에서 이 페이지를 열어주세요.",
-    step2: "화면 상자나 '전체 화면' 버튼을 클릭합니다.",
-    step3: "흰색 화면을 청소나 조명으로 활용하세요. 나가려면 ESC를 누릅니다.",
-    whyUse: "왜 화이트 스크린이 필요한가요?",
-    cleanScreen: "모니터 청소 및 먼지 감지",
-    cleanScreenDesc: "100% 밝기의 흰색 화면은 모니터의 지문과 먼지를 쉽게 찾아내어 청소하기 쉽게 해줍니다.",
-    focusMode: "집중 모드",
-    focusModeDesc: "시각적 방해 요소를 없애고 작업에 집중할 수 있습니다.",
-    zoomLighting: "Zoom 영상 통화 조명",
-    zoomLightingDesc: "보조 모니터를 화상 회의용 조명으로 사용하여 얼굴을 밝게 밝혀줍니다.",
-    pixelTest: "불량 화소(픽셀) 테스트",
-    pixelTestDesc: "모니터의 불량 화소나 픽셀 림 현상을 탐지할 수 있습니다.",
-    photography: "사진 촬영 조명",
-    photographyDesc: "제품 촬영용 균일한 흰색 백라이트 조명.",
-    tracingLight: "그림 트레이싱 라이트 박스",
-    tracingLightDesc: "화면 위에 종이를 대고 그림을 따라 그릴 수 있습니다.",
-    imagesDownloadTitle: "흰색 배경화면 다운로드 (4K/8K)",
-    imagesDownloadDesc: "PNG, JPG, WEBP 포맷의 고해상도 흰색 이미지를 무료로 다운로드하세요.",
-    customColorPickerTitle: "맞춤 색상 선택",
-    selectHexColor: "원하는 HEX / RGB 색상 선택:",
-    favorites: "즐겨찾기",
-    addToFavorites: "즐겨찾기에 추가",
-    removeFromFavorites: "즐겨찾기에서 제거",
-    noFavoritesYet: "저장된 색상이 없습니다.",
-    presetNames: {
-      "white-screen": "화이트 스크린",
-      "blue-screen": "블루 스크린",
-      "green-screen": "그린 스크린",
-      "red-screen": "레드 스크린",
-      "black-screen": "블랙 스크린",
-      "yellow-screen": "옐로우 스크린",
-      "orange-screen": "오렌지 스크린",
-      "pink-screen": "핑크 스크린",
-      "purple-screen": "퍼플 스크린",
-      "zoom-lighting": "Zoom 조명",
-      "pixel-test": "픽셀 테스트"
-    },
-    navLinks: {
-      about: "소개",
-      contact: "문의하기",
-      privacy: "개인정보처리방침",
-      terms: "이용약관",
-      license: "라이선스",
-      cookie: "쿠키 정책"
-    },
-    faqTitle: "화이트 스크린 자주 묻는 질문",
-    faqs: [
-      {
-        q: "화이트 스크린은 무엇에 사용되나요?",
-        a: "모니터 청소, 불량 화소 검사, 화상 회의 조명 및 그림 트레이싱에 사용됩니다."
-      }
-    ]
-  },
-  ru: {
-    siteTitle: "Белый Экран – Полноэкранный Белый Фон и Инструмент",
-    siteDescription: "Бесплатный онлайн-инструмент с белым экраном для очистки монитора, проверки битых пикселей, подсветки для Zoom и скачивания обоев 4K/8K.",
-    heroHeading: "Белый Экран – Полноэкранный Инструмент",
-    heroSubheading: "Используйте чистый белый экран для очистки дисплея от пыли, поиска битых пикселей или мягкого освещения лица в видеозвонках.",
-    fullscreen: "Полный Экран",
-    viewFullscreen: "Открыть на весь экран",
-    clickToFullscreen: "Нажмите для полноэкранного режима",
-    exitFullscreen: "Нажмите ESC для выхода",
-    download: "Скачать Белый Фон",
-    chooseFormat: "1. Выберите Формат",
-    chooseSize: "2. Выберите Разрешение",
-    downloadButtonText: (format, size, dimensions) => `Скачать ${format} ${size} (${dimensions})`,
-    freeNoSignup: "100% Бесплатно • Без регистрации",
-    watchVideoVersion: "Смотреть 10-часовое видео",
-    solidColorBackgrounds: "Однотонные Цвета",
-    themeBackgrounds: "Тематические Фоны",
-    discoverMore: "Другие Инструменты",
-    exploreOtherTools: "Другие Цвета Экрана",
-    availableLanguages: "На Вашем Языке",
-    viewAllColors: "Все Цвета",
-    viewAllThemes: "Все Темы",
-    howToUse: "Как Использовать Белый Экран",
-    howToUseIntro: "Наш онлайн-инструмент работает на любых компьютерах и смартфонах:",
-    step1: "Откройте эту страницу на компьютере или телефоне.",
-    step2: "Нажмите на экран или кнопку 'Полный Экран'.",
-    step3: "Используйте белый свет для очистки или подсветки. Нажмите ESC для выхода.",
-    whyUse: "Зачем Нужен Белый Экран?",
-    cleanScreen: "Очистка Монитора и Поиск Пыли",
-    cleanScreenDesc: "Яркий белый экран при 100% яркости делает отпечатки пальцев и пыль сразу заметными.",
-    focusMode: "Режим Концентрации Без Отвлечения",
-    focusModeDesc: "Создайте чистую рабочую среду без визуального мусора.",
-    zoomLighting: "Подсветка для Видеозвонков Zoom",
-    zoomLightingDesc: "Используйте монитор как мягкий свет для веб-камеры во время созвонов.",
-    pixelTest: "Тест Битых Пикселей",
-    pixelTestDesc: "Находите поврежденные или застрявшие пиксели на новых мониторах.",
-    photography: "Подсветка для Фотографии",
-    photographyDesc: "Нейтральный белый источник света для предметной съемки.",
-    tracingLight: "Световой Стол для Рисования",
-    tracingLightDesc: "Превратите экран в световой планшет для перевода рисунков.",
-    imagesDownloadTitle: "Скачать Белые Обои (4K/8K)",
-    imagesDownloadDesc: "Скачивайте белые картинки в PNG, JPG или WEBP в разрешении 4K.",
-    customColorPickerTitle: "Выбрать Свой Цвет",
-    selectHexColor: "Выберите цвет HEX / RGB:",
-    favorites: "Избранное",
-    addToFavorites: "Добавить в избранное",
-    removeFromFavorites: "Удалить из избранного",
-    noFavoritesYet: "Сохраненных цветов нет.",
-    presetNames: {
-      "white-screen": "Белый Экран",
-      "blue-screen": "Синий Экран",
-      "green-screen": "Зеленый Экран",
-      "red-screen": "Красный Экран",
-      "black-screen": "Черный Экран",
-      "yellow-screen": "Желтый Экран",
-      "orange-screen": "Оранжевый Экран",
-      "pink-screen": "Розовый Экран",
-      "purple-screen": "Фиолетовый Экран",
-      "zoom-lighting": "Свет Zoom",
-      "pixel-test": "Тест Пикселей"
-    },
-    navLinks: {
-      about: "О нас",
-      contact: "Контакты",
-      privacy: "Конфиденциальность",
-      terms: "Условия",
-      license: "Лицензия",
-      cookie: "Куки"
-    },
-    faqTitle: "Часто Задаваемые Вопросы о Белом Экране",
-    faqs: [
-      {
-        q: "Для чего используется белый экран онлайн?",
-        a: "Используется для очистки монитора, проверки пикселей и подсветки лица в видеозвонках."
-      }
-    ]
-  }
 };
+
+export function getUI(lang: LanguageCode): UIDictionary {
+  const dict = UI_TRANSLATIONS[lang];
+  if (!dict) {
+    throw new Error(`Missing UI translation for language: ${lang}`);
+  }
+  return dict;
+}

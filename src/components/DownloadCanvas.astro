@@ -1,0 +1,205 @@
+---
+import type { LanguageCode } from '../i18n/config';
+import { getUI } from '../i18n/ui';
+
+export interface Props {
+  lang: LanguageCode;
+  initialColor?: string;
+  colorName?: string;
+}
+
+const { lang, initialColor = '#ffffff', colorName = 'White' } = Astro.props;
+const ui = getUI(lang);
+
+const formats = ['PNG', 'JPG', 'WEBP'];
+
+const resolutions = [
+  { id: '1080p', label: ui.download.resolutions.fhd, width: 1920, height: 1080 },
+  { id: '2k', label: ui.download.resolutions.qhd, width: 2560, height: 1440 },
+  { id: '4k', label: ui.download.resolutions.uhd4k, width: 3840, height: 2160, defaultSelected: true },
+  { id: '5k', label: ui.download.resolutions.retina5k, width: 5120, height: 2880 },
+  { id: '8k', label: ui.download.resolutions.uhd8k, width: 7680, height: 4320 },
+  { id: 'mobile', label: ui.download.resolutions.mobile, width: 1080, height: 1920 },
+  { id: 'square', label: ui.download.resolutions.square, width: 2048, height: 2048 },
+];
+---
+
+<div class="download-canvas-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm my-8" id="download-canvas-section" data-initial-color={initialColor}>
+  <div class="max-w-3xl">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+      {ui.download.title}
+    </h2>
+    <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
+      {ui.download.subtitle}
+    </p>
+  </div>
+
+  <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Format Selector -->
+    <div>
+      <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+        {ui.download.chooseFormat}
+      </label>
+      <div class="grid grid-cols-3 gap-2" role="radiogroup" aria-label={ui.download.chooseFormat}>
+        {formats.map((fmt, idx) => (
+          <button
+            type="button"
+            class={`fmt-btn px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-xl border transition-all text-center ${
+              idx === 0
+                ? 'bg-indigo-600 border-indigo-600 text-white shadow-xs'
+                : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
+            }`}
+            data-format={fmt}
+            role="radio"
+            aria-checked={idx === 0 ? "true" : "false"}
+          >
+            {fmt}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Resolution Selector -->
+    <div>
+      <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+        {ui.download.chooseResolution}
+      </label>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" role="radiogroup" aria-label={ui.download.chooseResolution}>
+        {resolutions.map((res) => (
+          <button
+            type="button"
+            class={`res-btn px-3 py-2 text-xs font-medium rounded-xl border transition-all text-center truncate ${
+              res.defaultSelected
+                ? 'bg-indigo-600 border-indigo-600 text-white shadow-xs'
+                : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
+            }`}
+            data-res-id={res.id}
+            data-width={res.width}
+            data-height={res.height}
+            role="radio"
+            aria-checked={res.defaultSelected ? "true" : "false"}
+            title={`${res.width}x${res.height}`}
+          >
+            {res.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Download Action Button -->
+  <div class="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <button
+      type="button"
+      id="btn-trigger-canvas-download"
+      class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm rounded-xl shadow-sm hover:shadow transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+    >
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      <span id="download-action-label">{ui.download.buttonText} (PNG 3840×2160)</span>
+    </button>
+
+    <div class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <span>✓ Ultra HD Canvas</span>
+      <span>•</span>
+      <span>Zero Compression</span>
+      <span>•</span>
+      <span>100% Free</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  let activeFormat = 'PNG';
+  let activeWidth = 3840;
+  let activeHeight = 2160;
+  let activeResLabel = '3840×2160';
+  let canvasColor = '#ffffff';
+
+  const section = document.getElementById('download-canvas-section');
+  const actionLabel = document.getElementById('download-action-label');
+  const triggerBtn = document.getElementById('btn-trigger-canvas-download');
+
+  if (section?.dataset.initialColor) {
+    canvasColor = section.dataset.initialColor;
+  }
+
+  function updateActionLabel() {
+    if (actionLabel) {
+      actionLabel.textContent = `Download ${activeFormat} (${activeWidth}×${activeHeight})`;
+    }
+  }
+
+  // Format selection
+  document.querySelectorAll('.fmt-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.fmt-btn').forEach((b) => {
+        b.classList.remove('bg-indigo-600', 'border-indigo-600', 'text-white', 'shadow-xs');
+        b.classList.add('bg-slate-50', 'dark:bg-slate-800', 'border-slate-200', 'dark:border-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        b.setAttribute('aria-checked', 'false');
+      });
+      const target = e.currentTarget as HTMLElement;
+      target.classList.remove('bg-slate-50', 'dark:bg-slate-800', 'border-slate-200', 'dark:border-slate-700', 'text-slate-700', 'dark:text-slate-300');
+      target.classList.add('bg-indigo-600', 'border-indigo-600', 'text-white', 'shadow-xs');
+      target.setAttribute('aria-checked', 'true');
+      activeFormat = target.dataset.format || 'PNG';
+      updateActionLabel();
+    });
+  });
+
+  // Resolution selection
+  document.querySelectorAll('.res-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.res-btn').forEach((b) => {
+        b.classList.remove('bg-indigo-600', 'border-indigo-600', 'text-white', 'shadow-xs');
+        b.classList.add('bg-slate-50', 'dark:bg-slate-800', 'border-slate-200', 'dark:border-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        b.setAttribute('aria-checked', 'false');
+      });
+      const target = e.currentTarget as HTMLElement;
+      target.classList.remove('bg-slate-50', 'dark:bg-slate-800', 'border-slate-200', 'dark:border-slate-700', 'text-slate-700', 'dark:text-slate-300');
+      target.classList.add('bg-indigo-600', 'border-indigo-600', 'text-white', 'shadow-xs');
+      target.setAttribute('aria-checked', 'true');
+      activeWidth = parseInt(target.dataset.width || '3840', 10);
+      activeHeight = parseInt(target.dataset.height || '2160', 10);
+      updateActionLabel();
+    });
+  });
+
+  // Synchronize color from ScreenTool
+  window.addEventListener('ws:color-updated', (e: any) => {
+    if (e.detail?.color) {
+      canvasColor = e.detail.color;
+    }
+  });
+
+  // Generate canvas & download
+  triggerBtn?.addEventListener('click', () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = activeWidth;
+    canvas.height = activeHeight;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    ctx.fillStyle = canvasColor;
+    ctx.fillRect(0, 0, activeWidth, activeHeight);
+
+    let mime = 'image/png';
+    let ext = 'png';
+    if (activeFormat === 'JPG') {
+      mime = 'image/jpeg';
+      ext = 'jpg';
+    } else if (activeFormat === 'WEBP') {
+      mime = 'image/webp';
+      ext = 'webp';
+    }
+
+    const dataUrl = canvas.toDataURL(mime, 0.98);
+    const link = document.createElement('a');
+    link.download = `screen-${activeWidth}x${activeHeight}.${ext}`;
+    link.href = dataUrl;
+    link.click();
+  });
+</script>

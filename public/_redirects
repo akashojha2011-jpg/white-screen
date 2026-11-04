@@ -1,0 +1,20 @@
+# Canonical redirects
+/sitemap.xml /sitemap-index.xml 301
+/sitemap /sitemap-index.xml 301
+
+# Language root trailing slash enforcement
+/fr /fr/ 301
+/es /es/ 301
+/de /de/ 301
+/pt /pt/ 301
+/id /id/ 301
+
+# Old legacy URL redirects to canonical trailing-slash URLs
+/about /about/ 301
+/contact /contact/ 301
+/privacy-policy /privacy-policy/ 301
+/terms-and-conditions /terms-and-conditions/ 301
+/cookie-policy /cookie-policy/ 301
+/license /license/ 301
+
+/white-screen / 301

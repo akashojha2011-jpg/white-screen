@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getRelativePath } from '../i18n/slugs';
+
+const lang = 'en';
+---
+
+<Layout
+  pageId="home"
+  lang={lang}
+  title="404 - Page Not Found | TheWhiteScreen.org"
+  description="The page you are looking for does not exist. Browse our free fullscreen white screen, dead pixel tests, and high-resolution tools."
+>
+  <div class="max-w-2xl mx-auto my-16 text-center">
+    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-black text-2xl shadow-xs">
+      404
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+      Page Not Found
+    </h1>
+    <p class="mt-4 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+      Sorry, the page you requested could not be located. It may have moved or been renamed. Use the links below to return to our primary tools.
+    </p>
+
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm rounded-xl shadow-xs transition-colors"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Return to Home</span>
+      </a>
+
+      <a
+        href={getRelativePath('dead-pixel-test', 'en')}
+        class="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-sm rounded-xl transition-colors"
+      >
+        <span>Dead Pixel Test</span>
+      </a>
+
+      <a
+        href={getRelativePath('black-screen', 'en')}
+        class="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-sm rounded-xl transition-colors"
+      >
+        <span>Black Screen</span>
+      </a>
+    </div>
+  </div>
+</Layout>

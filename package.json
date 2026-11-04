@@ -5,15 +5,18 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && cp dist/sitemap-index.xml dist/sitemap.xml",
+    "build": "astro build",
+    "seo:check": "node scripts/seo-check.mjs",
+    "test": "npm run build && npm run seo:check",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "3.1.6",
     "astro": "^4.15.4"
   },
   "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5.5.4"
   }
 }

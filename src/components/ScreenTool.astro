@@ -1,0 +1,465 @@
+---
+import type { LanguageCode } from '../i18n/config';
+import { getUI } from '../i18n/ui';
+
+export interface Props {
+  lang: LanguageCode;
+  initialColor?: string;
+  initialBackground?: string;
+  pageId?: string;
+}
+
+const {
+  lang,
+  initialColor = '#ffffff',
+  initialBackground,
+  pageId = 'white-screen'
+} = Astro.props;
+
+const ui = getUI(lang);
+const backgroundStyle = initialBackground || initialColor;
+
+// Quick palette colors for keyboard shortcuts 1-9
+const quickPalette = [
+  { id: 'white', hex: '#ffffff', name: 'White', key: '1' },
+  { id: 'black', hex: '#000000', name: 'Black', key: '2' },
+  { id: 'red', hex: '#ff0000', name: 'Red', key: '3' },
+  { id: 'green', hex: '#00ff00', name: 'Green', key: '4' },
+  { id: 'blue', hex: '#0000ff', name: 'Blue', key: '5' },
+  { id: 'yellow', hex: '#ffff00', name: 'Yellow', key: '6' },
+  { id: 'orange', hex: '#ffa500', name: 'Orange', key: '7' },
+  { id: 'grey', hex: '#808080', name: 'Grey', key: '8' },
+  { id: 'pink', hex: '#ffc0cb', name: 'Pink', key: '9' },
+];
+---
+
+<div class="screen-tool-wrapper my-6" id="screen-tool" data-initial-color={initialColor}>
+  <!-- Screen Preview Stage (SSR rendered shell) -->
+  <div
+    id="screen-preview-box"
+    class="relative w-full aspect-video sm:aspect-[21/9] rounded-2xl shadow-xl overflow-hidden cursor-pointer transition-all border border-slate-200 dark:border-slate-800 flex items-center justify-center group"
+    style={`background: ${backgroundStyle};`}
+    tabindex="0"
+    role="button"
+    aria-label={ui.tool.clickToFullscreen}
+  >
+    <!-- Center Click-to-Fullscreen Overlay Badge -->
+    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+      <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-6 py-3 rounded-full shadow-lg flex items-center gap-3 text-slate-800 dark:text-slate-100 font-semibold text-sm sm:text-base transform group-hover:scale-105 transition-transform pointer-events-none">
+        <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+        </svg>
+        <span>{ui.tool.clickToFullscreen}</span>
+      </div>
+    </div>
+
+    <!-- Wake Lock Status Indicator -->
+    <div id="wake-lock-pill" class="hidden absolute top-3 right-3 bg-emerald-500/90 text-white text-xs font-semibold px-3 py-1 rounded-full shadow backdrop-blur-sm items-center gap-1.5 z-10">
+      <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+      <span>{ui.tool.wakeLockActive}</span>
+    </div>
+  </div>
+
+  <!-- Interactive Controls Bar -->
+  <div class="mt-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <!-- Fullscreen Primary Action -->
+      <button
+        type="button"
+        id="btn-enter-fullscreen"
+        class="inline-flex items-center gap-2.5 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-sm hover:shadow transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        aria-label={ui.tool.fullscreenBtn}
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+        </svg>
+        <span>{ui.tool.fullscreenBtn}</span>
+        <kbd class="hidden sm:inline-block ml-1 px-2 py-0.5 text-xs bg-indigo-700/60 rounded">F</kbd>
+      </button>
+
+      <!-- Color Picker Input -->
+      <div class="flex items-center gap-3 bg-slate-100 dark:bg-slate-800/80 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <label for="color-picker-input" class="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300">
+          {ui.tool.colorPickerLabel}
+        </label>
+        <div class="relative flex items-center gap-2">
+          <input
+            type="color"
+            id="color-picker-input"
+            value={initialColor}
+            class="w-8 h-8 rounded-lg cursor-pointer border-0 bg-transparent p-0"
+            aria-label={ui.tool.colorPickerLabel}
+          />
+          <input
+            type="text"
+            id="color-hex-text"
+            value={initialColor.toUpperCase()}
+            class="w-20 px-2 py-1 text-xs font-mono font-semibold uppercase bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded text-slate-800 dark:text-slate-200 text-center"
+            maxlength="7"
+          />
+        </div>
+      </div>
+
+      <!-- Auto RGB Cycle Toggle -->
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          id="btn-toggle-cycle"
+          class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs sm:text-sm font-medium rounded-xl transition-colors border border-slate-200 dark:border-slate-700"
+          data-running="false"
+        >
+          <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span id="cycle-btn-text">{ui.tool.autoCycleBtn}</span>
+        </button>
+        <select
+          id="cycle-interval-select"
+          class="px-2 py-2 text-xs font-medium bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-700 dark:text-slate-300"
+          aria-label={ui.tool.cycleSpeedLabel}
+        >
+          <option value="3000">3 {ui.tool.secondsLabel}</option>
+          <option value="5000" selected>5 {ui.tool.secondsLabel}</option>
+          <option value="10000">10 {ui.tool.secondsLabel}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Sliders for Zoom Ring Light warmth & brightness -->
+    <div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <div class="flex items-center justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">
+          <span>{ui.tool.brightnessLabel}</span>
+          <span id="brightness-val-text">100%</span>
+        </div>
+        <input
+          type="range"
+          id="slider-brightness"
+          min="10"
+          max="100"
+          value="100"
+          class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+        />
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">
+          <span>{ui.tool.warmthLabel}</span>
+          <span id="warmth-val-text">0%</span>
+        </div>
+        <input
+          type="range"
+          id="slider-warmth"
+          min="0"
+          max="100"
+          value="0"
+          class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500"
+        />
+      </div>
+    </div>
+
+    <!-- Quick Color Palette & Keyboard Shortcuts Reference -->
+    <div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex flex-wrap items-center gap-1.5">
+        <span class="text-slate-500 dark:text-slate-400 font-medium mr-1">{ui.tool.shortcutsTitle}:</span>
+        {quickPalette.map((p) => (
+          <button
+            type="button"
+            class="palette-btn w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 shadow-xs focus:ring-2 focus:ring-indigo-500 transition-transform hover:scale-110"
+            style={`background-color: ${p.hex};`}
+            data-hex={p.hex}
+            data-key={p.key}
+            title={`${p.name} (Key ${p.key})`}
+            aria-label={`${p.name} color`}
+          />
+        ))}
+      </div>
+
+      <div class="text-slate-400 dark:text-slate-500 text-[11px] flex items-center gap-2">
+        <span>F: {ui.tool.shortcutFullscreen}</span>
+        <span>•</span>
+        <span>1-9: {ui.tool.shortcutColors}</span>
+        <span>•</span>
+        <span>←/→: {ui.tool.shortcutCycle}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Fullscreen Standalone Modal / Target Node -->
+<div
+  id="fullscreen-stage"
+  class="fixed inset-0 z-[999999] hidden flex-col items-center justify-center cursor-pointer select-none"
+  style={`background: ${backgroundStyle};`}
+  tabindex="-1"
+>
+  <div
+    id="fullscreen-hint"
+    class="absolute top-6 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full shadow-lg transition-opacity duration-500 pointer-events-none"
+  >
+    {ui.tool.pressEscToExit}
+  </div>
+</div>
+
+<script>
+  let currentColor = '#ffffff';
+  let isFullscreen = false;
+  let cycleTimer: any = null;
+  let wakeLockSentinel: any = null;
+  let currentWarmth = 0;
+  let currentBrightness = 100;
+
+  const toolWrapper = document.getElementById('screen-tool');
+  const previewBox = document.getElementById('screen-preview-box');
+  const fullscreenStage = document.getElementById('fullscreen-stage');
+  const fullscreenHint = document.getElementById('fullscreen-hint');
+  const btnEnterFullscreen = document.getElementById('btn-enter-fullscreen');
+  const colorPickerInput = document.getElementById('color-picker-input') as HTMLInputElement;
+  const colorHexText = document.getElementById('color-hex-text') as HTMLInputElement;
+  const btnToggleCycle = document.getElementById('btn-toggle-cycle');
+  const cycleBtnText = document.getElementById('cycle-btn-text');
+  const cycleIntervalSelect = document.getElementById('cycle-interval-select') as HTMLSelectElement;
+  const sliderBrightness = document.getElementById('slider-brightness') as HTMLInputElement;
+  const sliderWarmth = document.getElementById('slider-warmth') as HTMLInputElement;
+  const brightnessValText = document.getElementById('brightness-val-text');
+  const warmthValText = document.getElementById('warmth-val-text');
+  const wakeLockPill = document.getElementById('wake-lock-pill');
+
+  if (toolWrapper?.dataset.initialColor) {
+    currentColor = toolWrapper.dataset.initialColor;
+  }
+
+  const cycleColors = [
+    '#ffffff', '#000000', '#ff0000', '#00ff00', '#0000ff',
+    '#ffff00', '#ffa500', '#808080', '#00ffff', '#ff00ff'
+  ];
+  let cycleIndex = 0;
+
+  function calculateEffectiveColor(baseHex: string, brightnessPct: number, warmthPct: number): string {
+    // Parse hex
+    let hex = baseHex.replace('#', '');
+    if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+    let r = parseInt(hex.substring(0, 2), 16) || 255;
+    let g = parseInt(hex.substring(2, 4), 16) || 255;
+    let b = parseInt(hex.substring(4, 6), 16) || 255;
+
+    // Apply warmth (increase red/yellow, decrease blue)
+    if (warmthPct > 0) {
+      const warmthFactor = warmthPct / 100;
+      b = Math.max(0, Math.round(b * (1 - warmthFactor * 0.45)));
+      g = Math.min(255, Math.round(g * (1 - warmthFactor * 0.1)));
+    }
+
+    // Apply brightness
+    const brightFactor = brightnessPct / 100;
+    r = Math.round(r * brightFactor);
+    g = Math.round(g * brightFactor);
+    b = Math.round(b * brightFactor);
+
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+
+  function applyColorToSurfaces(color: string) {
+    const effectiveBg = calculateEffectiveColor(color, currentBrightness, currentWarmth);
+    if (previewBox) previewBox.style.background = effectiveBg;
+    if (fullscreenStage) fullscreenStage.style.background = effectiveBg;
+    if (colorPickerInput && color.startsWith('#')) colorPickerInput.value = color;
+    if (colorHexText && color.startsWith('#')) colorHexText.value = color.toUpperCase();
+
+    // Broadcast color update for DownloadCanvas component
+    window.dispatchEvent(new CustomEvent('ws:color-updated', { detail: { color, effectiveColor: effectiveBg } }));
+  }
+
+  // Request Screen Wake Lock API
+  async function requestWakeLock() {
+    try {
+      if ('wakeLock' in navigator) {
+        wakeLockSentinel = await (navigator as any).wakeLock.request('screen');
+        if (wakeLockPill) wakeLockPill.classList.remove('hidden');
+        wakeLockSentinel.addEventListener('release', () => {
+          if (wakeLockPill) wakeLockPill.classList.add('hidden');
+        });
+      }
+    } catch (err) {
+      console.warn('Wake Lock request skipped:', err);
+    }
+  }
+
+  function releaseWakeLock() {
+    if (wakeLockSentinel) {
+      wakeLockSentinel.release().catch(() => {});
+      wakeLockSentinel = null;
+    }
+  }
+
+  // Fullscreen toggle with cross-browser API
+  async function enterFullscreenMode() {
+    if (!fullscreenStage) return;
+    fullscreenStage.classList.remove('hidden');
+    fullscreenStage.classList.add('flex');
+    isFullscreen = true;
+
+    const el = fullscreenStage as any;
+    if (el.requestFullscreen) {
+      await el.requestFullscreen().catch(() => {});
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    } else if (el.mozRequestFullScreen) {
+      el.mozRequestFullScreen();
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen();
+    }
+
+    await requestWakeLock();
+
+    // Fade out hint after 3 seconds
+    if (fullscreenHint) {
+      fullscreenHint.style.opacity = '1';
+      setTimeout(() => {
+        if (fullscreenHint) fullscreenHint.style.opacity = '0';
+      }, 3000);
+    }
+  }
+
+  function exitFullscreenMode() {
+    isFullscreen = false;
+    if (fullscreenStage) {
+      fullscreenStage.classList.add('hidden');
+      fullscreenStage.classList.remove('flex');
+    }
+    const doc = document as any;
+    if (doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement) {
+      if (doc.exitFullscreen) doc.exitFullscreen().catch(() => {});
+      else if (doc.webkitExitFullscreen) doc.webkitExitFullscreen();
+    }
+    releaseWakeLock();
+  }
+
+  // Event Listeners
+  previewBox?.addEventListener('click', enterFullscreenMode);
+  previewBox?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      enterFullscreenMode();
+    }
+  });
+
+  btnEnterFullscreen?.addEventListener('click', enterFullscreenMode);
+
+  fullscreenStage?.addEventListener('click', exitFullscreenMode);
+
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      exitFullscreenMode();
+    }
+  });
+  document.addEventListener('webkitfullscreenchange', () => {
+    if (!(document as any).webkitFullscreenElement) {
+      exitFullscreenMode();
+    }
+  });
+
+  // Re-acquire Wake Lock on visibility change
+  document.addEventListener('visibilitychange', async () => {
+    if (document.visibilityState === 'visible' && isFullscreen) {
+      await requestWakeLock();
+    }
+  });
+
+  // Color inputs
+  colorPickerInput?.addEventListener('input', (e) => {
+    const val = (e.target as HTMLInputElement).value;
+    currentColor = val;
+    applyColorToSurfaces(val);
+  });
+
+  colorHexText?.addEventListener('change', (e) => {
+    let val = (e.target as HTMLInputElement).value.trim();
+    if (!val.startsWith('#')) val = '#' + val;
+    if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+      currentColor = val;
+      applyColorToSurfaces(val);
+    }
+  });
+
+  // Palette buttons
+  document.querySelectorAll('.palette-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const hex = (e.currentTarget as HTMLElement).dataset.hex;
+      if (hex) {
+        currentColor = hex;
+        applyColorToSurfaces(hex);
+      }
+    });
+  });
+
+  // Sliders
+  sliderBrightness?.addEventListener('input', (e) => {
+    currentBrightness = parseInt((e.target as HTMLInputElement).value, 10);
+    if (brightnessValText) brightnessValText.textContent = `${currentBrightness}%`;
+    applyColorToSurfaces(currentColor);
+  });
+
+  sliderWarmth?.addEventListener('input', (e) => {
+    currentWarmth = parseInt((e.target as HTMLInputElement).value, 10);
+    if (warmthValText) warmthValText.textContent = `${currentWarmth}%`;
+    applyColorToSurfaces(currentColor);
+  });
+
+  // Auto Cycle
+  btnToggleCycle?.addEventListener('click', () => {
+    const isRunning = btnToggleCycle.dataset.running === 'true';
+    if (isRunning) {
+      // Stop cycle
+      clearInterval(cycleTimer);
+      cycleTimer = null;
+      btnToggleCycle.dataset.running = 'false';
+      btnToggleCycle.classList.remove('bg-rose-500', 'text-white');
+      btnToggleCycle.classList.add('bg-slate-100', 'dark:bg-slate-800');
+      if (cycleBtnText) cycleBtnText.textContent = 'Auto RGB Cycle';
+    } else {
+      // Start cycle
+      btnToggleCycle.dataset.running = 'true';
+      btnToggleCycle.classList.add('bg-rose-500', 'text-white');
+      btnToggleCycle.classList.remove('bg-slate-100', 'dark:bg-slate-800');
+      if (cycleBtnText) cycleBtnText.textContent = 'Stop Cycle';
+
+      const interval = parseInt(cycleIntervalSelect.value || '5000', 10);
+      cycleTimer = setInterval(() => {
+        cycleIndex = (cycleIndex + 1) % cycleColors.length;
+        currentColor = cycleColors[cycleIndex];
+        applyColorToSurfaces(currentColor);
+      }, interval);
+    }
+  });
+
+  // Keyboard Shortcuts
+  window.addEventListener('keydown', (e) => {
+    // Avoid interfering with typing in inputs
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes((e.target as HTMLElement).tagName)) {
+      return;
+    }
+
+    if (e.key === 'f' || e.key === 'F') {
+      e.preventDefault();
+      if (isFullscreen) exitFullscreenMode();
+      else enterFullscreenMode();
+    } else if (e.key === 'Escape') {
+      if (isFullscreen) exitFullscreenMode();
+    } else if (e.key >= '1' && e.key <= '9') {
+      const idx = parseInt(e.key, 10) - 1;
+      if (quickPalette[idx]) {
+        currentColor = quickPalette[idx].hex;
+        applyColorToSurfaces(currentColor);
+      }
+    } else if (e.key === 'ArrowRight') {
+      cycleIndex = (cycleIndex + 1) % cycleColors.length;
+      currentColor = cycleColors[cycleIndex];
+      applyColorToSurfaces(currentColor);
+    } else if (e.key === 'ArrowLeft') {
+      cycleIndex = (cycleIndex - 1 + cycleColors.length) % cycleColors.length;
+      currentColor = cycleColors[cycleIndex];
+      applyColorToSurfaces(currentColor);
+    }
+  });
+</script>

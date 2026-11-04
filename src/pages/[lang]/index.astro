@@ -1,44 +1,184 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import TopPresetBar from '../../components/TopPresetBar.astro';
-import ScreenCanvasTool from '../../components/ScreenCanvasTool.astro';
-import DownloadSection from '../../components/DownloadSection.astro';
-import LeftSidebar from '../../components/LeftSidebar.astro';
-import RightSidebar from '../../components/RightSidebar.astro';
-import ContentSection from '../../components/ContentSection.astro';
+import ScreenTool from '../../components/ScreenTool.astro';
+import DownloadCanvas from '../../components/DownloadCanvas.astro';
 import FAQSection from '../../components/FAQSection.astro';
-import { useTranslations } from '../../i18n/utils';
-import { languages } from '../../i18n/ui';
+import RelatedTools from '../../components/RelatedTools.astro';
+import { NON_DEFAULT_LANGUAGES, type LanguageCode } from '../../i18n/config';
+import { getUI } from '../../i18n/ui';
+import { getColorById } from '../../content/colors';
 
-export function getStaticPaths() {
-  const paths = Object.keys(languages)
-    .filter((l) => l !== 'en')
-    .map((lang) => ({ params: { lang } }));
-  return paths;
+export async function getStaticPaths() {
+  return NON_DEFAULT_LANGUAGES.map((lang) => ({
+    params: { lang },
+  }));
 }
 
-const { lang } = Astro.params;
-const t = useTranslations(lang as any);
+const { lang } = Astro.params as { lang: LanguageCode };
+const ui = getUI(lang);
+const whiteData = getColorById('white-screen');
+const whiteContent = whiteData?.content[lang];
+
+const localizedHomeMeta: Record<LanguageCode, { title: string; desc: string; h1: string }> = {
+  en: {
+    title: "White Screen 100% Pure Bright White Display Tool (2026)",
+    desc: "Instant fullscreen pure white screen tool. Perfect for monitor cleaning, dead pixel tests, Zoom webcam fill lighting, and lightbox tracing. 100% free.",
+    h1: "Pure Fullscreen White Screen Tool",
+  },
+  es: {
+    title: "Pantalla Blanca Online – Herramienta de Monitor y Luz (2026)",
+    desc: "Herramienta online de pantalla blanca a pantalla completa. Ideal para limpiar monitores, probar píxeles muertos, iluminar videollamadas y calcar dibujos.",
+    h1: "Pantalla Blanca en Pantalla Completa",
+  },
+  fr: {
+    title: "Écran Blanc en Ligne – Outil d'Écran et Éclairage Pur (2026)",
+    desc: "Outil en ligne d'écran blanc pur en plein écran. Idéal pour le nettoyage d'écran, la détection de pixels morts, l'éclairage de visio et le décalquage.",
+    h1: "Outil Écran Blanc Plein Écran",
+  },
+  de: {
+    title: "Weißer Bildschirm Online – Reines Display-Tool (2026)",
+    desc: "Kostenloses Vollbild-Werkzeug für weiße Bildschirme. Perfekt zur Monitor-Reinigung, Pixelfehlertests, Videokonferenz-Beleuchtung und zum Abpausen.",
+    h1: "Weißer Vollbild-Bildschirm",
+  },
+  pt: {
+    title: "Tela Branca Online – Ferramenta de Luz e Teste (2026)",
+    desc: "Ferramenta de tela branca pura em tela cheia. Perfeita para limpeza de monitores, teste de pixels mortos, iluminação de webcam e decalques.",
+    h1: "Ferramenta de Tela Branca em Tela Cheia",
+  },
+  id: {
+    title: "Layar Putih Online – Alat Monitor dan Lampu Video (2026)",
+    desc: "Utilitas layar putih penuh online instan. Sangat cocok untuk membersihkan monitor, tes piksel mati, pencahayaan webcam Zoom, dan meja gambar jiplak.",
+    h1: "Alat Layar Putih Penuh Online",
+  },
+};
+
+const currentMeta = localizedHomeMeta[lang] || localizedHomeMeta.en;
+const pageTitle = currentMeta.title;
+const pageDescription = currentMeta.desc;
+const h1 = currentMeta.h1;
+const intro = whiteContent?.intro || '';
+
+const relatedTools = [
+  { id: 'black-screen', title: 'Black Screen', desc: 'OLED display testing & battery saving' },
+  { id: 'blue-screen', title: 'Blue Screen', desc: 'Detect stuck subpixels and enjoy cool ambient light' },
+  { id: 'green-screen', title: 'Green Screen', desc: 'Chroma key for video recording and streaming' },
+  { id: 'red-screen', title: 'Red Screen', desc: 'Preserve dark-adapted night vision' },
+  { id: 'dead-pixel-test', title: 'Dead Pixel Test', desc: 'Inspect panels with primary RGB colors' },
+  { id: 'zoom-ring-light', title: 'Zoom Ring Light', desc: 'Soft webcam lighting for video meetings' },
+];
+
+const faqs = whiteContent?.faqs || [];
 ---
 
-<Layout title={t('siteTitle')} description={t('siteDescription')}>
-  <TopPresetBar activePreset="white-screen" />
+<Layout
+  pageId="home"
+  lang={lang}
+  title={pageTitle}
+  description={pageDescription}
+>
+  <!-- Hero Section -->
+  <header class="text-center max-w-4xl mx-auto my-6 sm:my-10">
+    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+      {h1}
+    </h1>
+    {intro && (
+      <p class="mt-4 text-base sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+        {intro}
+      </p>
+    )}
+  </header>
 
-  <div class="container main-grid">
-    <LeftSidebar activeColorHex="#ffffff" />
+  <!-- Interactive Screen Tool -->
+  <ScreenTool
+    lang={lang}
+    initialColor="#ffffff"
+    pageId="home"
+  />
 
-    <section class="center-content">
-      <ScreenCanvasTool initialColor="#ffffff" initialPreset="white-screen" />
-      
-      <div style="margin-top: 24px;">
-        <DownloadSection initialColor="#ffffff" />
+  <!-- Wallpaper Download Canvas -->
+  <DownloadCanvas
+    lang={lang}
+    initialColor="#ffffff"
+    colorName="White"
+  />
+
+  <!-- How to Use Section -->
+  <section class="my-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-8 text-center sm:text-left">
+      {ui.sections.howToUseTitle}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+        <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-base mb-4">
+          1
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+          {ui.sections.step1Title}
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          {ui.sections.step1Desc}
+        </p>
       </div>
 
-      <ContentSection presetId="white-screen" />
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+        <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-base mb-4">
+          2
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+          {ui.sections.step2Title}
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          {ui.sections.step2Desc}
+        </p>
+      </div>
 
-      <FAQSection />
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+        <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-base mb-4">
+          3
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+          {ui.sections.step3Title}
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          {ui.sections.step3Desc}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real-World Applications -->
+  {whiteContent && (
+    <section class="my-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-8">
+        {whiteContent.useCasesTitle}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {whiteContent.useCases.map((uc) => (
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+              {uc.title}
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              {uc.desc}
+            </p>
+          </div>
+        ))}
+      </div>
     </section>
+  )}
 
-    <RightSidebar />
-  </div>
+  <!-- Related Tools -->
+  <RelatedTools
+    lang={lang}
+    title={ui.sections.relatedToolsTitle}
+    items={relatedTools}
+  />
+
+  <!-- FAQs with Schema -->
+  {faqs.length > 0 && (
+    <FAQSection
+      title={ui.sections.faqTitle}
+      faqs={faqs}
+    />
+  )}
 </Layout>

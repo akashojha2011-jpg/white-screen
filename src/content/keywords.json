@@ -1,0 +1,90 @@
+{
+  "white-screen": {
+    "en": ["white screen", "white screen full screen", "bright white screen", "white screen display"],
+    "es": ["pantalla blanca", "pantalla blanca completa", "pantalla blanca brillante", "fondo blanco"],
+    "fr": ["écran blanc", "écran blanc plein écran", "ecran blanc lumineux", "fond blanc"],
+    "de": ["weißer bildschirm", "weisser bildschirm vollbild", "heller bildschirm", "weisser hintergrund"],
+    "pt": ["tela branca", "tela branca cheia", "tela branca brilhante", "fundo branco"],
+    "id": ["layar putih", "layar putih penuh", "layar putih terang", "layar polos putih"]
+  },
+  "black-screen": {
+    "en": ["black screen", "pure black screen", "oled black screen", "black screen for sleep"],
+    "es": ["pantalla negra", "pantalla negra completa", "pantalla negra oled", "pantalla negra para dormir"],
+    "fr": ["écran noir", "écran noir complet", "ecran noir oled", "ecran noir pour dormir"],
+    "de": ["schwarzer bildschirm", "schwarzer bildschirm vollbild", "oled schwarz", "bildschirm schwarz"],
+    "pt": ["tela preta", "tela preta cheia", "tela preta oled", "tela preta para dormir"],
+    "id": ["layar hitam", "layar hitam penuh", "layar hitam oled", "layar hitam untuk tidur"]
+  },
+  "blue-screen": {
+    "en": ["blue screen", "blue screen display", "stuck pixel blue screen", "pure blue screen"],
+    "es": ["pantalla azul", "pantalla azul completa", "prueba de pixel azul", "fondo azul"],
+    "fr": ["écran bleu", "écran bleu plein écran", "fond bleu pur", "test pixel bleu"],
+    "de": ["blauer bildschirm", "blauer bildschirm vollbild", "blauer hintergrund", "pixelfehler blau"],
+    "pt": ["tela azul", "tela azul cheia", "teste de pixel azul", "fundo azul puro"],
+    "id": ["layar biru", "layar biru penuh", "tes piksel biru", "latar biru polos"]
+  },
+  "green-screen": {
+    "en": ["green screen", "fullscreen green screen", "chroma key background", "green screen online"],
+    "es": ["pantalla verde", "pantalla verde completa", "fondo croma verde", "pantalla verde online"],
+    "fr": ["écran vert", "écran vert plein écran", "fond vert incrustation", "ecran vert streaming"],
+    "de": ["grüner bildschirm", "greenscreen vollbild", "chroma key hintergrund", "grüner bildschirm online"],
+    "pt": ["tela verde", "tela verde cheia", "fundo cromaqui", "tela verde online"],
+    "id": ["layar hijau", "layar hijau penuh", "chroma key online", "latar hijau polos"]
+  },
+  "red-screen": {
+    "en": ["red screen", "red screen night vision", "astronomy red screen", "darkroom red light"],
+    "es": ["pantalla roja", "pantalla roja visión nocturna", "luz roja astronomía", "pantalla roja completa"],
+    "fr": ["écran rouge", "écran rouge vision nocturne", "lumiere rouge astronomie", "ecran rouge plein ecran"],
+    "de": ["roter bildschirm", "rotes licht nachtsicht", "astronomie rotlicht", "roter bildschirm vollbild"],
+    "pt": ["tela vermelha", "tela vermelha visao noturna", "luz vermelha astronomia", "tela vermelha cheia"],
+    "id": ["layar merah", "layar merah penglihatan malam", "lampu merah astronomi", "layar merah penuh"]
+  },
+  "yellow-screen": {
+    "en": ["yellow screen", "yellow screen warm light", "reading yellow screen", "amber display"],
+    "es": ["pantalla amarilla", "pantalla amarilla lectura", "luz calida pantalla", "fondo amarillo"],
+    "fr": ["écran jaune", "écran jaune lecture", "lumiere jaune chaude", "fond jaune pur"],
+    "de": ["gelber bildschirm", "gelbes licht lesen", "warmer bildschirm", "gelber hintergrund"],
+    "pt": ["tela amarela", "tela amarela leitura", "luz quente tela", "fundo amarelo"],
+    "id": ["layar kuning", "layar kuning membaca", "cahaya hangat layar", "latar kuning polos"]
+  },
+  "dead-pixel-test": {
+    "en": ["dead pixel test", "screen pixel test", "check stuck pixels", "monitor dead pixel checker"],
+    "es": ["prueba de píxeles muertos", "test de pixeles", "comprobar pixeles atascados", "detector pixeles"],
+    "fr": ["test pixel mort", "verifier pixels morts", "test ecran pixel defectueux", "detecteur pixel mort"],
+    "de": ["pixelfehler test", "tote pixel pruefen", "monitor pixelfehlertest", "bildschirm pixel test"],
+    "pt": ["teste de pixels mortos", "verificar pixels presos", "teste de tela pixels", "detector de pixel"],
+    "id": ["tes piksel mati", "cek piksel mati layar", "deteksi piksel macet", "uji layar monitor"]
+  },
+  "screen-cleaning": {
+    "en": ["screen cleaning", "white screen for cleaning monitor", "clean display white background", "monitor dust test"],
+    "es": ["limpiar pantalla", "pantalla blanca para limpiar monitor", "limpieza de pantalla", "ver polvo monitor"],
+    "fr": ["nettoyer écran", "écran blanc pour nettoyer écran", "nettoyage moniteur poussiere", "fond blanc nettoyage"],
+    "de": ["bildschirm reinigen", "weißer bildschirm monitor reinigung", "display putzen weiß", "staub erkennen monitor"],
+    "pt": ["limpar tela", "tela branca para limpar monitor", "limpeza de display", "ver poeira monitor"],
+    "id": ["membersihkan layar", "layar putih untuk bersihkan monitor", "bersihkan layar laptop", "cek debu layar"]
+  },
+  "zoom-ring-light": {
+    "en": ["zoom ring light", "white screen for zoom", "webcam light", "video call face lighting"],
+    "es": ["luz para zoom", "pantalla blanca para videollamada", "iluminacion webcam", "aro de luz pantalla"],
+    "fr": ["éclairage zoom", "écran blanc eclairage webcam", "lumiere visioconference", "eclairage visage pc"],
+    "de": ["zoom videobeleuchtung", "weißer bildschirm als videolicht", "webcam beleuchtung", "videocall ausleuchtung"],
+    "pt": ["luz para zoom", "tela branca iluminacao webcam", "anel de luz monitor", "luz chamada de video"],
+    "id": ["lampu video zoom", "layar putih lampu webcam", "penerang wajah video call", "lighting layar zoom"]
+  },
+  "tracing-lightbox": {
+    "en": ["tracing lightbox", "screen lightbox for drawing", "trace drawings on monitor", "digital light box"],
+    "es": ["mesa de luz para dibujo", "calcar dibujos en pantalla", "caja de luz monitor", "pantalla para calcar"],
+    "fr": ["table lumineuse dessin", "calquer sur ecran", "ecran blanc pour calquer", "boite lumineuse numerique"],
+    "de": ["zeichen leuchttisch", "leuchttisch bildschirm", "zeichnungen abpausen display", "digitaler leuchtkasten"],
+    "pt": ["mesa de luz desenho", "calcar desenho na tela", "caixa de luz monitor", "tela iluminada para desenho"],
+    "id": ["meja sinar menjiplak", "menjiplak gambar di layar", "light box layar", "layar putih untuk menjiplak"]
+  },
+  "white-wallpaper-4k": {
+    "en": ["white wallpaper 4k", "4k blank white background", "white screen wallpaper 3840x2160", "clean white desktop wallpaper"],
+    "es": ["fondo blanco 4k", "fondo de pantalla blanco 4k", "wallpaper blanco 3840x2160", "imagen blanca hd"],
+    "fr": ["fond d'écran blanc 4k", "fond blanc 3840x2160", "wallpaper blanc pur 4k", "image blanche hd"],
+    "de": ["weißes hintergrundbild 4k", "weisser wallpaper 4k", "reines weiss 3840x2160", "hintergrund weiß desktop"],
+    "pt": ["papel de parede branco 4k", "fundo branco 3840x2160", "wallpaper branco puro 4k", "imagem branca hd"],
+    "id": ["wallpaper putih 4k", "latar belakang putih 4k", "gambar putih polos 3840x2160", "wallpaper putih bersih"]
+  }
+}

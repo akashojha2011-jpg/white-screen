@@ -1,0 +1,377 @@
+---
+import type { LanguageCode } from '../i18n/config';
+import Layout from '../layouts/Layout.astro';
+import ScreenTool from './ScreenTool.astro';
+import DownloadCanvas from './DownloadCanvas.astro';
+import Breadcrumb from './Breadcrumb.astro';
+import FAQSection from './FAQSection.astro';
+import RelatedTools from './RelatedTools.astro';
+import { getColorById } from '../content/colors';
+import { getToolById } from '../content/tools';
+import { getThemeById } from '../content/themes';
+import { getWallpaperById } from '../content/wallpapers';
+import { getGuideById } from '../content/guides';
+import { getLegalById } from '../content/legal';
+import { getUI } from '../i18n/ui';
+
+export interface Props {
+  pageId: string;
+  pageType: 'home' | 'color' | 'tool' | 'wallpaper' | 'theme' | 'guide' | 'legal';
+  lang: LanguageCode;
+}
+
+const { pageId, pageType, lang } = Astro.props;
+const ui = getUI(lang);
+
+let title = '';
+let description = '';
+let h1 = '';
+let intro = '';
+let initialColor = '#ffffff';
+let initialBackground: string | undefined = undefined;
+let faqs: Array<{ q: string; a: string }> = [];
+let breadcrumbs: Array<{ name: string; url?: string }> = [];
+let articleMeta: { author: string; datePublished: string; dateModified: string } | undefined = undefined;
+
+// Color data
+const colorData = pageType === 'color' ? getColorById(pageId) : undefined;
+const colorContent = colorData?.content[lang];
+
+// Tool data
+const toolData = pageType === 'tool' ? getToolById(pageId) : undefined;
+const toolContent = toolData?.content[lang];
+
+// Theme data
+const themeData = pageType === 'theme' ? getThemeById(pageId) : undefined;
+const themeContent = themeData?.content[lang];
+
+// Wallpaper data
+const wallpaperData = pageType === 'wallpaper' ? getWallpaperById(pageId) : undefined;
+const wallpaperContent = wallpaperData?.content[lang];
+
+// Guide data
+const guideData = pageType === 'guide' ? getGuideById(pageId) : undefined;
+const guideContent = guideData?.content[lang];
+
+// Legal data
+const legalData = pageType === 'legal' ? getLegalById(pageId) : undefined;
+const legalContent = legalData?.content[lang];
+
+// Default contextual related items
+const defaultRelated = [
+  { id: 'white-screen', title: 'White Screen Tool', desc: 'Instant bright white display for monitor cleaning and testing.' },
+  { id: 'black-screen', title: 'Black Screen Tool', desc: 'Pure black screen for OLED testing, sleep, and battery saving.' },
+  { id: 'dead-pixel-test', title: 'Dead Pixel Test', desc: 'Identify stuck and dead subpixels with primary colors.' },
+  { id: 'screen-cleaning', title: 'Screen Cleaning Mode', desc: 'Spot dust, smudges, and fingerprints without screen timeout.' },
+  { id: 'zoom-ring-light', title: 'Zoom Ring Light', desc: 'Soft front illumination for video meetings and calls.' },
+  { id: 'white-wallpaper-4k', title: '4K White Wallpaper', desc: 'Download pristine 3840x2160 ultra-HD background.' },
+];
+
+if (pageType === 'color' && colorContent) {
+  title = colorContent.title;
+  description = colorContent.metaDescription;
+  h1 = colorContent.h1;
+  intro = colorContent.intro;
+  initialColor = colorData.hex;
+  faqs = colorContent.faqs;
+  breadcrumbs = [{ name: colorData.names[lang] || colorData.names.en }];
+} else if (pageType === 'tool' && toolContent) {
+  title = toolContent.title;
+  description = toolContent.metaDescription;
+  h1 = toolContent.h1;
+  intro = toolContent.intro;
+  faqs = toolContent.faqs;
+  breadcrumbs = [{ name: toolContent.h1 }];
+} else if (pageType === 'theme' && themeContent) {
+  title = themeContent.title;
+  description = themeContent.metaDescription;
+  h1 = themeContent.h1;
+  intro = themeContent.intro;
+  initialBackground = themeData.cssBackground;
+  faqs = themeContent.faqs;
+  breadcrumbs = [{ name: themeContent.h1 }];
+} else if (pageType === 'wallpaper' && wallpaperContent) {
+  title = wallpaperContent.title;
+  description = wallpaperContent.metaDescription;
+  h1 = wallpaperContent.h1;
+  intro = wallpaperContent.intro;
+  initialColor = wallpaperData.colorHex;
+  faqs = wallpaperContent.faqs;
+  breadcrumbs = [{ name: wallpaperContent.h1 }];
+} else if (pageType === 'guide' && guideContent) {
+  title = guideContent.title;
+  description = guideContent.metaDescription;
+  h1 = guideContent.h1;
+  intro = guideContent.intro;
+  faqs = guideContent.faqs;
+  breadcrumbs = [{ name: guideContent.h1 }];
+  articleMeta = {
+    author: guideData.author,
+    datePublished: guideData.datePublished,
+    dateModified: guideData.dateModified,
+  };
+} else if (pageType === 'legal' && legalContent) {
+  title = legalContent.title;
+  description = legalContent.metaDescription;
+  h1 = legalContent.h1;
+  breadcrumbs = [{ name: legalContent.h1 }];
+}
+---
+
+<Layout
+  pageId={pageId}
+  lang={lang}
+  title={title}
+  description={description}
+  articleMeta={articleMeta}
+>
+  <Breadcrumb lang={lang} items={breadcrumbs} />
+
+  <!-- Page Header -->
+  <header class="mb-6">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+      {h1}
+    </h1>
+    {intro && (
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+        {intro}
+      </p>
+    )}
+  </header>
+
+  <!-- Interactive Screen Tool (Rendered for colors, tools, themes, wallpapers, and home) -->
+  {['color', 'tool', 'theme', 'wallpaper', 'home'].includes(pageType) && (
+    <ScreenTool
+      lang={lang}
+      initialColor={initialColor}
+      initialBackground={initialBackground}
+      pageId={pageId}
+    />
+  )}
+
+  <!-- Download Canvas Component (Rendered for colors, wallpapers, and tools) -->
+  {['color', 'wallpaper', 'tool'].includes(pageType) && (
+    <DownloadCanvas
+      lang={lang}
+      initialColor={initialColor}
+    />
+  )}
+
+  <!-- COLOR SPECIFIC SECTIONS -->
+  {pageType === 'color' && colorContent && (
+    <div class="space-y-12 my-12">
+      <!-- Use Cases Grid -->
+      <section>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+          {colorContent.useCasesTitle}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {colorContent.useCases.map((uc) => (
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                {uc.title}
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                {uc.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Deep Dive Copy (600+ words) -->
+      <section class="prose prose-slate dark:prose-invert max-w-none">
+        {colorContent.deepDiveHeadings.map((section) => (
+          <div class="my-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              {section.title}
+            </h2>
+            {section.paragraphs.map((p) => (
+              <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                {p}
+              </p>
+            ))}
+          </div>
+        ))}
+      </section>
+    </div>
+  )}
+
+  <!-- TOOL SPECIFIC SECTIONS -->
+  {pageType === 'tool' && toolContent && (
+    <div class="space-y-12 my-12">
+      {toolContent.features && toolContent.features.length > 0 && (
+        <section>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+            {toolContent.featuresTitle}
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {toolContent.features.map((f) => (
+              <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+                <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                  {f.title}
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {f.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {toolContent.instructions && toolContent.instructions.length > 0 && (
+        <section class="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+            {toolContent.instructionsTitle}
+          </h2>
+          <ol class="space-y-4 list-decimal pl-5 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+            {toolContent.instructions.map((step) => (
+              <li class="pl-2">
+                {step}
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+    </div>
+  )}
+
+  <!-- THEME SPECIFIC SECTIONS -->
+  {pageType === 'theme' && themeContent && (
+    <div class="space-y-12 my-12">
+      <section>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+          {themeContent.featuresTitle}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {themeContent.features.map((f) => (
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                {f.title}
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                {f.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  )}
+
+  <!-- WALLPAPER SPECIFIC SECTIONS -->
+  {pageType === 'wallpaper' && wallpaperContent && (
+    <div class="space-y-12 my-12">
+      <section>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+          {wallpaperContent.featuresTitle}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {wallpaperContent.features.map((f) => (
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                {f.title}
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                {f.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  )}
+
+  <!-- GUIDE SPECIFIC SECTIONS (1000+ words) -->
+  {pageType === 'guide' && guideContent && (
+    <article class="prose prose-slate dark:prose-invert max-w-none my-12">
+      <div class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mb-8 border-b border-slate-200 dark:border-slate-800 pb-4">
+        <span>By {guideData?.author}</span>
+        <span>•</span>
+        <span>Updated: {guideData?.dateModified}</span>
+        <span>•</span>
+        <span>{guideData?.readTime}</span>
+      </div>
+
+      {guideContent.sections.map((sec) => (
+        <section class="my-8">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            {sec.heading}
+          </h2>
+          {sec.paragraphs.map((p) => (
+            <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              {p}
+            </p>
+          ))}
+          {sec.subsections?.map((sub) => (
+            <div class="bg-slate-50 dark:bg-slate-900/60 border-l-4 border-indigo-500 p-4 rounded-r-xl my-4">
+              <h3 class="text-base font-semibold text-slate-900 dark:text-white mb-1">
+                {sub.subhead}
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                {sub.text}
+              </p>
+            </div>
+          ))}
+        </section>
+      ))}
+    </article>
+  )}
+
+  <!-- LEGAL SPECIFIC SECTIONS -->
+  {pageType === 'legal' && legalContent && (
+    <div class="prose prose-slate dark:prose-invert max-w-none my-12">
+      <div class="text-xs text-slate-500 dark:text-slate-400 mb-6 border-b border-slate-200 dark:border-slate-800 pb-3">
+        <span>Last Updated: {legalContent.lastUpdated}</span>
+      </div>
+
+      {legalContent.paragraphs.map((p) => (
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+          {p}
+        </p>
+      ))}
+
+      {legalContent.sections.map((sec) => (
+        <section class="my-8">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight mb-3">
+            {sec.heading}
+          </h2>
+          {sec.content && (
+            <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              {sec.content}
+            </p>
+          )}
+          {sec.bullets && (
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300 mb-4">
+              {sec.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))}
+
+      {legalContent.contactInfo && (
+        <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 my-8 max-w-xl">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Direct Contact</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+            Email: <a href={`mailto:${legalContent.contactInfo.email}`} class="text-indigo-600 dark:text-indigo-400 font-semibold">{legalContent.contactInfo.email}</a>
+          </p>
+          <p class="text-xs text-slate-500">Response time: {legalContent.contactInfo.responseTime}</p>
+        </div>
+      )}
+    </div>
+  )}
+
+  <!-- Related Tools Block (6-8 Contextual Links) -->
+  <RelatedTools lang={lang} items={defaultRelated} />
+
+  <!-- FAQ Section (Accessible Accordions + FAQPage Schema) -->
+  {faqs.length > 0 && (
+    <FAQSection
+      title={ui.sections.faqTitle}
+      faqs={faqs}
+    />
+  )}
+</Layout>

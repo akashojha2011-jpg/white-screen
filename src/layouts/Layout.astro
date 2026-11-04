@@ -1,41 +1,62 @@
 ---
 import '../styles/global.css';
-import { getLangFromUrl, useTranslations, getHreflangLinks } from '../i18n/utils';
+import type { LanguageCode } from '../i18n/config';
+import { PUBLISHED_LANGUAGES } from '../i18n/config';
+import { getCanonicalUrl, getHreflangs, SITE_ORIGIN } from '../i18n/slugs';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 export interface Props {
-  title?: string;
-  description?: string;
-  canonicalUrl?: string;
-  colorHex?: string;
-  screenSlug?: string;
+  pageId: string;
+  lang: LanguageCode;
+  title: string;
+  description: string;
+  articleMeta?: {
+    author: string;
+    datePublished: string;
+    dateModified: string;
+  };
 }
 
-const { title, description, canonicalUrl, colorHex = '#ffffff', screenSlug = 'white-screen' } = Astro.props;
+const { pageId, lang, title, description, articleMeta } = Astro.props;
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const langInfo = PUBLISHED_LANGUAGES[lang] || { code: 'en', name: 'English', dir: 'ltr' };
+const dir = langInfo.dir || 'ltr';
 
-const pageTitle = title || t('siteTitle');
-const pageDescription = description || t('siteDescription');
-let rawCanonical = canonicalUrl || Astro.url.href;
-if (!rawCanonical.endsWith('/') && !rawCanonical.split('/').pop()?.includes('.')) {
-  rawCanonical += '/';
-}
-const currentCanonical = rawCanonical;
-const hreflangs = getHreflangLinks(Astro.url, 'https://www.thewhitescreen.org');
+// Canonical and hreflangs
+const canonicalUrl = getCanonicalUrl(pageId, lang);
+const hreflangs = getHreflangs(pageId);
 
-// JSON-LD Schemas for Search Dominance
+// JSON-LD Schemas
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "TheWhiteScreen.org",
+  "url": `${SITE_ORIGIN}/`,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": `${SITE_ORIGIN}/?q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TheWhiteScreen.org",
+  "url": `${SITE_ORIGIN}/`,
+  "logo": `${SITE_ORIGIN}/favicon.svg`
+};
+
 const webAppSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": pageTitle,
-  "url": currentCanonical,
-  "description": pageDescription,
+  "name": title,
+  "url": canonicalUrl,
+  "description": description,
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "All",
-  "browserRequirements": "Requires HTML5 canvas and JavaScript",
+  "browserRequirements": "Requires HTML5 canvas and modern browser",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -43,89 +64,107 @@ const webAppSchema = {
   }
 };
 
-const breadcrumbSchema = {
+const articleSchema = articleMeta ? {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.thewhitescreen.org/"
-    },
-    ...(screenSlug && screenSlug !== 'white-screen' ? [
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": t('presetNames')[screenSlug] || screenSlug,
-        "item": currentCanonical
-      }
-    ] : [])
-  ]
-};
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": articleMeta.author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheWhiteScreen.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${SITE_ORIGIN}/favicon.svg`
+    }
+  },
+  "datePublished": articleMeta.datePublished,
+  "dateModified": articleMeta.dateModified,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  }
+} : null;
 ---
 
 <!DOCTYPE html>
-<html lang={lang} data-theme="light">
+<html lang={lang} dir={dir} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
+
+    <!-- Google AdSense -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6119304743747461"
+      crossorigin="anonymous"
+    ></script>
+
     <!-- Google Site Verification -->
     <meta name="google-site-verification" content="2gYfGiGRKay3TntzCfA_S6Mm0XkDL2clB03D5UU_NwM" />
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6119304743747461"
-     crossorigin="anonymous"></script>
+    <!-- Title and Meta Description -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
 
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription} />
-    <link rel="canonical" href={currentCanonical} />
+    <!-- Absolute Self-Referencing Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Hreflang Multi-Language Meta Tags -->
+    <!-- Reciprocal Hreflang Tags with x-default -->
     {hreflangs.map((item) => (
       <link rel="alternate" hreflang={item.lang} href={item.href} />
     ))}
 
-    <!-- OpenGraph & Social Cards -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:url" content={currentCanonical} />
-    <meta property="og:site_name" content="White Screen" />
+    <!-- OpenGraph & Social Media -->
+    <meta property="og:type" content={articleMeta ? "article" : "website"} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="TheWhiteScreen.org" />
+    <meta property="og:image" content={`${SITE_ORIGIN}/og-image.png`} />
 
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${SITE_ORIGIN}/og-image.png`} />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data Schemas -->
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    {articleSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    )}
 
-    <!-- Early Dark Mode Theme Initialization -->
+    <!-- Early Theme (Dark/Light) Initialization to Prevent FOUC -->
     <script is:inline>
       (function() {
-        const savedTheme = localStorage.getItem('ws_theme');
-        if (savedTheme) {
-          document.documentElement.setAttribute('data-theme', savedTheme);
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        try {
+          const saved = localStorage.getItem('ws_theme');
+          if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.setAttribute('data-theme', 'light');
+          }
+        } catch (e) {}
       })();
     </script>
   </head>
-  <body>
-    <Header screenSlug={screenSlug} />
-    
-    <main>
+  <body class="bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+    <Header lang={lang} pageId={pageId} />
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <slot />
     </main>
 
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

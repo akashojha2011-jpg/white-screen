@@ -1,0 +1,31 @@
+---
+import { SLUG_REGISTRY } from '../i18n/slugs';
+import PageView from '../components/PageView.astro';
+
+export async function getStaticPaths() {
+  const englishPages = SLUG_REGISTRY.filter((p) => p.type !== 'home' && p.slugs.en);
+
+  return englishPages.map((page) => ({
+    params: { slug: page.slugs.en },
+    props: {
+      pageId: page.id,
+      pageType: page.type,
+      lang: 'en' as const,
+    },
+  }));
+}
+
+export interface Props {
+  pageId: string;
+  pageType: 'color' | 'tool' | 'wallpaper' | 'theme' | 'guide' | 'legal';
+  lang: 'en';
+}
+
+const { pageId, pageType, lang } = Astro.props;
+---
+
+<PageView
+  pageId={pageId}
+  pageType={pageType}
+  lang={lang}
+/>

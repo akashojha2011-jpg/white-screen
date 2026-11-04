@@ -1,36 +1,166 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TopPresetBar from '../components/TopPresetBar.astro';
-import ScreenCanvasTool from '../components/ScreenCanvasTool.astro';
-import DownloadSection from '../components/DownloadSection.astro';
-import LeftSidebar from '../components/LeftSidebar.astro';
-import RightSidebar from '../components/RightSidebar.astro';
-import ContentSection from '../components/ContentSection.astro';
+import ScreenTool from '../components/ScreenTool.astro';
+import DownloadCanvas from '../components/DownloadCanvas.astro';
 import FAQSection from '../components/FAQSection.astro';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import RelatedTools from '../components/RelatedTools.astro';
+import { getUI } from '../i18n/ui';
+import { getRelativePath } from '../i18n/slugs';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const lang = 'en';
+const ui = getUI(lang);
+
+const pageTitle = "White Screen 100% Pure Bright White Display Tool (2026)";
+const pageDescription = "Instant fullscreen pure white screen tool. Perfect for monitor cleaning, dead pixel tests, Zoom webcam fill lighting, and lightbox tracing. 100% free.";
+
+const relatedTools = [
+  { id: 'black-screen', title: 'Black Screen Tool', desc: 'Deep black background for OLED display testing and battery saving.' },
+  { id: 'blue-screen', title: 'Blue Screen Tool', desc: 'Pure blue screen for detecting stuck LCD subpixels and cool backdrops.' },
+  { id: 'green-screen', title: 'Green Screen Tool', desc: 'Chroma key green screen for live streaming and video production.' },
+  { id: 'red-screen', title: 'Red Screen Tool', desc: 'Preserves dark-adapted night vision for astronomy and darkrooms.' },
+  { id: 'dead-pixel-test', title: 'Dead Pixel Test', desc: 'Inspect monitor panels with alternating primary RGB colors.' },
+  { id: 'zoom-ring-light', title: 'Zoom Ring Light', desc: 'Transform your laptop monitor into a soft studio webcam light.' },
+  { id: 'screen-cleaning', title: 'Screen Cleaning Mode', desc: 'Reveal dust, smudges, and fingerprints without screen sleep timeout.' },
+  { id: 'white-wallpaper-4k', title: '4K White Wallpaper', desc: 'Download blank 3840x2160 ultra-HD wallpaper in PNG, JPG, or WEBP.' },
+];
+
+const homeFaqs = [
+  { q: "What is a white screen tool used for?", a: "A fullscreen white screen is universally used for detecting stuck and dead pixels, spotting dust and fingerprints when cleaning monitors, acting as a soft fill light for Zoom video calls, and tracing drawings on tablets." },
+  { q: "How do I make the white screen fullscreen?", a: "Click anywhere on the preview box or press the 'F' key on your keyboard. Press 'ESC' or click anywhere on the display to exit fullscreen mode." },
+  { q: "Will the screen go to sleep while using this tool?", a: "No, our application leverages the modern Screen Wake Lock API to keep your display awake continuously while the tool is open." },
+  { q: "Can I download a blank white wallpaper in 4K or 8K?", a: "Yes, use the download section below the tool to generate ultra-high-definition wallpapers in PNG, JPG, or WEBP formats up to 8K resolution." },
+  { q: "Is TheWhiteScreen.org completely free to use?", a: "Yes, 100% free forever without subscriptions, user account creation, or software downloads." },
+];
 ---
 
-<Layout title={t('siteTitle')} description={t('siteDescription')}>
-  <TopPresetBar activePreset="white-screen" />
+<Layout
+  pageId="home"
+  lang={lang}
+  title={pageTitle}
+  description={pageDescription}
+>
+  <!-- Hero Section -->
+  <header class="text-center max-w-4xl mx-auto my-6 sm:my-10">
+    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+      Pure Fullscreen <span class="text-indigo-600 dark:text-indigo-400">White Screen</span> Tool
+    </h1>
+    <p class="mt-4 text-base sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+      An instant, distraction-free bright white display for monitor cleaning, dead pixel testing, Zoom video lighting, and tracing.
+    </p>
+  </header>
 
-  <div class="container main-grid">
-    <LeftSidebar activeColorHex="#ffffff" />
+  <!-- Interactive Screen Tool Island -->
+  <ScreenTool
+    lang={lang}
+    initialColor="#ffffff"
+    pageId="home"
+  />
 
-    <section class="center-content">
-      <ScreenCanvasTool initialColor="#ffffff" initialPreset="white-screen" />
-      
-      <div style="margin-top: 24px;">
-        <DownloadSection initialColor="#ffffff" />
+  <!-- High-Res Wallpaper Download Card -->
+  <DownloadCanvas
+    lang={lang}
+    initialColor="#ffffff"
+    colorName="White"
+  />
+
+  <!-- How to Use Section -->
+  <section class="my-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-8 text-center sm:text-left">
+      {ui.sections.howToUseTitle}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+        <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-base mb-4">
+          1
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+          {ui.sections.step1Title}
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          {ui.sections.step1Desc}
+        </p>
       </div>
 
-      <ContentSection presetId="white-screen" />
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+        <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-base mb-4">
+          2
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+          {ui.sections.step2Title}
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          {ui.sections.step2Desc}
+        </p>
+      </div>
 
-      <FAQSection />
-    </section>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+        <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-base mb-4">
+          3
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+          {ui.sections.step3Title}
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          {ui.sections.step3Desc}
+        </p>
+      </div>
+    </div>
+  </section>
 
-    <RightSidebar />
-  </div>
+  <!-- Comprehensive Real-World Applications -->
+  <section class="my-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-8">
+      {ui.sections.whyUseTitle}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="border border-slate-200 dark:border-slate-800 rounded-2xl p-6 bg-white dark:bg-slate-900">
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+          1. Monitor Cleaning & Smudge Inspection
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          A pure bright white screen illuminates tiny dust specks, oily fingerprints, and dried liquid marks that blend into dark wallpapers. With screen sleep disabled, you can thoroughly clean your display with zero interruptions.
+        </p>
+      </div>
+
+      <div class="border border-slate-200 dark:border-slate-800 rounded-2xl p-6 bg-white dark:bg-slate-900">
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+          2. Dead & Stuck Subpixel Detection
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          Dead pixels fail in the unlit OFF state, appearing as conspicuous black dots against a uniform white canvas. Test new monitors and laptop screens before manufacturer return periods expire.
+        </p>
+      </div>
+
+      <div class="border border-slate-200 dark:border-slate-800 rounded-2xl p-6 bg-white dark:bg-slate-900">
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+          3. Studio Video Lighting for Zoom & Teams
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          A 15-inch laptop or 27-inch desktop monitor acts as a large, gentle softbox diffuser. It eliminates harsh shadows under eyes and produces a flattering, professional glow on webcam sensors.
+        </p>
+      </div>
+
+      <div class="border border-slate-200 dark:border-slate-800 rounded-2xl p-6 bg-white dark:bg-slate-900">
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+          4. Artist Tracing & Light Table Alternative
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          Lay tracing paper or sketching pads directly on your tablet or laptop screen. The bright uniform back-illumination shines through paper up to 200 GSM for accurate drafting and calligraphy.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Tools Block -->
+  <RelatedTools
+    lang={lang}
+    title={ui.sections.relatedToolsTitle}
+    items={relatedTools}
+  />
+
+  <!-- FAQ Section with FAQPage Schema -->
+  <FAQSection
+    title={ui.sections.faqTitle}
+    faqs={homeFaqs}
+  />
 </Layout>
