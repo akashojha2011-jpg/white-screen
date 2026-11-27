@@ -30,7 +30,7 @@ This document outlines all architectural, SEO, infrastructure, and technical dec
 ## 3. Multilingual Strategy & Localized Slugs
 
 - **Active Published Languages**:
-  The site now publishes 10 fully localized languages (totaling 941 pre-rendered static HTML pages):
+  The site now publishes 12 fully localized languages (totaling 1,129 pre-rendered static HTML pages):
   1. **en**: English (Root `/`)
   2. **es**: Español (`/es/`)
   3. **fr**: Français (`/fr/`)
@@ -41,6 +41,8 @@ This document outlines all architectural, SEO, infrastructure, and technical dec
   8. **nl**: Nederlands (`/nl/`)
   9. **pl**: Polski (`/pl/`)
   10. **tr**: Türkçe (`/tr/`)
+  11. **ja**: 日本語 (`/ja/`)
+  12. **ko**: 한국어 (`/ko/`)
 - **Localized Slugs**:
   Non-English pages do not use generic English slugs. Instead, `/src/i18n/slugs.ts` maps semantic slugs based on local search volume:
   - English: `/white-screen/`
@@ -53,10 +55,12 @@ This document outlines all architectural, SEO, infrastructure, and technical dec
   - Dutch: `/nl/wit-scherm/`
   - Polish: `/pl/bialy-ekran/`
   - Turkish: `/tr/beyaz-ekran/`
+  - Japanese: `/ja/shiroi-gamen/`
+  - Korean: `/ko/hayan-hwamyeon/`
 - **Zero English Fallback**:
   The i18n dictionary system requires every translation key to be present in each published language. The build-time SEO audit script fails if any non-English page contains untranslated placeholder text or fallback English strings.
 - **Reciprocal Hreflang Tags**:
-  Every translated page emits `<link rel="alternate" hreflang="xx" href="...">` for all 10 published translations of that specific entity, plus `hreflang="x-default"` pointing to the canonical English version. Only pages that actually exist in a given language are emitted.
+  Every translated page emits `<link rel="alternate" hreflang="xx" href="...">` for all 12 published translations of that specific entity, plus `hreflang="x-default"` pointing to the canonical English version. Only pages that actually exist in a given language are emitted.
 
 ---
 
@@ -134,6 +138,8 @@ This document outlines all architectural, SEO, infrastructure, and technical dec
   - `/sitemap-nl.xml`
   - `/sitemap-pl.xml`
   - `/sitemap-tr.xml`
+  - `/sitemap-ja.xml`
+  - `/sitemap-ko.xml`
 - **Accurate Lastmod**: Dates extracted from content release records, not build timestamps, preserving crawl budget.
 - **Robots.txt**: Clean allow-all policy with explicit `Sitemap: https://www.thewhitescreen.org/sitemap-index.xml` declaration.
 - **Redirects**: Comprehensive 301 redirection rules for legacy paths and trailing-slash normalization via `_redirects` and `vercel.json`.

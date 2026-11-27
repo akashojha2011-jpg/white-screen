@@ -1,3 +1,5 @@
+import { GUIDES_JA } from './guides_ja';
+import { GUIDES_KO } from './guides_ko';
 import { GUIDES_PL } from './guides_pl';
 import { GUIDES_TR } from './guides_tr';
 import { GUIDES_IT } from './guides_it';
@@ -5567,6 +5569,8 @@ export function getGuideById(id: string): GuideDefinition | undefined {
       nl: GUIDES_NL[id] || (item.content as any).nl,
       pl: GUIDES_PL[id] || (item.content as any).pl,
       tr: GUIDES_TR[id] || (item.content as any).tr,
+      ja: GUIDES_JA[id] || (item.content as any).ja,
+      ko: GUIDES_KO[id] || (item.content as any).ko,
     } as any,
   };
 }
