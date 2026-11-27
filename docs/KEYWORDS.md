@@ -7,9 +7,9 @@
 
 ## 1. Primary Tool & Hub Pages
 
-| Page ID | Canonical URL (EN) | Primary Keyword (EN) | Secondary / Long-Tail Targets | Localized Primary Keywords (ES / FR / DE / PT / ID / IT / NL) |
+| Page ID | Canonical URL (EN) | Primary Keyword (EN) | Secondary / Long-Tail Targets | Localized Primary Keywords (ES / FR / DE / PT / ID / IT / NL / PL / TR) |
 |:---|:---|:---|:---|:---|
-| `home` | `https://www.thewhitescreen.org/` | white screen | white screen tool, fullscreen white screen, white display online, blank white screen | pantalla blanca / écran blanc / weißer bildschirm / tela branca / layar putih / schermo bianco / wit scherm |
+| `home` | `https://www.thewhitescreen.org/` | white screen | white screen tool, fullscreen white screen, white display online, blank white screen | pantalla blanca / écran blanc / weißer bildschirm / tela branca / layar putih / schermo bianco / wit scherm / biały ekran / beyaz ekran |
 | `dead-pixel-test` | `https://www.thewhitescreen.org/dead-pixel-test/` | dead pixel test | test for dead pixels, stuck pixel check, monitor pixel test online, dead pixel finder | prueba de píxeles muertos / test pixel mort / pixelfehler test / teste de pixels mortos / tes piksel mati |
 | `screen-cleaning` | `https://www.thewhitescreen.org/screen-cleaning/` | screen cleaning mode | display cleaning screen, screen dirt finder, monitor cleaning light, screen dust test | limpiar pantalla / nettoyage ecran / bildschirm reinigen / limpar tela / bersihkan layar |
 | `zoom-ring-light` | `https://www.thewhitescreen.org/zoom-ring-light/` | zoom ring light | white screen for zoom, monitor light for video calls, webcam fill light, virtual ring light | luz para zoom / eclairage zoom / videolicht zoom / luz para zoom / lampu zoom |

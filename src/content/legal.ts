@@ -1,3 +1,5 @@
+import { LEGAL_PL } from './legal_pl';
+import { LEGAL_TR } from './legal_tr';
 import { LEGAL_IT } from './legal_it';
 import { LEGAL_NL } from './legal_nl';
 import type { LanguageCode } from '../i18n/config';
@@ -984,6 +986,8 @@ export function getLegalById(id: string): LegalDefinition | undefined {
       ...item.content,
       it: LEGAL_IT[id] || (item.content as any).it,
       nl: LEGAL_NL[id] || (item.content as any).nl,
+      pl: LEGAL_PL[id] || (item.content as any).pl,
+      tr: LEGAL_TR[id] || (item.content as any).tr,
     } as any,
   };
 }

@@ -1,3 +1,5 @@
+import { GUIDES_PL } from './guides_pl';
+import { GUIDES_TR } from './guides_tr';
 import { GUIDES_IT } from './guides_it';
 import { GUIDES_NL } from './guides_nl';
 import type { LanguageCode } from '../i18n/config';
@@ -5563,6 +5565,8 @@ export function getGuideById(id: string): GuideDefinition | undefined {
       ...item.content,
       it: GUIDES_IT[id] || (item.content as any).it,
       nl: GUIDES_NL[id] || (item.content as any).nl,
+      pl: GUIDES_PL[id] || (item.content as any).pl,
+      tr: GUIDES_TR[id] || (item.content as any).tr,
     } as any,
   };
 }

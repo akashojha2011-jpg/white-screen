@@ -1,3 +1,5 @@
+import { TOOLS_PL } from './tools_pl';
+import { TOOLS_TR } from './tools_tr';
 import { TOOLS_IT } from './tools_it';
 import { TOOLS_NL } from './tools_nl';
 import type { LanguageCode } from '../i18n/config';
@@ -2717,11 +2719,15 @@ export function getToolById(id: string): ToolDefinition | undefined {
       ...item.names,
       it: TOOLS_IT[id]?.name || item.names.en,
       nl: TOOLS_NL[id]?.name || item.names.en,
+      pl: TOOLS_PL[id]?.name || item.names.en,
+      tr: TOOLS_TR[id]?.name || item.names.en,
     },
     content: {
       ...item.content,
       it: (TOOLS_IT[id] as any) || (item.content as any).it,
       nl: (TOOLS_NL[id] as any) || (item.content as any).nl,
+      pl: (TOOLS_PL[id] as any) || (item.content as any).pl,
+      tr: (TOOLS_TR[id] as any) || (item.content as any).tr,
     } as any,
   };
 }
