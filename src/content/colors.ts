@@ -41,7 +41,11 @@ function buildColorCopy(
   primaryUseFr: string,
   primaryUseDe: string,
   primaryUsePt: string,
-  primaryUseId: string
+  primaryUseId: string,
+  itName: string = enName,
+  nlName: string = enName,
+  primaryUseIt: string = primaryUseEn,
+  primaryUseNl: string = primaryUseEn
 ): ColorDefinition {
   return {
     id: colorId,
@@ -55,6 +59,8 @@ function buildColorCopy(
       de: deName,
       pt: ptName,
       id: idName,
+      it: itName,
+      nl: nlName,
     },
     content: {
       en: {
@@ -476,38 +482,178 @@ function buildColorCopy(
           },
         ],
       },
+
+      it: {
+        title: `Schermo ${itName} – Sfondo ${itName} Completo e Strumento Monitor`,
+        metaDescription: `Strumento online per schermo ${itName.toLowerCase()} a schermo intero. Ideale per ${primaryUseIt}, calibrazione monitor e sfondi in 4K.`,
+        h1: `Schermo ${itName} (Strumento a Schermo Intero)`,
+        intro: `Mostra uno schermo ${itName.toLowerCase()} puro (${hex}) a piena luminosità sul tuo monitor, tablet o smartphone. Che tu abbia bisogno di luce ${itName.toLowerCase()} per ${primaryUseIt}, verifica dei pixel o uno sfondo senza distrazioni, il nostro strumento web ti offre schermo intero istantaneo senza installare nulla.`,
+        useCasesTitle: `Applicazioni Pratiche di uno Schermo ${itName}`,
+        useCases: [
+          {
+            title: "Test del Display e Calibrazione Visiva",
+            desc: `Riempire lo schermo con un campo solido di colore ${itName.toLowerCase()} (${rgb}) consente di ispezionare la risposta dei sub-pixel e verificare l'uniformità del pannello.`,
+          },
+          {
+            title: `Illuminazione Specializzata e ${primaryUseIt}`,
+            desc: `Il tuo monitor o tablet si trasforma in un softbox uniforme che emette luce antiriflesso per fotografia e videochiamate.`,
+          },
+          {
+            title: "Sfondo Minimalista Senza Distrazioni",
+            desc: `Nascondi icone, schede e notifiche con uno sfondo pulito ${itName.toLowerCase()} per concentrarti al massimo.`,
+          },
+          {
+            title: "Ispezione di Polvere e Superfici",
+            desc: `L'alto contrasto luminoso fa risaltare subito particelle di polvere, impronte e aloni su display lucidi o opachi.`,
+          },
+        ],
+        deepDiveHeadings: [
+          {
+            title: `Perché Usare uno Schermo ${itName} Online?`,
+            paragraphs: [
+              `I file grafici statici e gli screensaver spesso contengono gradienti o artefatti di compressione. Il nostro strumento genera il colore puro nel browser nello spazio colore sRGB a 32 bit per garantire uniformità perfetta da bordo a bordo.`,
+              `Grazie all'API Fullscreen e all'integrazione Screen Wake Lock, il display rimane acceso continuamente al livello di luminosità desiderato senza andare in sospensione.`,
+            ],
+          },
+          {
+            title: `Ottimizzazione della Luce ${itName} nell'Ambiente di Lavoro`,
+            paragraphs: [
+              `Posizionare un secondo monitor con luce ${itName.toLowerCase()} ammorbidisce il contrasto della stanza, riducendo l'affaticamento visivo durante lunghe ore di lavoro.`,
+              `Per i creator mobile, uno smartphone o tablet con schermo ${itName.toLowerCase()} funge da softbox portatile per macrofotografia o illuminazione da webcam.`,
+            ],
+          },
+          {
+            title: "Download Sfondi in Alta Risoluzione",
+            paragraphs: [
+              `Vuoi usare questa tonalità offline? Usa il nostro generatore per salvare sfondi PNG, JPG e WEBP lossless in 1080p, 2K, 4K, 5K e 8K.`,
+            ],
+          },
+        ],
+        faqs: [
+          {
+            q: `A cosa serve uno schermo ${itName.toLowerCase()}?`,
+            a: `Viene utilizzato per ${primaryUseIt}, calibrazione dei display, illuminazione per foto e video e come sfondo rilassante.`,
+          },
+          {
+            q: `Come imposto lo schermo intero ${itName.toLowerCase()}?`,
+            a: `Fai clic sul pulsante 'Schermo Intero' o tocca l'area di anteprima. Premi ESC per uscire.`,
+          },
+          {
+            q: `Quali sono i codici esatti di questo schermo ${itName.toLowerCase()}?`,
+            a: `Questo schermo ha codice colore HEX ${hex} e coordinate RGB decimali ${rgb}.`,
+          },
+          {
+            q: `Lo schermo andrà in stand-by durante la visualizzazione?`,
+            a: `No. L'applicazione richiede il blocco di sospensione (Wake Lock) per mantenere il monitor attivo costantemente.`,
+          },
+          {
+            q: `Posso scaricare questo sfondo ${itName.toLowerCase()} in 4K o 8K?`,
+            a: `Certamente! Scorri fino alla sezione download per salvare l'immagine nella risoluzione desiderata senza compressione.`,
+          },
+        ],
+      },
+
+      nl: {
+        title: `${nlName} Scherm – Volledig ${nlName} Achtergrond & Display Tool`,
+        metaDescription: `Directe online tool voor een volledig ${nlName.toLowerCase()} scherm. Ideaal voor ${primaryUseNl}, schermkalibratie, verlichting en 4K downloads.`,
+        h1: `${nlName} Scherm (Volledig Scherm Tool)`,
+        intro: `Toon een zuiver ${nlName.toLowerCase()} scherm (${hex}) op volle helderheid over je gehele monitor, tablet of smartphone. Of je nu ${nlName.toLowerCase()} licht nodig hebt voor ${primaryUseNl}, pixeltests of een rustige achtergrond, onze browser-tool biedt direct volledig scherm zonder downloads.`,
+        useCasesTitle: `Praktische Toepassingen voor een ${nlName} Scherm`,
+        useCases: [
+          {
+            title: "Displaytests en Visuele Kalibratie",
+            desc: `Door je scherm te vullen met een egaal ${nlName.toLowerCase()} kleurvlak (${rgb}) kun je subpixel-reactietijden controleren en schermuniformiteit inspecteren.`,
+          },
+          {
+            title: `Gespecialiseerde Verlichting en ${primaryUseNl}`,
+            desc: `Je monitor of tablet verandert in een zachte lichtbak die gelijkmatig, ontspiegeld ${nlName.toLowerCase()} licht uitstraalt voor fotografie en videobellen.`,
+          },
+          {
+            title: "Afleidingsvrije Minimalistische Achtergrond",
+            desc: `Verberg drukke bureaubladpictogrammen en meldingen met een strak ${nlName.toLowerCase()} scherm om optimaal te focussen.`,
+          },
+          {
+            title: "Stof- en Scherminformatie Inspectie",
+            desc: `Het sterke lichtcontrast maakt stofjes, vingerafdrukken en vlekken op matte en glanzende schermen direct zichtbaar.`,
+          },
+        ],
+        deepDiveHeadings: [
+          {
+            title: `Waarom een Online Volledig ${nlName} Scherm Gebruiken?`,
+            paragraphs: [
+              `Statische afbeeldingsbestanden bevatten vaak compressieverliezen of kleurverlopen. Onze browser-tool genereert de pure kleur rechtstreeks in 32-bits sRGB voor 100% kleurechtheid van hoek tot hoek.`,
+              `Dankzij de HTML5 Fullscreen API en automatische Screen Wake Lock integratie blijft je scherm continu actief zonder in de slaapstand te vallen.`,
+            ],
+          },
+          {
+            title: `Optimalisatie van ${nlName} Licht in je Werkruimte`,
+            paragraphs: [
+              `Een tweede scherm met zacht ${nlName.toLowerCase()} licht verzacht het contrast met een donkere kamer en vermindert vermoeide ogen aanzienlijk.`,
+              `Voor mobiele makers is een tablet of smartphone met een ${nlName.toLowerCase()} scherm een handige draagbare lichtbron voor productfoto's en webcamverlichting.`,
+            ],
+          },
+          {
+            title: "Download Hoge Resolutie Effen Achtergronden",
+            paragraphs: [
+              `Wil je deze tint offline bewaren? Gebruik onze generator om lossless PNG, JPG en WEBP achtergronden te downloaden in 1080p, 2K, 4K, 5K en 8K.`,
+            ],
+          },
+        ],
+        faqs: [
+          {
+            q: `Waarvoor wordt een ${nlName.toLowerCase()} scherm gebruikt?`,
+            a: `Het wordt gebruikt voor ${primaryUseNl}, schermkalibratie, verlichting bij fotografie en een afleidingsvrije werkomgeving.`,
+          },
+          {
+            q: `Hoe maak ik mijn hele scherm ${nlName.toLowerCase()}?`,
+            a: `Klik op de knop 'Volledig Scherm' of tik op het voorbeeldvenster. Druk op ESC om weer af te sluiten.`,
+          },
+          {
+            q: `Wat zijn de exacte kleurcodes van dit ${nlName.toLowerCase()} scherm?`,
+            a: `Dit scherm heeft HEX-kleurcode ${hex} en decimale RGB-waarden van ${rgb}.`,
+          },
+          {
+            q: `Gaat mijn scherm op zwart of in slaapstand in volledig scherm?`,
+            a: `Nee. Onze tool activeert automatisch een Screen Wake Lock zodat je display continu verlicht blijft.`,
+          },
+          {
+            q: `Kan ik deze ${nlName.toLowerCase()} achtergrond downloaden in 4K of 8K?`,
+            a: `Ja! Blader naar beneden om haarscherpe PNG-, WEBP- of JPG-afbeeldingen op te slaan in de gewenste resolutie.`,
+          },
+        ],
+      },
     },
   };
 }
 
 // 26 Colors defined per specification
 export const ALL_COLORS: ColorDefinition[] = [
-  buildColorCopy('white-screen', '#ffffff', '255, 255, 255', 'White', 'Blanca', 'Blanc', 'Weißer', 'Branca', 'Putih', 'monitor cleaning and Zoom lighting', 'limpieza de monitor e iluminación Zoom', 'nettoyage d\'écran et éclairage Zoom', 'Monitor-Reinigung und Videobeleuchtung', 'limpeza de monitor e iluminação Zoom', 'membersihkan monitor dan lampu video call'),
-  buildColorCopy('black-screen', '#000000', '0, 0, 0', 'Black', 'Negra', 'Noir', 'Schwarzer', 'Preta', 'Hitam', 'OLED display testing, battery saving, and sleep relaxation', 'pruebas de pantalla OLED, ahorro de batería y descanso', 'tests d\'écran OLED, économie de batterie et sommeil', 'OLED-Displaytests, Akkusparen und Schlafentspannung', 'testes de tela OLED, economia de bateria e sono', 'uji layar OLED, hemat baterai, dan istirahat tidur'),
+  buildColorCopy('white-screen', '#ffffff', '255, 255, 255', 'White', 'Blanca', 'Blanc', 'Weißer', 'Branca', 'Putih', 'monitor cleaning and Zoom lighting', 'limpieza de monitor e iluminación Zoom', 'nettoyage d\'écran et éclairage Zoom', 'Monitor-Reinigung und Videobeleuchtung', 'limpeza de monitor e iluminação Zoom', 'membersihkan monitor dan lampu video call', 'Bianco', 'Wit', 'pulizia monitor, test pixel bruciati, luce per videochiamate e tavolo luminoso', 'monitorreiniging, dode pixel testen, videoverlichting en overtrekken'),
+  buildColorCopy('black-screen', '#000000', '0, 0, 0', 'Black', 'Negra', 'Noir', 'Schwarzer', 'Preta', 'Hitam', 'OLED display testing, battery saving, and sleep relaxation', 'pruebas de pantalla OLED, ahorro de batería y descanso', 'tests d\'écran OLED, économie de batterie et sommeil', 'OLED-Displaytests, Akkusparen und Schlafentspannung', 'testes de tela OLED, economia de bateria e sono', 'uji layar OLED, hemat baterai, dan istirahat tidur', 'Nero', 'Zwart', 'test display OLED, risparmio batteria, sonno e rilevamento pixel bloccati', 'OLED-schermtesten, batterijbesparing, slapen en detecteren van defecte pixels'),
   buildColorCopy('blue-screen', '#0000ff', '0, 0, 255', 'Blue', 'Azul', 'Bleu', 'Blauer', 'Azul', 'Biru', 'LCD stuck subpixel detection and cool ambient backdrop', 'detección de subpíxeles atascados en LCD y fondo relajante', 'détection de sous-pixels bloqués LCD et lumière froide', 'Erkennung hängender Subpixel auf LCDs und kühles Licht', 'detecção de subpixels presos em LCD e luz ambiente fria', 'deteksi sub-piksel macet pada LCD dan latar sejuk'),
   buildColorCopy('green-screen', '#00ff00', '0, 255, 0', 'Green', 'Verde', 'Vert', 'Grüner', 'Verde', 'Hijau', 'chroma key background replacement and video production', 'efectos de croma e incrustación de video', 'incrustation fond vert (chroma key) et production vidéo', 'Chroma-Keying, Greenscreen-Aufnahmen und Videoproduktion', 'efeitos de chroma key e produção de vídeo', 'latar chroma key untuk produksi video dan streaming'),
-  buildColorCopy('red-screen', '#ff0000', '255, 0, 0', 'Red', 'Roja', 'Rouge', 'Roter', 'Vermelha', 'Merah', 'preserving night vision, astronomy observation, and darkrooms', 'preservación de visión nocturna y astronomía', 'préservation de la vision nocturne et astronomie', 'Erhalt der Nachtsicht, Astronomie und Dunkelkammer', 'preservação da visão noturna e astronomia', 'menjaga penglihatan malam, astronomi, dan kamar gelap'),
-  buildColorCopy('yellow-screen', '#ffff00', '255, 255, 0', 'Yellow', 'Amarilla', 'Jaune', 'Gelber', 'Amarela', 'Kuning', 'high-visibility reading light and warm ambient glow', 'luz de lectura de alta visibilidad y confort visual', 'lumière de lecture chaude et haute visibilité', 'warmes Leselicht und augenschonende Ausleuchtung', 'luz de leitura de alta visibilidade e conforto visual', 'lampu baca kontras tinggi dan pencahayaan hangat'),
-  buildColorCopy('orange-screen', '#ffa500', '255, 165, 0', 'Orange', 'Naranja', 'Orange', 'Oranger', 'Laranja', 'Oranye', 'sunset color simulation and circadian rhythm protection', 'simulación de atardecer y luz cálida para descanso', 'simulation de coucher de soleil et lumière relaxante', 'Sonnenuntergangs-Simulation und zirkadianer Schutz', 'simulação de pôr do sol e luz quente relaxante', 'simulasi matahari terbenam dan cahaya relaksasi'),
+  buildColorCopy('red-screen', '#ff0000', '255, 0, 0', 'Red', 'Roja', 'Rouge', 'Roter', 'Vermelha', 'Merah', 'preserving night vision, astronomy observation, and darkrooms', 'preservación de visión nocturna y astronomía', 'préservation de la vision nocturne et astronomie', 'Erhalt der Nachtsicht, Astronomie und Dunkelkammer', 'preservação da visão noturna e astronomia', 'menjaga penglihatan malam, astronomi, dan kamar gelap', 'Rosso', 'Rood', 'preservazione della visione notturna, astronomia e test sub-pixel rossi', 'behoud van nachtzicht, astronomie en testen van rode subpixels'),
+  buildColorCopy('yellow-screen', '#ffff00', '255, 255, 0', 'Yellow', 'Amarilla', 'Jaune', 'Gelber', 'Amarela', 'Kuning', 'high-visibility reading light and warm ambient glow', 'luz de lectura de alta visibilidad y confort visual', 'lumière de lecture chaude et haute visibilité', 'warmes Leselicht und augenschonende Ausleuchtung', 'luz de leitura de alta visibilidade e conforto visual', 'lampu baca kontras tinggi dan pencahayaan hangat', 'Giallo', 'Geel', 'luce di lettura ad alta visibilità e bagliore ambientale caldo', 'hoog-contrast leeslicht en warme sfeerverlichting'),
+  buildColorCopy('orange-screen', '#ffa500', '255, 165, 0', 'Orange', 'Naranja', 'Orange', 'Oranger', 'Laranja', 'Oranye', 'sunset color simulation and circadian rhythm protection', 'simulación de atardecer y luz cálida para descanso', 'simulation de coucher de soleil et lumière relaxante', 'Sonnenuntergangs-Simulation und zirkadianer Schutz', 'simulação de pôr do sol e luz quente relaxante', 'simulasi matahari terbenam dan cahaya relaksasi', 'Arancione', 'Oranje', 'simulazione del tramonto e protezione del ritmo circadiano', 'zonsondergangsimulatie en bescherming van het dag-nachtritme'),
   buildColorCopy('pink-screen', '#ffc0cb', '255, 192, 203', 'Pink', 'Rosa', 'Rose', 'Rosa', 'Rosa', 'Merah Muda', 'gentle beauty fill light and soft aesthetic portrait glow', 'luz suave de belleza y tono cálido para retratos', 'lumière douce pour beauté et portraits esthétiques', 'weiches Schönheitslicht und stimmungsvolle Porträts', 'iluminação suave para beleza e retratos estéticos', 'lampu lembut kecantikan dan estetika potret'),
-  buildColorCopy('purple-screen', '#800080', '128, 0, 128', 'Purple', 'Morada', 'Violet', 'Lila', 'Roxa', 'Ungu', 'creative mood lighting and vibrant ambient streaming backdrops', 'iluminación creativa para streaming y ambiente moderno', 'éclairage d\'ambiance créatif et décors de streaming', 'kreative Streaming-Beleuchtung und stimmungsvolle Akzente', 'iluminação criativa para streams e ambientes modernos', 'pencahayaan kreatif untuk live streaming dan estetika'),
-  buildColorCopy('gold-screen', '#ffd700', '255, 215, 0', 'Gold', 'Dorada', 'Doré', 'Goldener', 'Dourada', 'Emas', 'luxurious warm skin-tone illumination and golden hour photography', 'iluminación dorada cálida para tonos de piel y fotografía', 'éclairage chaleureux doré pour portraits et photographie', 'warme Porträtausleuchtung im Stil der goldenen Stunde', 'iluminação dourada suave para tons de pele e fotos', 'pencahayaan keemasan untuk rona kulit dan foto'),
-  buildColorCopy('light-blue-screen', '#add8e6', '173, 216, 230', 'Light Blue', 'Azul Claro', 'Bleu Clair', 'Hellblauer', 'Azul Claro', 'Biru Muda', 'daylight sky simulation and morning alertness lighting', 'simulación de cielo diurno y luz estimulante', 'simulation de ciel diurne et lumière matinale apaisante', 'Tageslicht-Simulation und morgendliche Frische', 'simulação de céu claro e iluminação suave matinal', 'simulasi langit siang hari dan pencahayaan segar'),
-  buildColorCopy('brown-screen', '#8b4513', '139, 69, 19', 'Brown', 'Marrón', 'Marron', 'Brauner', 'Marrom', 'Cokelat', 'earthy low-glare backdrop and warm acoustic studio mood', 'fondo terroso de bajo brillo y ambiente cálido', 'fond terreux à faible reflet et ambiance feutrée', 'matter erdfarbener Hintergrund und blendfreie Raumstimmung', 'fundo terroso de baixo reflexo e clima acolhedor', 'latar hangat alami dan pencahayaan minim silau'),
-  buildColorCopy('grey-screen', '#808080', '128, 128, 128', 'Grey', 'Gris', 'Gris', 'Grauer', 'Cinza', 'Abu-Abu', '18% middle gray exposure and camera white-balance calibration', 'calibración de balance de blancos y exposición al 18%', 'carte grise 18% pour étalonnage photo et balance des blancs', '18% Graukarte für Weißabgleich und Belichtungsmessung', 'calibração de balanço de branco e exposição a 18%', 'kartu abu-abu 18% untuk kalibrasi white balance kamera'),
+  buildColorCopy('purple-screen', '#800080', '128, 0, 128', 'Purple', 'Morada', 'Violet', 'Lila', 'Roxa', 'Ungu', 'creative mood lighting and vibrant ambient streaming backdrops', 'iluminación creativa para streaming y ambiente moderno', 'éclairage d\'ambiance créatif et décors de streaming', 'kreative Streaming-Beleuchtung und stimmungsvolle Akzente', 'iluminação criativa para streams e ambientes modernos', 'pencahayaan kreatif untuk live streaming dan estetika', 'Viola', 'Paars', 'illuminazione creativa per streaming e sfondi d\'atmosfera', 'creatieve sfeerverlichting en levendige streaming-achtergronden'),
+  buildColorCopy('gold-screen', '#ffd700', '255, 215, 0', 'Gold', 'Dorada', 'Doré', 'Goldener', 'Dourada', 'Emas', 'luxurious warm skin-tone illumination and golden hour photography', 'iluminación dorada cálida para tonos de piel y fotografía', 'éclairage chaleureux doré pour portraits et photographie', 'warme Porträtausleuchtung im Stil der goldenen Stunde', 'iluminação dourada suave para tons de pele e fotos', 'pencahayaan keemasan untuk rona kulit dan foto', 'Oro', 'Goud', 'illuminazione calda per toni della pelle e fotografia golden hour', 'warme huidskleurverlichting en fotografie tijdens het gouden uur'),
+  buildColorCopy('light-blue-screen', '#add8e6', '173, 216, 230', 'Light Blue', 'Azul Claro', 'Bleu Clair', 'Hellblauer', 'Azul Claro', 'Biru Muda', 'daylight sky simulation and morning alertness lighting', 'simulación de cielo diurno y luz estimulante', 'simulation de ciel diurne et lumière matinale apaisante', 'Tageslicht-Simulation und morgendliche Frische', 'simulação de céu claro e iluminação suave matinal', 'simulasi langit siang hari dan pencahayaan segar', 'Azzurro', 'Lichtblauw', 'simulazione del cielo diurno e luce rinfrescante per la concentrazione', 'daglicht-hemelsimulatie en ochtendfrisheid voor concentratie'),
+  buildColorCopy('brown-screen', '#8b4513', '139, 69, 19', 'Brown', 'Marrón', 'Marron', 'Brauner', 'Marrom', 'Cokelat', 'earthy low-glare backdrop and warm acoustic studio mood', 'fondo terroso de bajo brillo y ambiente cálido', 'fond terreux à faible reflet et ambiance feutrée', 'matter erdfarbener Hintergrund und blendfreie Raumstimmung', 'fundo terroso de baixo reflexo e clima acolhedor', 'latar hangat alami dan pencahayaan minim silau', 'Marrone', 'Bruin', 'sfondo caldo a basso riflesso per ambienti di lavoro rilassanti', 'matte aardetint achtergrond en verblindingsvrije sfeer'),
+  buildColorCopy('grey-screen', '#808080', '128, 128, 128', 'Grey', 'Gris', 'Gris', 'Grauer', 'Cinza', 'Abu-Abu', '18% middle gray exposure and camera white-balance calibration', 'calibración de balance de blancos y exposición al 18%', 'carte grise 18% pour étalonnage photo et balance des blancs', '18% Graukarte für Weißabgleich und Belichtungsmessung', 'calibração de balanço de branco e exposição a 18%', 'kartu abu-abu 18% untuk kalibrasi white balance kamera', 'Grigio', 'Grijs', 'cartoncino grigio 18% per calibrazione bilanciamento del bianco della fotocamera', '18% grijskaart voor witbalans-kalibratie en belichtingsmeting'),
   buildColorCopy('neon-screen', '#39ff14', '57, 255, 20', 'Neon', 'Neón', 'Néon', 'Neon', 'Neon', 'Neon', 'maximum display luminescence check and high-visibility signaling', 'comprobación de brillo máximo y señalización de alto impacto', 'test de luminance maximale et signalisation percutante', 'Prüfung maximaler Panelleuchtkraft und Signalwirkung', 'teste de brilho máximo e sinalização de alto impacto', 'uji kecerahan maksimal panel dan visibilitas tinggi'),
   buildColorCopy('olive-screen', '#808000', '128, 128, 0', 'Olive', 'Oliva', 'Olive', 'Olivgrüner', 'Oliva', 'Zaitun', 'subdued tactical green lighting and gentle low-intensity illumination', 'iluminación táctica tenue y luz verde de baja intensidad', 'éclairage discret et lumière verte douce non éblouissante', 'gedeckte taktische Ausleuchtung und sanftes Dämmerlicht', 'iluminação tática suave e luz verde de baixa intensidade', 'pencahayaan redup taktis dan warna hijau lembut'),
-  buildColorCopy('coral-screen', '#ff7f50', '255, 127, 80', 'Coral', 'Coral', 'Corail', 'Korallen', 'Coral', 'Koral', 'flattering webcam skin illumination and vibrant soft warm glow', 'iluminación favorecedora para el rostro en cámara web', 'teinte valorisante pour le teint devant la webcam', 'schmeichelhafte Ausleuchtung von Hauttönen vor der Webcam', 'iluminação favorável para o rosto em videochamadas', 'pencahayaan penunjang rona wajah saat panggilan webcam'),
-  buildColorCopy('navy-screen', '#000080', '0, 0, 128', 'Navy', 'Azul Marino', 'Bleu Marine', 'Marineblauer', 'Azul Marinho', 'Biru Tua', 'deep contrast backdrop and nighttime distraction-free work', 'fondo de alto contraste y trabajo nocturno sin distracciones', 'arrière-plan sombre à fort contraste pour travail de nuit', 'kontrastreicher dunkler Hintergrund für konzentriertes Arbeiten', 'fundo escuro de alto contraste para trabalho noturno', 'latar kontras gelap untuk kerja malam bebas gangguan'),
+  buildColorCopy('coral-screen', '#ff7f50', '255, 127, 80', 'Coral', 'Coral', 'Corail', 'Korallen', 'Coral', 'Koral', 'flattering webcam skin illumination and vibrant soft warm glow', 'iluminación favorecedora para el rostro en cámara web', 'teinte valorisante pour le teint devant la webcam', 'schmeichelhafte Ausleuchtung von Hauttönen vor der Webcam', 'iluminação favorável para o rosto em videochamadas', 'pencahayaan penunjang rona wajah saat panggilan webcam', 'Corallo', 'Koraal', 'illuminazione calda e valorizzante per il viso durante videochiamate', 'flatteuze gezichtsverlichting voor webcams en warme gloed'),
+  buildColorCopy('navy-screen', '#000080', '0, 0, 128', 'Navy', 'Azul Marino', 'Bleu Marine', 'Marineblauer', 'Azul Marinho', 'Biru Tua', 'deep contrast backdrop and nighttime distraction-free work', 'fondo de alto contraste y trabajo nocturno sin distracciones', 'arrière-plan sombre à fort contraste pour travail de nuit', 'kontrastreicher dunkler Hintergrund für konzentriertes Arbeiten', 'fundo escuro de alto contraste para trabalho noturno', 'latar kontras gelap untuk kerja malam bebas gangguan', 'Blu Notte', 'Marineblauw', 'sfondo ad alto contrasto per sessioni di lavoro notturne senza distrazioni', 'donkere contrastrijke achtergrond voor geconcentreerd nachtwerk'),
   buildColorCopy('mint-screen', '#98ff98', '152, 255, 152', 'Mint', 'Menta', 'Menthe', 'Minzgrüner', 'Menta', 'Mint', 'refreshing visual relief and calming creative desk lighting', 'alivio visual refrescante y luz relajante para el escritorio', 'repos visuel et lumière apaisante pour espace de création', 'entspannende Lichtstimmung und Erholung für müde Augen', 'alívio visual refrescante e luz relaxante para a mesa', 'penyegar mata lelah dan pencahayaan meja kerja yang rileks'),
-  buildColorCopy('aqua-screen', '#00ffff', '0, 255, 255', 'Aqua', 'Aqua', 'Aqua', 'Türkis', 'Aqua', 'Akuatik', 'water surface reflection lighting and vibrant cyan backdrop', 'simulación de reflejos de agua y fondo cian luminoso', 'simulation de reflets aquatiques et fond cyan éclatant', 'Wasserspiegelungs-Effekte und lebendiger Cyan-Hintergrund', 'simulação de reflexos de água e fundo ciano vibrante', 'simulasi pantulan air dan latar cyan cerah'),
-  buildColorCopy('teal-screen', '#008080', '0, 128, 128', 'Teal', 'Verde Azulado', 'Sarcelle', 'Teal', 'Verde-Petróleo', 'Teal', 'cinematic color grading contrast and modern aesthetic studio tint', 'contraste cinematográfico y estética moderna para video', 'contraste cinématographique et ambiance moderne de studio', 'cinematischer Farbkontrast und moderne Studio-Ästhetik', 'contraste cinematográfico e estética moderna de estúdio', 'kontras warna sinematik dan estetika studio modern'),
+  buildColorCopy('aqua-screen', '#00ffff', '0, 255, 255', 'Aqua', 'Aqua', 'Aqua', 'Türkis', 'Aqua', 'Akuatik', 'water surface reflection lighting and vibrant cyan backdrop', 'simulación de reflejos de agua y fondo cian luminoso', 'simulation de reflets aquatiques et fond cyan éclatant', 'Wasserspiegelungs-Effekte und lebendiger Cyan-Hintergrund', 'simulação de reflexos de água e fundo ciano vibrante', 'simulasi pantulan air dan latar cyan cerah', 'Acqua', 'Aqua', 'simulazione di riflessi d\'acqua e sfondo ciano vibrante', 'waterspiegelingseffecten en levendige cyaan achtergrond'),
+  buildColorCopy('teal-screen', '#008080', '0, 128, 128', 'Teal', 'Verde Azulado', 'Sarcelle', 'Teal', 'Verde-Petróleo', 'Teal', 'cinematic color grading contrast and modern aesthetic studio tint', 'contraste cinematográfico y estética moderna para video', 'contraste cinématographique et ambiance moderne de studio', 'cinematischer Farbkontrast und moderne Studio-Ästhetik', 'contraste cinematográfico e estética moderna de estúdio', 'kontras warna sinematik dan estetika studio modern', 'Ottanio', 'Blauwgroen', 'contrasto cinematografico e moderna estetica da studio video', 'filmisch kleurcontrast en moderne studio-esthetiek'),
   buildColorCopy('cream-screen', '#fffdd0', '255, 253, 208', 'Cream', 'Crema', 'Crème', 'Creme', 'Creme', 'Krem', 'soft parchment paper reading light and gentle anti-fatigue glow', 'luz suave tono pergamino para lectura prolongada sin fatiga', 'lumière douce type parchemin pour lecture sans fatigue', 'sanftes pergamentfarbenes Leselicht gegen Augenbelastung', 'luz suave tom pergaminho para leitura sem cansaço visual', 'lampu baca selembut perkamen untuk mengurangi lelah mata'),
   buildColorCopy('beige-screen', '#f5f5dc', '245, 245, 220', 'Beige', 'Beige', 'Beige', 'Beiger', 'Bege', 'Krem Muda', 'neutral warm minimalist backdrop and architectural mockups', 'fondo neutro minimalista y maquetas arquitectónicas', 'fond neutre chaleureux et maquettes graphiques épurées', 'neutraler warmer Hintergrund für minimalistische Präsentationen', 'fundo neutro minimalista e apresentações visuais', 'latar netral hangat minimalis dan presentasi desain'),
   buildColorCopy('lavender-screen', '#e6e6fa', '230, 230, 250', 'Lavender', 'Lavanda', 'Lavande', 'Lavendel', 'Lavanda', 'Lavender', 'soothing bedtime ambient light and gentle sleep preparation', 'luz relajante para antes de dormir y descanso nocturno', 'lumière douce relaxante pour la préparation au sommeil', 'beruhigendes Einschlaflicht und sanfte Abendbeleuchtung', 'luz relaxante para antes de dormir e descanso noturno', 'cahaya rileks menjelang tidur dan suasana tenang'),
   buildColorCopy('cyan-screen', '#00e5ff', '0, 229, 255', 'Cyan', 'Cian', 'Cyan', 'Cyan', 'Ciano', 'Sian', 'crisp high-energy illumination and video background tinting', 'iluminación enérgica y tinte vibrante para fondos de video', 'éclairage dynamique et teinte lumineuse pour arrière-plans', 'energiegeladene Studio-Ausleuchtung und kräftige Farbtupfer', 'iluminação vibrante e coloração para fundos de vídeo', 'pencahayaan berenergi dan aksen warna video yang hidup'),
   buildColorCopy('maroon-screen', '#800000', '128, 0, 0', 'Maroon', 'Granate', 'Bordeaux', 'Kastanienbrauner', 'Marrom-Avermelhado', 'Marun', 'deep red darkroom lighting and low-light eye comfort', 'luz roja profunda para cuartos oscuros y lectura nocturna', 'lumière rouge profond pour laboratoire photo et vision nocturne', 'dunkelrotes Licht für Fotolabore und blendfreies Nachtsehen', 'luz vermelha profunda para laboratórios e leitura no escuro', 'cahaya merah tua untuk kamar gelap dan kenyamanan malam'),
-  buildColorCopy('violet-screen', '#ee82ee', '238, 130, 238', 'Violet', 'Violeta', 'Pourpre', 'Violett', 'Violeta', 'Violet', 'vibrant neon ambiance and creative desktop photo lighting', 'ambiente de neón vibrante e iluminación creativa de escritorio', 'ambiance néon dynamique et éclairage créatif de bureau', 'lebendige Neon-Atmosphäre und kreatives Desktop-Fotolicht', 'ambiente de néon vibrante e iluminação criativa de estúdio', 'suasana neon cerah dan pencahayaan foto meja kreatif')
+  buildColorCopy('violet-screen', '#ee82ee', '238, 130, 238', 'Violet', 'Violeta', 'Pourpre', 'Violett', 'Violeta', 'Violet', 'vibrant neon ambiance and creative desktop photo lighting', 'ambiente de neón vibrante e iluminación creativa de escritorio', 'ambiance néon dynamique et éclairage créatif de bureau', 'lebendige Neon-Atmosphäre und kreatives Desktop-Fotolicht', 'ambiente de néon vibrante e iluminação criativa de estúdio', 'suasana neon cerah dan pencahayaan foto meja kreatif', 'Violetto', 'Violet', 'atmosfera neon e illuminazione creativa per fotografia da tavolo', 'levendige neon-sfeer en creatieve bureaufotografie')
 ];
 
 export function getColorById(id: string): ColorDefinition | undefined {

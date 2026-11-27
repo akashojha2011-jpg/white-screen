@@ -1,3 +1,5 @@
+import { TOOLS_IT } from './tools_it';
+import { TOOLS_NL } from './tools_nl';
 import type { LanguageCode } from '../i18n/config';
 
 export interface ToolFAQ {
@@ -2707,6 +2709,20 @@ export const ALL_TOOLS: ToolDefinition[] = [
 ];
 
 export function getToolById(id: string): ToolDefinition | undefined {
-  return ALL_TOOLS.find(t => t.id === id);
+  const item = ALL_TOOLS.find(t => t.id === id);
+  if (!item) return undefined;
+  return {
+    ...item,
+    names: {
+      ...item.names,
+      it: TOOLS_IT[id]?.name || item.names.en,
+      nl: TOOLS_NL[id]?.name || item.names.en,
+    },
+    content: {
+      ...item.content,
+      it: (TOOLS_IT[id] as any) || (item.content as any).it,
+      nl: (TOOLS_NL[id] as any) || (item.content as any).nl,
+    } as any,
+  };
 }
 

@@ -18,6 +18,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: '',
       pt: '',
       id: '',
+      it: '',
+      nl: '',
     },
   },
 
@@ -32,6 +34,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'weisser-bildschirm',
       pt: 'tela-branca',
       id: 'layar-putih',
+      it: 'schermo-bianco',
+      nl: 'wit-scherm',
     },
   },
   {
@@ -44,6 +48,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'schwarzer-bildschirm',
       pt: 'tela-preta',
       id: 'layar-hitam',
+      it: 'schermo-nero',
+      nl: 'zwart-scherm',
     },
   },
   {
@@ -56,6 +62,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'blauer-bildschirm',
       pt: 'tela-azul',
       id: 'layar-biru',
+      it: 'schermo-blu',
+      nl: 'blauw-scherm',
     },
   },
   {
@@ -68,6 +76,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'gruener-bildschirm',
       pt: 'tela-verde',
       id: 'layar-hijau',
+      it: 'schermo-verde',
+      nl: 'groen-scherm',
     },
   },
   {
@@ -80,6 +90,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'roter-bildschirm',
       pt: 'tela-vermelha',
       id: 'layar-merah',
+      it: 'schermo-rosso',
+      nl: 'rood-scherm',
     },
   },
   {
@@ -92,6 +104,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'gelber-bildschirm',
       pt: 'tela-amarela',
       id: 'layar-kuning',
+      it: 'schermo-giallo',
+      nl: 'geel-scherm',
     },
   },
   {
@@ -104,6 +118,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'oranger-bildschirm',
       pt: 'tela-laranja',
       id: 'layar-oranye',
+      it: 'schermo-arancione',
+      nl: 'oranje-scherm',
     },
   },
   {
@@ -116,6 +132,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'rosa-bildschirm',
       pt: 'tela-rosa',
       id: 'layar-merah-muda',
+      it: 'schermo-rosa',
+      nl: 'roze-scherm',
     },
   },
   {
@@ -128,6 +146,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'lila-bildschirm',
       pt: 'tela-roxa',
       id: 'layar-ungu',
+      it: 'schermo-viola',
+      nl: 'paars-scherm',
     },
   },
   {
@@ -140,6 +160,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'goldener-bildschirm',
       pt: 'tela-dourada',
       id: 'layar-emas',
+      it: 'schermo-oro',
+      nl: 'gouden-scherm',
     },
   },
   {
@@ -152,6 +174,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'hellblauer-bildschirm',
       pt: 'tela-azul-claro',
       id: 'layar-biru-muda',
+      it: 'schermo-azzurro',
+      nl: 'lichtblauw-scherm',
     },
   },
   {
@@ -164,6 +188,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'brauner-bildschirm',
       pt: 'tela-marrom',
       id: 'layar-cokelat',
+      it: 'schermo-marrone',
+      nl: 'bruin-scherm',
     },
   },
   {
@@ -176,6 +202,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'grauer-bildschirm',
       pt: 'tela-cinza',
       id: 'layar-abu-abu',
+      it: 'schermo-grigio',
+      nl: 'grijs-scherm',
     },
   },
   {
@@ -188,6 +216,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'neon-bildschirm',
       pt: 'tela-neon',
       id: 'layar-neon',
+      it: 'schermo-neon',
+      nl: 'neon-scherm',
     },
   },
   {
@@ -200,6 +230,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'olivgruener-bildschirm',
       pt: 'tela-oliva',
       id: 'layar-zaitun',
+      it: 'schermo-oliva',
+      nl: 'olijfgroen-scherm',
     },
   },
   {
@@ -212,6 +244,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'korallen-bildschirm',
       pt: 'tela-coral',
       id: 'layar-koral',
+      it: 'schermo-corallo',
+      nl: 'koraal-scherm',
     },
   },
   {
@@ -224,6 +258,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'marineblauer-bildschirm',
       pt: 'tela-azul-marinho',
       id: 'layar-biru-tua',
+      it: 'schermo-blu-notte',
+      nl: 'marineblauw-scherm',
     },
   },
   {
@@ -236,6 +272,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'minzgruener-bildschirm',
       pt: 'tela-menta',
       id: 'layar-mint',
+      it: 'schermo-menta',
+      nl: 'muntgroen-scherm',
     },
   },
   {
@@ -248,6 +286,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'tuerkis-bildschirm',
       pt: 'tela-aqua',
       id: 'layar-akuatik',
+      it: 'schermo-acqua',
+      nl: 'aqua-scherm',
     },
   },
   {
@@ -260,6 +300,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'teal-bildschirm',
       pt: 'tela-verde-petroleo',
       id: 'layar-teal',
+      it: 'schermo-ottanio',
+      nl: 'blauwgroen-scherm',
     },
   },
   {
@@ -272,6 +314,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'creme-bildschirm',
       pt: 'tela-creme',
       id: 'layar-krem',
+      it: 'schermo-crema',
+      nl: 'creme-scherm',
     },
   },
   {
@@ -284,6 +328,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'beiger-bildschirm',
       pt: 'tela-bege',
       id: 'layar-krem-muda',
+      it: 'schermo-beige',
+      nl: 'beige-scherm',
     },
   },
   {
@@ -296,6 +342,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'lavendel-bildschirm',
       pt: 'tela-lavanda',
       id: 'layar-lavender',
+      it: 'schermo-lavanda',
+      nl: 'lavendel-scherm',
     },
   },
   {
@@ -308,6 +356,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'cyan-bildschirm',
       pt: 'tela-ciano',
       id: 'layar-sian',
+      it: 'schermo-ciano',
+      nl: 'cyaan-scherm',
     },
   },
   {
@@ -320,6 +370,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'kastanie-bildschirm',
       pt: 'tela-marrom-avermelhado',
       id: 'layar-marun',
+      it: 'schermo-bordeaux',
+      nl: 'kastanjebruin-scherm',
     },
   },
   {
@@ -332,6 +384,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'violett-bildschirm',
       pt: 'tela-violeta',
       id: 'layar-violet',
+      it: 'schermo-violetto',
+      nl: 'violet-scherm',
     },
   },
 
@@ -346,6 +400,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'pixelfehler-test',
       pt: 'teste-pixels-mortos',
       id: 'tes-piksel-mati',
+      it: 'test-pixel-bruciati',
+      nl: 'dode-pixel-test',
     },
   },
   {
@@ -358,6 +414,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'bildschirm-reinigen',
       pt: 'limpar-tela',
       id: 'membersihkan-layar',
+      it: 'pulizia-schermo',
+      nl: 'scherm-schoonmaken',
     },
   },
   {
@@ -370,6 +428,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'zoom-videobeleuchtung',
       pt: 'luz-para-zoom',
       id: 'lampu-video-zoom',
+      it: 'luce-ring-light-zoom',
+      nl: 'zoom-ringlamp-scherm',
     },
   },
   {
@@ -382,6 +442,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'webcam-licht',
       pt: 'luz-para-webcam',
       id: 'lampu-webcam',
+      it: 'illuminazione-webcam',
+      nl: 'webcam-verlichting',
     },
   },
   {
@@ -394,6 +456,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'bildschirm-flimmer-test',
       pt: 'teste-cintilacao-tela',
       id: 'tes-layar-berkedip',
+      it: 'test-sfarfallio-schermo',
+      nl: 'schermflikkering-test',
     },
   },
   {
@@ -406,6 +470,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'backlight-bleed-test',
       pt: 'teste-vazamento-luz',
       id: 'tes-kebocoran-cahaya',
+      it: 'test-fuga-di-luce',
+      nl: 'backlight-bleed-test',
     },
   },
   {
@@ -418,6 +484,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'oled-einbrenn-test',
       pt: 'teste-burn-in-oled',
       id: 'tes-burn-in-oled',
+      it: 'test-burn-in-oled',
+      nl: 'oled-inbrand-test',
     },
   },
   {
@@ -430,6 +498,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'monitor-homogenitaet-test',
       pt: 'teste-uniformidade-monitor',
       id: 'tes-keseragaman-monitor',
+      it: 'test-uniformita-monitor',
+      nl: 'monitor-uniformiteit-test',
     },
   },
   {
@@ -442,6 +512,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'zeichen-leuchttisch',
       pt: 'mesa-de-luz-desenho',
       id: 'meja-sinar-menjiplak',
+      it: 'tavolo-luminoso-disegno',
+      nl: 'lichtbak-tekenen-scherm',
     },
   },
   {
@@ -454,6 +526,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'fotografie-hintergrund',
       pt: 'fundo-para-fotografia',
       id: 'latar-belakang-fotografi',
+      it: 'sfondo-fotografico-schermo',
+      nl: 'fotografie-achtergrond-scherm',
     },
   },
   {
@@ -466,6 +540,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'vollbild-farbwaehler',
       pt: 'seletor-cor-tela-cheia',
       id: 'pemilih-warna-layar-penuh',
+      it: 'selettore-colore-schermo-intero',
+      nl: 'kleurkiezer-volledig-scherm',
     },
   },
   {
@@ -478,6 +554,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'vollbild-rgb-zyklus',
       pt: 'ciclo-rgb-tela-cheia',
       id: 'siklus-rgb-layar-penuh',
+      it: 'ciclo-colori-rgb-schermo',
+      nl: 'volledig-scherm-rgb-cyclus',
     },
   },
   {
@@ -490,6 +568,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'schwarzer-bildschirm-10-stunden',
       pt: 'tela-preta-10-horas',
       id: 'layar-hitam-10-jam',
+      it: 'schermo-nero-10-ore',
+      nl: 'zwart-scherm-10-uur',
     },
   },
   {
@@ -502,6 +582,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'weisser-bildschirm-1-stunde',
       pt: 'tela-branca-1-hora',
       id: 'layar-putih-1-jam',
+      it: 'schermo-bianco-1-ora',
+      nl: 'wit-scherm-1-uur',
     },
   },
   {
@@ -514,6 +596,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'bildschirm-timer',
       pt: 'temporizador-tela',
       id: 'penghitung-waktu-layar',
+      it: 'timer-schermo',
+      nl: 'scherm-timer',
     },
   },
 
@@ -528,6 +612,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'weisses-hintergrundbild',
       pt: 'papel-de-parede-branco',
       id: 'wallpaper-putih',
+      it: 'sfondo-bianco',
+      nl: 'witte-achtergrond',
     },
   },
   {
@@ -540,6 +626,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'weisses-hintergrundbild-4k',
       pt: 'papel-de-parede-branco-4k',
       id: 'wallpaper-putih-4k',
+      it: 'sfondo-bianco-4k',
+      nl: 'witte-achtergrond-4k',
     },
   },
   {
@@ -552,6 +640,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'weisses-hintergrundbild-8k',
       pt: 'papel-de-parede-branco-8k',
       id: 'wallpaper-putih-8k',
+      it: 'sfondo-bianco-8k',
+      nl: 'witte-achtergrond-8k',
     },
   },
   {
@@ -564,6 +654,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'weisser-hintergrund-iphone',
       pt: 'fundo-branco-para-iphone',
       id: 'latar-belakang-putih-iphone',
+      it: 'sfondo-bianco-iphone',
+      nl: 'witte-achtergrond-iphone',
     },
   },
   {
@@ -576,6 +668,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'weisses-hintergrundbild-desktop',
       pt: 'papel-de-parede-branco-pc',
       id: 'wallpaper-putih-desktop',
+      it: 'sfondo-bianco-pc',
+      nl: 'witte-achtergrond-pc',
     },
   },
   {
@@ -588,6 +682,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'schwarzes-hintergrundbild',
       pt: 'papel-de-parede-preto',
       id: 'wallpaper-hitam',
+      it: 'sfondo-nero',
+      nl: 'zwarte-achtergrond',
     },
   },
   {
@@ -600,6 +696,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'schwarzes-hintergrundbild-4k',
       pt: 'papel-de-parede-preto-4k',
       id: 'wallpaper-hitam-4k',
+      it: 'sfondo-nero-4k',
+      nl: 'zwarte-achtergrond-4k',
     },
   },
   {
@@ -612,6 +710,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'blaues-hintergrundbild',
       pt: 'papel-de-parede-azul',
       id: 'wallpaper-biru',
+      it: 'sfondo-blu',
+      nl: 'blauwe-achtergrond',
     },
   },
   {
@@ -624,6 +724,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'gruenes-hintergrundbild',
       pt: 'papel-de-parede-verde',
       id: 'wallpaper-hijau',
+      it: 'sfondo-verde',
+      nl: 'groene-achtergrond',
     },
   },
   {
@@ -636,6 +738,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'rotes-hintergrundbild',
       pt: 'papel-de-parede-vermelho',
       id: 'wallpaper-merah',
+      it: 'sfondo-rosso',
+      nl: 'rode-achtergrond',
     },
   },
 
@@ -650,6 +754,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'himmel-hintergrund',
       pt: 'fundo-ceu',
       id: 'latar-belakang-langit',
+      it: 'sfondo-cielo',
+      nl: 'lucht-achtergrond',
     },
   },
   {
@@ -662,6 +768,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'farbverlauf-hintergrund',
       pt: 'fundo-degrade',
       id: 'latar-belakang-gradasi',
+      it: 'sfondo-sfumato',
+      nl: 'verloop-achtergrond',
     },
   },
   {
@@ -674,6 +782,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'weltraum-hintergrund',
       pt: 'fundo-espaco',
       id: 'latar-belakang-luar-angkasa',
+      it: 'sfondo-spazio',
+      nl: 'ruimte-achtergrond',
     },
   },
   {
@@ -686,6 +796,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'wald-hintergrund',
       pt: 'fundo-floresta',
       id: 'latar-belakang-hutan',
+      it: 'sfondo-foresta',
+      nl: 'bos-achtergrond',
     },
   },
   {
@@ -698,6 +810,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'feuer-hintergrund',
       pt: 'fundo-fogo',
       id: 'latar-belakang-api',
+      it: 'sfondo-fuoco',
+      nl: 'vuur-achtergrond',
     },
   },
   {
@@ -710,6 +824,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'holz-hintergrund',
       pt: 'fundo-madeira',
       id: 'latar-belakang-kayu',
+      it: 'sfondo-legno',
+      nl: 'hout-achtergrond',
     },
   },
   {
@@ -722,6 +838,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'wasser-hintergrund',
       pt: 'fundo-agua',
       id: 'latar-belakang-air',
+      it: 'sfondo-acqua-texture',
+      nl: 'water-achtergrond',
     },
   },
   {
@@ -734,6 +852,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'papier-hintergrund',
       pt: 'fundo-papel',
       id: 'latar-belakang-kertas',
+      it: 'sfondo-carta',
+      nl: 'papier-achtergrond',
     },
   },
   {
@@ -746,6 +866,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'stadt-hintergrund',
       pt: 'fundo-cidade',
       id: 'latar-belakang-kota',
+      it: 'sfondo-citta',
+      nl: 'stad-achtergrond',
     },
   },
   {
@@ -758,6 +880,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'ozean-hintergrund',
       pt: 'fundo-oceano',
       id: 'latar-belakang-samudra',
+      it: 'sfondo-oceano',
+      nl: 'oceaan-achtergrond',
     },
   },
   {
@@ -770,6 +894,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'galaxie-hintergrund',
       pt: 'fundo-galaxia',
       id: 'latar-belakang-galaksi',
+      it: 'sfondo-galassia',
+      nl: 'melkweg-achtergrond',
     },
   },
   {
@@ -782,6 +908,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'sonnenuntergang-hintergrund',
       pt: 'fundo-por-do-sol',
       id: 'latar-belakang-matahari-terbenam',
+      it: 'sfondo-tramonto',
+      nl: 'zonsondergang-achtergrond',
     },
   },
   {
@@ -794,6 +922,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'silber-hintergrund',
       pt: 'fundo-prateado',
       id: 'latar-belakang-perak',
+      it: 'sfondo-argento',
+      nl: 'zilver-achtergrond',
     },
   },
   {
@@ -806,6 +936,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'schnee-hintergrund',
       pt: 'fundo-neve',
       id: 'latar-belakang-salju',
+      it: 'sfondo-neve',
+      nl: 'sneeuw-achtergrond',
     },
   },
   {
@@ -818,6 +950,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'carbon-hintergrund',
       pt: 'fundo-fibra-carbono',
       id: 'latar-belakang-serat-karbon',
+      it: 'sfondo-fibra-di-carbonio',
+      nl: 'koolstofvezel-achtergrond',
     },
   },
   {
@@ -830,6 +964,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'beton-hintergrund',
       pt: 'fundo-concreto',
       id: 'latar-belakang-beton',
+      it: 'sfondo-cemento',
+      nl: 'beton-achtergrond',
     },
   },
 
@@ -844,6 +980,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'laptop-bildschirm-sicher-reinigen-anleitung',
       pt: 'como-limpar-tela-notebook-com-seguranca',
       id: 'cara-membersihkan-layar-laptop-dengan-aman',
+      it: 'come-pulire-schermo-laptop-in-sicurezza',
+      nl: 'laptop-scherm-veilig-schoonmaken',
     },
   },
   {
@@ -856,6 +994,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'pixelfehler-pruefen-monitor-smartphone',
       pt: 'como-verificar-pixels-mortos-monitor',
       id: 'cara-cek-piksel-mati-pada-layar',
+      it: 'come-controllare-pixel-bruciati-iphone-monitor',
+      nl: 'dode-pixels-controleren-iphone-monitor',
     },
   },
   {
@@ -868,6 +1008,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'weisser-bildschirm-als-videolicht-fuer-zoom',
       pt: 'usar-tela-branca-como-anel-de-luz',
       id: 'menggunakan-layar-putih-sebagai-lampu-video',
+      it: 'schermo-bianco-come-luce-ring-light',
+      nl: 'kan-wit-scherm-als-ringlamp-werken',
     },
   },
   {
@@ -880,6 +1022,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'oled-burn-in-ursachen-und-test',
       pt: 'burn-in-oled-causas-e-como-testar',
       id: 'penyebab-burn-in-oled-dan-cara-tes',
+      it: 'burn-in-oled-cause-soluzioni-test',
+      nl: 'oled-inbranden-oorzaken-en-oplossingen',
     },
   },
   {
@@ -892,6 +1036,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'backlight-bleed-vs-ips-glow-vergleich',
       pt: 'vazamento-de-luz-vs-ips-glow',
       id: 'perbedaan-backlight-bleed-dan-ips-glow',
+      it: 'differenza-fuga-di-luce-e-ips-glow',
+      nl: 'verschil-backlight-bleed-en-ips-glow',
     },
   },
   {
@@ -904,6 +1050,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'bildschirm-in-leuchttisch-verwandeln',
       pt: 'transformar-tela-em-mesa-de-luz',
       id: 'mengubah-layar-menjadi-meja-gambar-bercahaya',
+      it: 'trasformare-schermo-in-tavolo-luminoso-disegno',
+      nl: 'scherm-gebruiken-als-lichtbak-tekenen',
     },
   },
   {
@@ -916,6 +1064,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'monitor-homogenitaet-und-farbtreue-anleitung',
       pt: 'guia-uniformidade-de-cor-do-monitor',
       id: 'panduan-keseragaman-warna-dan-kecerahan-layar',
+      it: 'guida-uniformita-colore-e-luminanza-monitor',
+      nl: 'gids-kleur-en-helderheidsuniformiteit-scherm',
     },
   },
   {
@@ -928,6 +1078,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'pwm-bildschirmflimmern-und-augenmuedigkeit',
       pt: 'cintilacao-pwm-e-fadiga-ocular',
       id: 'kedipan-layar-pwm-dan-kelelahan-mata',
+      it: 'sfarfallio-schermo-pwm-affaticamento-visivo',
+      nl: 'schermflikkering-pwm-en-oogvermoeidheid',
     },
   },
   {
@@ -940,6 +1092,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'rotes-licht-fuer-nachtsicht-und-astronomie',
       pt: 'luz-vermelha-para-visao-noturna-e-astronomia',
       id: 'cahaya-layar-merah-untuk-astronomi-dan-penglihatan-malam',
+      it: 'luce-schermo-rosso-astronomia-visione-notturna',
+      nl: 'rood-scherm-astronomie-nachtzicht',
     },
   },
   {
@@ -952,6 +1106,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'greenscreen-beleuchtung-fuer-streaming-anleitung',
       pt: 'como-iluminar-tela-verde-para-streaming',
       id: 'cara-pencahayaan-green-screen-untuk-streaming',
+      it: 'illuminazione-green-screen-streaming-zoom',
+      nl: 'green-screen-verlichting-streaming-zoom',
     },
   },
   {
@@ -964,6 +1120,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'schwarzer-bildschirm-akku-sparen-oled',
       pt: 'economia-de-bateria-tela-preta-oled',
       id: 'hemat-baterai-layar-hitam-oled',
+      it: 'risparmio-batteria-schermo-nero-oled',
+      nl: 'batterij-besparen-zwart-scherm-oled',
     },
   },
   {
@@ -976,6 +1134,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'makrofotografie-mit-bildschirmbeleuchtung',
       pt: 'fotografia-de-produtos-com-luz-de-tela',
       id: 'fotografi-produk-dengan-pencahayaan-layar',
+      it: 'fotografia-macro-prodotti-illuminazione-schermo',
+      nl: 'productfotografie-met-schermverlichting',
     },
   },
   {
@@ -988,6 +1148,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'weissabgleich-kalibrieren-mit-grauem-bildschirm',
       pt: 'calibrar-balanco-de-branco-tela-cinza',
       id: 'kalibrasi-white-balance-kamera-layar-abu-abu',
+      it: 'calibrazione-bilanciamento-bianco-fotocamera-schermo-grigio',
+      nl: 'witbalans-kalibratie-camera-grijs-scherm',
     },
   },
   {
@@ -1012,6 +1174,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'haengende-pixel-reparieren-mit-rgb-zyklus',
       pt: 'como-desbloquear-pixels-presos-com-rgb',
       id: 'memperbaiki-piksel-macet-dengan-siklus-rgb',
+      it: 'riparare-pixel-bloccati-ciclo-colori-rgb',
+      nl: 'vastzittende-pixels-repareren-rgb-cyclus',
     },
   },
   {
@@ -1024,6 +1188,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'bildschirmhelligkeit-und-augenschonung',
       pt: 'brilho-de-tela-e-conforto-visual',
       id: 'kecerahan-layar-dan-kenyamanan-mata',
+      it: 'luminosita-schermo-e-comfort-visivo',
+      nl: 'schermhelderheid-en-oogcomfort',
     },
   },
   {
@@ -1036,6 +1202,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'vollbildfarben-fuer-fokus-und-pomodoro',
       pt: 'telas-coloridas-para-foco-e-pomodoro',
       id: 'layar-warna-untuk-fokus-dan-produktivitas',
+      it: 'schermi-colorati-concentrazione-produttivita',
+      nl: 'kleurenschermen-focus-productiviteit',
     },
   },
   {
@@ -1048,6 +1216,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'pixeldichte-ppi-und-4k-8k-hintergruende',
       pt: 'densidade-de-pixels-ppi-papeis-4k-8k',
       id: 'kerapatan-piksel-ppi-dan-wallpaper-4k-8k',
+      it: 'densita-pixel-ppi-sfondi-4k-8k',
+      nl: 'pixeldichtheid-ppi-en-4k-8k-achtergronden',
     },
   },
   {
@@ -1060,6 +1230,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'laptop-bildschirm-vor-kauf-testen-leitfaden',
       pt: 'como-testar-tela-de-notebook-antes-de-comprar',
       id: 'cara-tes-layar-laptop-sebelum-membeli',
+      it: 'come-testare-schermo-laptop-prima-di-acquistare',
+      nl: 'laptop-scherm-testen-voor-aankoop',
     },
   },
   {
@@ -1072,6 +1244,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'paneltypen-oled-ips-va-tn-im-vergleich',
       pt: 'tipos-de-paineis-oled-ips-va-tn-comparativo',
       id: 'perbandingan-panel-layar-oled-ips-va-dan-tn',
+      it: 'confronto-pannelli-display-oled-ips-va-tn',
+      nl: 'vergelijking-schermpanelen-oled-ips-va-en-tn',
     },
   },
 
@@ -1086,6 +1260,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'ueber-uns',
       pt: 'sobre',
       id: 'tentang-kami',
+      it: 'chi-siamo',
+      nl: 'over-ons',
     },
   },
   {
@@ -1098,6 +1274,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'kontakt',
       pt: 'contato',
       id: 'kontak',
+      it: 'contatti',
+      nl: 'contact',
     },
   },
   {
@@ -1110,6 +1288,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'datenschutz',
       pt: 'politica-de-privacidade',
       id: 'kebijakan-privasi',
+      it: 'informativa-sulla-privacy',
+      nl: 'privacybeleid',
     },
   },
   {
@@ -1122,6 +1302,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'agb',
       pt: 'termos-e-condicoes',
       id: 'syarat-dan-ketentuan',
+      it: 'termini-e-condizioni',
+      nl: 'algemene-voorwaarden',
     },
   },
   {
@@ -1134,6 +1316,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'cookie-richtlinie',
       pt: 'politica-de-cookies',
       id: 'kebijakan-cookie',
+      it: 'politica-sui-cookie',
+      nl: 'cookiebeleid',
     },
   },
   {
@@ -1146,6 +1330,8 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       de: 'lizenz',
       pt: 'licenca',
       id: 'lisensi',
+      it: 'licenza',
+      nl: 'licentie',
     },
   },
 ];

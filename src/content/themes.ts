@@ -33,8 +33,12 @@ function buildTheme(
   moodFr: string,
   moodDe: string,
   moodPt: string,
-  moodId: string
+  moodId: string,
+  moodIt: string = moodEn,
+  moodNl: string = moodEn
 ): ThemeDefinition {
+  const nameIt = names.it || names.en;
+  const nameNl = names.nl || names.en;
   const nameEn = names.en;
   const nameEs = names.es;
   const nameFr = names.fr;
@@ -166,6 +170,46 @@ function buildTheme(
           { q: "Bisa untuk monitor ganda?", a: "Bisa, sangat cocok ditaruh di monitor kedua agar meja kerja terlihat keren." },
           { q: "Bisakah diunduh sebagai wallpaper?", a: "Bisa, unduh dalam format 4K atau 8K pada bagian download di bawah." },
           { q: "Apakah alat ini gratis?", a: "Sepenuhnya gratis tanpa biaya dan tanpa iklan." },
+        ],
+      },
+      it: {
+        title: `${nameIt} – Sfondo Ambientale a Schermo Intero in Puro CSS`,
+        metaDescription: `Tema immersivo ${nameIt.toLowerCase()} generato con gradienti CSS leggeri. Perfetto per ${moodIt}, videochiamate e concentrazione.`,
+        h1: `${nameIt} (Tema CSS a Schermo Intero)`,
+        intro: `Mostra uno sfondo ${nameIt.toLowerCase()} sul tuo monitor senza scaricare pesanti file immagine. Progettato con gradienti matematici CSS per un'illuminazione fluida ideale per ${moodIt}.`,
+        featuresTitle: `Vantaggi del Tema ${nameIt}`,
+        features: [
+          { title: "100% CSS Senza Ritardi", desc: "Realizzato con gradienti vettoriali. Si carica in 0 millisecondi con zero consumo di banda." },
+          { title: `Atmosfera Ideale per ${moodIt}`, desc: "Trasforma il tuo display in una lampada decorativa uniforme per il tuo ambiente creativo." },
+          { title: "Definizione Perfetta in 4K e 8K", desc: "Si adatta alla risoluzione nativa del monitor senza alcuna perdita di dettaglio." },
+          { title: "Schermo Sempre Acceso (Wake Lock)", desc: "Mantiene l'illuminazione attiva senza che il monitor entri in risparmio energetico." },
+        ],
+        faqs: [
+          { q: `A cosa serve il tema ${nameIt.toLowerCase()}?`, a: `Viene usato come sfondo d'ambiente per ${moodIt}, luce da webcam o salvaschermo rilassante.` },
+          { q: "Rallenta il computer?", a: "No, il rendering CSS consuma virtualmente zero risorse di CPU e scheda video." },
+          { q: "Posso usarlo su più monitor?", a: "Sì, aprilo su uno schermo secondario per un'atmosfera uniforme e confortevole." },
+          { q: "Posso scaricarlo come sfondo?", a: "Certamente, usa il generatore sottostante per esportarlo in 4K o 8K." },
+          { q: "È gratuito e senza pubblicità?", a: "Completamente gratuito e privo di annunci pubblicitari." },
+        ],
+      },
+      nl: {
+        title: `${nameNl} – Volledig Scherm Sfeerachtergrond in Puur CSS`,
+        metaDescription: `Meeslepend ${nameNl.toLowerCase()} thema gegenereerd met lichte CSS-verlopen. Ideaal voor ${moodNl}, videobellen en focus.`,
+        h1: `${nameNl} (Volledig Scherm CSS Thema)`,
+        intro: `Toon een sfeervol ${nameNl.toLowerCase()} thema op je scherm zonder zware afbeeldingsbestanden. Gemaakt met wiskundige CSS-verlopen voor directe verlichting afgestemd op ${moodNl}.`,
+        featuresTitle: `Voordelen van het ${nameNl} Thema`,
+        features: [
+          { title: "Puur CSS Zonder Laadtijd", desc: "Volledig ontworpen met vectoriële CSS-verlopen. Laadt in 0 milliseconden zonder dataverbruik." },
+          { title: `Sfeer Ideaal voor ${moodNl}`, desc: "Transformeert je monitor in een rustgevende lichtbron voor je werkruimte." },
+          { title: "Haarscherpe Weergave in 4K en 8K", desc: "Schaalt perfect mee met elk type beeldscherm zonder compressieverlies." },
+          { title: "Scherm Blijft Continu Verlicht", desc: "Screen Wake Lock voorkomt dat je scherm in slaapstand valt." },
+        ],
+        faqs: [
+          { q: `Waarvoor wordt het ${nameNl.toLowerCase()} thema gebruikt?`, a: `Als rustgevende achtergrond voor ${moodNl}, webcamverlichting of esthetische screensaver.` },
+          { q: "Vertraagt dit mijn computer?", a: "Nee, de zuivere CSS-rendering vraagt nauwelijks rekenkracht van processor of videokaart." },
+          { q: "Kan ik dit op meerdere schermen gebruiken?", a: "Ja, open het op een tweede monitor voor een harmonieuze werkplek." },
+          { q: "Kan ik dit downloaden als achtergrond?", a: "Zeker, gebruik de generator hieronder om het thema in 4K of 8K te exporteren." },
+          { q: "Is het gratis?", a: "Volledig gratis en zonder storende advertenties." },
         ],
       },
     },

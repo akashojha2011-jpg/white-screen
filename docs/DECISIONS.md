@@ -30,13 +30,15 @@ This document outlines all architectural, SEO, infrastructure, and technical dec
 ## 3. Multilingual Strategy & Localized Slugs
 
 - **Active Published Languages**:
-  In accordance with core requirements ("Start by fully completing EN + ES + FR + DE + PT + ID. Only publish the other languages when fully translated. Never ship a language page that still contains English UI strings"), the initial release publishes 6 fully localized languages:
+  The site now publishes 8 fully localized languages (totaling 751 pre-rendered static HTML pages):
   1. **en**: English (Root `/`)
   2. **es**: Español (`/es/`)
   3. **fr**: Français (`/fr/`)
   4. **de**: Deutsch (`/de/`)
   5. **pt**: Português (`/pt/`)
   6. **id**: Bahasa Indonesia (`/id/`)
+  7. **it**: Italiano (`/it/`)
+  8. **nl**: Nederlands (`/nl/`)
 - **Localized Slugs**:
   Non-English pages do not use generic English slugs. Instead, `/src/i18n/slugs.ts` maps semantic slugs based on local search volume:
   - English: `/white-screen/`
@@ -45,10 +47,12 @@ This document outlines all architectural, SEO, infrastructure, and technical dec
   - German: `/de/weisser-bildschirm/`
   - Portuguese: `/pt/tela-branca/`
   - Indonesian: `/id/layar-putih/`
+  - Italian: `/it/schermo-bianco/`
+  - Dutch: `/nl/wit-scherm/`
 - **Zero English Fallback**:
   The i18n dictionary system requires every translation key to be present in each published language. The build-time SEO audit script fails if any non-English page contains untranslated placeholder text or fallback English strings.
 - **Reciprocal Hreflang Tags**:
-  Every translated page emits `<link rel="alternate" hreflang="xx" href="...">` for every published translation of that specific entity, plus `hreflang="x-default"` pointing to the canonical English version. Only pages that actually exist in a given language are emitted.
+  Every translated page emits `<link rel="alternate" hreflang="xx" href="...">` for all 8 published translations of that specific entity, plus `hreflang="x-default"` pointing to the canonical English version. Only pages that actually exist in a given language are emitted.
 
 ---
 

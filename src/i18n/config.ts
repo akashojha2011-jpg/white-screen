@@ -12,6 +12,8 @@ export const PUBLISHED_LANGUAGES: Record<string, LanguageInfo> = {
   de: { code: 'de', name: 'Deutsch', dir: 'ltr' },
   pt: { code: 'pt', name: 'Português', dir: 'ltr' },
   id: { code: 'id', name: 'Bahasa Indonesia', dir: 'ltr' },
+  it: { code: 'it', name: 'Italiano', dir: 'ltr' },
+  nl: { code: 'nl', name: 'Nederlands', dir: 'ltr' },
 };
 
 export const DEFAULT_LANGUAGE = 'en';

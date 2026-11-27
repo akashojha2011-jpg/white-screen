@@ -1,3 +1,5 @@
+import { GUIDES_IT } from './guides_it';
+import { GUIDES_NL } from './guides_nl';
 import type { LanguageCode } from '../i18n/config';
 
 export interface GuideSection {
@@ -5553,5 +5555,14 @@ export const ALL_GUIDES: GuideDefinition[] = [
 ];
 
 export function getGuideById(id: string): GuideDefinition | undefined {
-  return ALL_GUIDES.find(g => g.id === id);
+  const item = ALL_GUIDES.find(g => g.id === id);
+  if (!item) return undefined;
+  return {
+    ...item,
+    content: {
+      ...item.content,
+      it: GUIDES_IT[id] || (item.content as any).it,
+      nl: GUIDES_NL[id] || (item.content as any).nl,
+    } as any,
+  };
 }

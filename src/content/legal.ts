@@ -1,3 +1,5 @@
+import { LEGAL_IT } from './legal_it';
+import { LEGAL_NL } from './legal_nl';
 import type { LanguageCode } from '../i18n/config';
 
 export interface LegalSection {
@@ -974,5 +976,14 @@ export const ALL_LEGALS: LegalDefinition[] = [
 ];
 
 export function getLegalById(id: string): LegalDefinition | undefined {
-  return ALL_LEGALS.find(l => l.id === id);
+  const item = ALL_LEGALS.find(l => l.id === id);
+  if (!item) return undefined;
+  return {
+    ...item,
+    content: {
+      ...item.content,
+      it: LEGAL_IT[id] || (item.content as any).it,
+      nl: LEGAL_NL[id] || (item.content as any).nl,
+    } as any,
+  };
 }

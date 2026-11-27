@@ -58,7 +58,7 @@ for (const filePath of htmlFiles) {
   // Determine language based on path
   let lang = 'en';
   const pathParts = relativePath.split(path.sep);
-  if (['es', 'fr', 'de', 'pt', 'id'].includes(pathParts[0])) {
+  if (['es', 'fr', 'de', 'pt', 'id', 'it', 'nl'].includes(pathParts[0])) {
     lang = pathParts[0];
   }
 
