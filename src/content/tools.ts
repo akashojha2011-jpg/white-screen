@@ -1,3 +1,4 @@
+import { TOOLS_RU } from './tools_ru';
 import { TOOLS_JA } from './tools_ja';
 import { TOOLS_KO } from './tools_ko';
 import { TOOLS_PL } from './tools_pl';
@@ -2725,6 +2726,7 @@ export function getToolById(id: string): ToolDefinition | undefined {
       tr: TOOLS_TR[id]?.name || item.names.en,
       ja: TOOLS_JA[id]?.name || item.names.en,
       ko: TOOLS_KO[id]?.name || item.names.en,
+      ru: TOOLS_RU[id]?.name || item.names.en,
     },
     content: {
       ...item.content,
@@ -2734,6 +2736,7 @@ export function getToolById(id: string): ToolDefinition | undefined {
       tr: (TOOLS_TR[id] as any) || (item.content as any).tr,
       ja: (TOOLS_JA[id] as any) || (item.content as any).ja,
       ko: (TOOLS_KO[id] as any) || (item.content as any).ko,
+      ru: (TOOLS_RU[id] as any) || (item.content as any).ru,
     } as any,
   };
 }

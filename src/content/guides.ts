@@ -1,3 +1,4 @@
+import { GUIDES_RU } from './guides_ru';
 import { GUIDES_JA } from './guides_ja';
 import { GUIDES_KO } from './guides_ko';
 import { GUIDES_PL } from './guides_pl';
@@ -5571,6 +5572,7 @@ export function getGuideById(id: string): GuideDefinition | undefined {
       tr: GUIDES_TR[id] || (item.content as any).tr,
       ja: GUIDES_JA[id] || (item.content as any).ja,
       ko: GUIDES_KO[id] || (item.content as any).ko,
+      ru: GUIDES_RU[id] || (item.content as any).ru,
     } as any,
   };
 }

@@ -24,6 +24,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: '',
       ja: '',
       ko: '',
+      ru: '',
     },
   },
 
@@ -44,6 +45,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'beyaz-ekran',
       ja: 'shiroi-gamen',
       ko: 'hayan-hwamyeon',
+      ru: 'belyj-ekran',
     },
   },
   {
@@ -62,6 +64,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'siyah-ekran',
       ja: 'kuroi-gamen',
       ko: 'geom-eun-hwamyeon',
+      ru: 'chernyj-ekran',
     },
   },
   {
@@ -80,6 +83,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'mavi-ekran',
       ja: 'aoi-gamen',
       ko: 'paran-hwamyeon',
+      ru: 'sinij-ekran',
     },
   },
   {
@@ -98,6 +102,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'yesil-ekran',
       ja: 'midori-no-gamen',
       ko: 'chorok-hwamyeon',
+      ru: 'zelenyj-ekran',
     },
   },
   {
@@ -116,6 +121,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'kirmizi-ekran',
       ja: 'akai-gamen',
       ko: 'ppalgan-hwamyeon',
+      ru: 'krasnyj-ekran',
     },
   },
   {
@@ -134,6 +140,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'sari-ekran',
       ja: 'kiiroi-gamen',
       ko: 'noran-hwamyeon',
+      ru: 'zheltyj-ekran',
     },
   },
   {
@@ -152,6 +159,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'turuncu-ekran',
       ja: 'orenji-gamen',
       ko: 'juhwang-hwamyeon',
+      ru: 'oranzhevyj-ekran',
     },
   },
   {
@@ -170,6 +178,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'pembe-ekran',
       ja: 'pinku-gamen',
       ko: 'pingkeu-hwamyeon',
+      ru: 'rozovyj-ekran',
     },
   },
   {
@@ -188,6 +197,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'mor-ekran',
       ja: 'murasaki-gamen',
       ko: 'bora-hwamyeon',
+      ru: 'fioletovyj-ekran',
     },
   },
   {
@@ -206,6 +216,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'altin-ekran',
       ja: 'gorudo-gamen',
       ko: 'goldeu-hwamyeon',
+      ru: 'zolotoj-ekran',
     },
   },
   {
@@ -224,6 +235,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'acik-mavi-ekran',
       ja: 'mizuiro-gamen',
       ko: 'haneul-hwamyeon',
+      ru: 'goluboj-ekran',
     },
   },
   {
@@ -242,6 +254,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'kahverengi-ekran',
       ja: 'chairo-gamen',
       ko: 'galsaek-hwamyeon',
+      ru: 'korichnevyj-ekran',
     },
   },
   {
@@ -260,6 +273,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'gri-ekran',
       ja: 'gure-gamen',
       ko: 'hoesack-hwamyeon',
+      ru: 'seryj-ekran',
     },
   },
   {
@@ -278,6 +292,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'neon-ekran',
       ja: 'neon-gamen',
       ko: 'neon-hwamyeon',
+      ru: 'neonovyj-ekran',
     },
   },
   {
@@ -296,6 +311,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'zeytin-yesili-ekran',
       ja: 'oribu-gamen',
       ko: 'ollibeu-hwamyeon',
+      ru: 'olivkovyj-ekran',
     },
   },
   {
@@ -314,6 +330,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'mercan-ekran',
       ja: 'koraru-gamen',
       ko: 'korall-hwamyeon',
+      ru: 'korallovyj-ekran',
     },
   },
   {
@@ -332,6 +349,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'lacivert-ekran',
       ja: 'neibi-gamen',
       ko: 'neibi-hwamyeon',
+      ru: 'temno-sinij-ekran',
     },
   },
   {
@@ -350,6 +368,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'nane-yesili-ekran',
       ja: 'minto-gamen',
       ko: 'minteu-hwamyeon',
+      ru: 'myatnyj-ekran',
     },
   },
   {
@@ -368,6 +387,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'su-yesili-ekran',
       ja: 'akua-gamen',
       ko: 'akua-hwamyeon',
+      ru: 'akvamarinovyj-ekran',
     },
   },
   {
@@ -386,6 +406,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'petrol-mavisi-ekran',
       ja: 'tiru-gamen',
       ko: 'til-hwamyeon',
+      ru: 'biryuzovyj-ekran',
     },
   },
   {
@@ -404,6 +425,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'krem-ekran',
       ja: 'kurimu-gamen',
       ko: 'keurim-hwamyeon',
+      ru: 'kremovyj-ekran',
     },
   },
   {
@@ -422,6 +444,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'bej-ekran',
       ja: 'beju-gamen',
       ko: 'beiji-hwamyeon',
+      ru: 'bezhevyj-ekran',
     },
   },
   {
@@ -440,6 +463,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'lavanta-ekran',
       ja: 'rabenda-gamen',
       ko: 'raebendeo-hwamyeon',
+      ru: 'lavandovyj-ekran',
     },
   },
   {
@@ -458,6 +482,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'camgobegi-ekran',
       ja: 'shian-gamen',
       ko: 'sian-hwamyeon',
+      ru: 'cianovyj-ekran',
     },
   },
   {
@@ -476,6 +501,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'bordo-ekran',
       ja: 'marun-gamen',
       ko: 'marun-hwamyeon',
+      ru: 'bordovyj-ekran',
     },
   },
   {
@@ -494,6 +520,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'menekse-ekran',
       ja: 'baioretto-gamen',
       ko: 'baiollet-hwamyeon',
+      ru: 'purpurnyj-ekran',
     },
   },
 
@@ -514,6 +541,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'olu-piksel-testi',
       ja: 'dot-nuke-test',
       ko: 'bullyang-hwaso-teseuteu',
+      ru: 'test-bityh-pikselej',
     },
   },
   {
@@ -532,6 +560,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'ekran-temizleme',
       ja: 'gamen-souji',
       ko: 'hwamyeon-cheongso',
+      ru: 'ochistka-ekrana',
     },
   },
   {
@@ -550,6 +579,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'zoom-halka-isik-ekran',
       ja: 'zoom-raito-gamen',
       ko: 'zoom-jogmyeong-hwamyeon',
+      ru: 'podsvetka-dlya-zoom',
     },
   },
   {
@@ -568,6 +598,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'webcam-isigi',
       ja: 'webcam-shoumei',
       ko: 'webcam-jomyeong',
+      ru: 'svet-dlya-veb-kamery',
     },
   },
   {
@@ -586,6 +617,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'ekran-titreme-testi',
       ja: 'gamen-chiratsuki-test',
       ko: 'hwamyeon-kkambag-im-teseuteu',
+      ru: 'test-mersaniya-ekrana',
     },
   },
   {
@@ -604,6 +636,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'isik-sizmasi-testi',
       ja: 'bakku-raito-more-test',
       ko: 'bissaem-teseuteu',
+      ru: 'test-zasvetov-ekrana',
     },
   },
   {
@@ -622,6 +655,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'oled-yanmasi-testi',
       ja: 'oled-yaki-tsuki-test',
       ko: 'oled-beonin-teseuteu',
+      ru: 'test-vygoraniya-oled',
     },
   },
   {
@@ -640,6 +674,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'monitor-homojenlik-testi',
       ja: 'monita-kintousei-test',
       ko: 'moniteo-gyun-il-do-teseuteu',
+      ru: 'test-ravnomernosti-monitora',
     },
   },
   {
@@ -658,6 +693,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'cizim-isikli-kutu-ekran',
       ja: 'toresu-dai-raito-bokkusu',
       ko: 'teuriseu-laiteubakseu',
+      ru: 'ekran-dlya-pererisovki-lajtboks',
     },
   },
   {
@@ -676,6 +712,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'fotograf-arka-plani-ekran',
       ja: 'shashin-haikei-gamen',
       ko: 'sajin-chwal-yeong-bae-gyeong-hwamyeon',
+      ru: 'fon-dlya-predmetnoj-semki',
     },
   },
   {
@@ -694,6 +731,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'tam-ekran-renk-secici',
       ja: 'zen-gamen-kara-pikka',
       ko: 'jeonche-hwamyeon-saeksang-seontaekgi',
+      ru: 'polnoekrannyj-vybor-cveta',
     },
   },
   {
@@ -712,6 +750,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'tam-ekran-rgb-renk-dongusu',
       ja: 'zen-gamen-rgb-saikuru',
       ko: 'jeonche-hwamyeon-rgb-sunhwan',
+      ru: 'rgb-cikl-pikselej-na-ves-ekran',
     },
   },
   {
@@ -730,6 +769,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'siyah-ekran-10-saat',
       ja: 'kuroi-gamen-10-jikan',
       ko: 'geom-eun-hwamyeon-10-sigan',
+      ru: 'chernyj-ekran-10-chasov',
     },
   },
   {
@@ -748,6 +788,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'beyaz-ekran-1-saat',
       ja: 'shiroi-gamen-1-jikan',
       ko: 'hayan-hwamyeon-1-sigan',
+      ru: 'belyj-ekran-1-chas',
     },
   },
   {
@@ -766,6 +807,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'ekran-zamanlayici',
       ja: 'gamen-taima',
       ko: 'hwamyeon-taimeor',
+      ru: 'tajmer-na-ves-ekran',
     },
   },
 
@@ -786,6 +828,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'beyaz-duvar-kagidi',
       ja: 'shiroi-kabegami',
       ko: 'hayan-bae-gyeong-hwamyeon',
+      ru: 'belye-oboi',
     },
   },
   {
@@ -804,6 +847,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'beyaz-duvar-kagidi-4k',
       ja: 'shiroi-kabegami-4k',
       ko: 'hayan-bae-gyeong-hwamyeon-4k',
+      ru: 'belye-oboi-4k',
     },
   },
   {
@@ -822,6 +866,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'beyaz-duvar-kagidi-8k',
       ja: 'shiroi-kabegami-8k',
       ko: 'hayan-bae-gyeong-hwamyeon-8k',
+      ru: 'belye-oboi-8k',
     },
   },
   {
@@ -840,6 +885,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'iphone-icin-beyaz-arka-plan',
       ja: 'iphone-you-shiro-haikei',
       ko: 'iphone-yong-hayan-bae-gyeong',
+      ru: 'belyj-fon-dlya-iphone',
     },
   },
   {
@@ -858,6 +904,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'masaustu-icin-beyaz-duvar-kagidi',
       ja: 'desukutoppu-you-shiroi-kabegami',
       ko: 'deseuketeop-yong-hayan-bae-gyeong',
+      ru: 'belye-oboi-dlya-pk',
     },
   },
   {
@@ -876,6 +923,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'siyah-duvar-kagidi',
       ja: 'kuroi-kabegami',
       ko: 'geom-eun-bae-gyeong-hwamyeon',
+      ru: 'chernye-oboi',
     },
   },
   {
@@ -894,6 +942,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'siyah-duvar-kagidi-4k',
       ja: 'kuroi-kabegami-4k',
       ko: 'geom-eun-bae-gyeong-hwamyeon-4k',
+      ru: 'chernye-oboi-4k',
     },
   },
   {
@@ -912,6 +961,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'mavi-duvar-kagidi',
       ja: 'aoi-kabegami',
       ko: 'paran-bae-gyeong-hwamyeon',
+      ru: 'sinie-oboi',
     },
   },
   {
@@ -930,6 +980,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'yesil-duvar-kagidi',
       ja: 'midori-no-kabegami',
       ko: 'chorok-bae-gyeong-hwamyeon',
+      ru: 'zelenye-oboi',
     },
   },
   {
@@ -948,6 +999,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'kirmizi-duvar-kagidi',
       ja: 'akai-kabegami',
       ko: 'ppalgan-bae-gyeong-hwamyeon',
+      ru: 'krasnye-oboi',
     },
   },
 
@@ -968,6 +1020,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'gokyuzu-arka-plan',
       ja: 'sora-haikei',
       ko: 'haneul-bae-gyeong',
+      ru: 'fon-nebo',
     },
   },
   {
@@ -986,6 +1039,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'gradyan-arka-plan',
       ja: 'guradeshon-haikei',
       ko: 'geuradae-isyeon-bae-gyeong',
+      ru: 'fon-gradient',
     },
   },
   {
@@ -1004,6 +1058,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'uzay-arka-plan',
       ja: 'uchuu-haikei',
       ko: 'uju-bae-gyeong',
+      ru: 'fon-kosmos',
     },
   },
   {
@@ -1022,6 +1077,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'orman-arka-plan',
       ja: 'mori-haikei',
       ko: 'sup-bae-gyeong',
+      ru: 'fon-les',
     },
   },
   {
@@ -1040,6 +1096,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'ates-arka-plan',
       ja: 'honoo-haikei',
       ko: 'bul-bae-gyeong',
+      ru: 'fon-ogon',
     },
   },
   {
@@ -1058,6 +1115,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'ahsap-arka-plan',
       ja: 'mokume-haikei',
       ko: 'namu-bae-gyeong',
+      ru: 'fon-derevo',
     },
   },
   {
@@ -1076,6 +1134,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'su-arka-plan',
       ja: 'mizu-haikei',
       ko: 'mul-bae-gyeong',
+      ru: 'fon-voda',
     },
   },
   {
@@ -1094,6 +1153,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'kagit-arka-plan',
       ja: 'kami-haikei',
       ko: 'jong-i-bae-gyeong',
+      ru: 'fon-bumaga',
     },
   },
   {
@@ -1112,6 +1172,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'sehir-arka-plan',
       ja: 'toshi-haikei',
       ko: 'dosi-bae-gyeong',
+      ru: 'fon-gorod',
     },
   },
   {
@@ -1130,6 +1191,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'okyanus-arka-plan',
       ja: 'umi-haikei',
       ko: 'bada-bae-gyeong',
+      ru: 'fon-okean',
     },
   },
   {
@@ -1148,6 +1210,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'galaksi-arka-plan',
       ja: 'ginga-haikei',
       ko: 'eunhasu-bae-gyeong',
+      ru: 'fon-galaktika',
     },
   },
   {
@@ -1166,6 +1229,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'gun-batimi-arka-plan',
       ja: 'yuuyake-haikei',
       ko: 'noeul-bae-gyeong',
+      ru: 'fon-zakat',
     },
   },
   {
@@ -1184,6 +1248,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'gumus-arka-plan',
       ja: 'gin-haikei',
       ko: 'eunsaek-bae-gyeong',
+      ru: 'fon-serebro',
     },
   },
   {
@@ -1202,6 +1267,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'kar-arka-plan',
       ja: 'yuki-haikei',
       ko: 'nun-bae-gyeong',
+      ru: 'fon-sneg',
     },
   },
   {
@@ -1220,6 +1286,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'karbon-fiber-arka-plan',
       ja: 'kabon-faiba-haikei',
       ko: 'kabon-seomyu-bae-gyeong',
+      ru: 'fon-uglerodnoe-volokno',
     },
   },
   {
@@ -1238,6 +1305,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'beton-arka-plan',
       ja: 'konkurito-haikei',
       ko: 'konkeuriteu-bae-gyeong',
+      ru: 'fon-beton',
     },
   },
 
@@ -1258,6 +1326,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'laptop-ekrani-guvenle-nasil-temizlenir',
       ja: 'noto-pasokon-gamen-souji-houhou',
       ko: 'noteubuk-hwamyeon-anjeon-cheongso-beop',
+      ru: 'kak-bezopasno-pochistit-ekran-noutbuka',
     },
   },
   {
@@ -1276,6 +1345,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'iphone-ve-monitorde-olu-piksel-nasil-kontrol-edilir',
       ja: 'iphone-monita-dot-nuke-kakunin-houhou',
       ko: 'iphone-moniteo-bullyang-hwaso-hwagin-beop',
+      ru: 'kak-proverit-bitye-pikseli-na-iphone-i-monitore',
     },
   },
   {
@@ -1294,6 +1364,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'beyaz-ekran-halka-isik-olarak-kullanilabilir-mi',
       ja: 'shiroi-gamen-ringu-raito-daiyou',
       ko: 'hayan-hwamyeon-ring-laiteu-daeche',
+      ru: 'mozhet-li-belyj-ekran-zamenit-kolcevuyu-lampu',
     },
   },
   {
@@ -1312,6 +1383,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'oled-ekran-yanmasi-nedenleri-cozumleri-ve-testi',
       ja: 'oled-yaki-tsuki-genin-taisaku-test',
       ko: 'oled-beonin-won-in-haegyeol-teseuteu',
+      ru: 'vygoranie-oled-prichiny-profilaktika-i-test',
     },
   },
   {
@@ -1330,6 +1402,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'isik-sizmasi-ve-ips-glow-farki',
       ja: 'bakku-raito-more-ips-guro-chigai',
       ko: 'bissaem-ips-geullou-chaijeom',
+      ru: 'zasvety-matricy-i-ips-glow-v-chem-raznica',
     },
   },
   {
@@ -1348,6 +1421,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'ekrani-cizim-isikli-kutusuna-donusturme',
       ja: 'pasokon-taburetto-toresu-dai-henkan',
       ko: 'noteubuk-taebeullit-laiteubakseu-byeonhwan',
+      ru: 'kak-prevratit-ekran-v-kopirovalnyj-lajtboks',
     },
   },
   {
@@ -1366,6 +1440,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'monitor-renk-ve-parlaklik-homojenlik-testi',
       ja: 'monita-shikido-kido-kintousei-test',
       ko: 'moniteo-saek-sang-hwi-do-gyun-il-do-teseuteu',
+      ru: 'test-ravnomernosti-podsvetki-i-cveta-monitora',
     },
   },
   {
@@ -1384,6 +1459,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'ekran-titremesi-pwm-ve-goz-yorgunlugu-testi',
       ja: 'gamen-chiratsuki-pwm-me-no-tsukare-test',
       ko: 'hwamyeon-kkambag-im-pwm-nun-pi-lo-teseuteu',
+      ru: 'mercanie-ekrana-shim-i-ustalost-glaz-test',
     },
   },
   {
@@ -1402,6 +1478,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'kirmizi-ekran-gece-gorusu-ve-astronomi-rehberi',
       ja: 'akai-gamen-anji-junou-tenmon-gaido',
       ko: 'ppalgan-hwamyeon-yagan-si-ryeok-cheonmun-gaideu',
+      ru: 'krasnyj-ekran-dlya-nochnogo-zreniya-i-astronomii',
     },
   },
   {
@@ -1420,6 +1497,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'green-screen-aydinlatmasi-yayin-ve-zoom',
       ja: 'gurin-sukurin-haikei-shoumei-zoom-haishin',
       ko: 'geurin-seukeurin-jomyeong-zoom-bangsong',
+      ru: 'osveshchenie-hromakeya-dlya-strimov-i-zoom',
     },
   },
   {
@@ -1438,6 +1516,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'siyah-ekran-ile-oled-pil-tasarrufu',
       ja: 'kuroi-gamen-oled-setsuden-batteri-setsuyaku',
       ko: 'geom-eun-hwamyeon-oled-baeteori-jeol-yak',
+      ru: 'ekonomiya-batarei-s-chernym-ekranom-na-oled',
     },
   },
   {
@@ -1456,6 +1535,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'ekran-isigiyla-makro-urun-fotografciligi',
       ja: 'makuro-shouhin-satsuei-gamen-shoumei',
       ko: 'maekeuro-sa-ang-pum-chwal-yeong-hwamyeon-jomyeong',
+      ru: 'svet-ot-ekrana-dlya-makro-i-predmetnoj-semki',
     },
   },
   {
@@ -1474,6 +1554,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'gri-ekran-ile-kamera-beyaz-ayari-kalibrasyonu',
       ja: 'gure-gamen-kamera-howaito-baransu-hosei',
       ko: 'hoesack-hwamyeon-kaemera-hwa-iteu-baelleonseu-bojeong',
+      ru: 'kalibrovka-balansa-belogo-kamery-po-seromu-ekranu',
     },
   },
   {
@@ -1492,6 +1573,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'cift-monitor-ergonomisi-ikinci-ekrani-isik-yapma',
       ja: 'deuaru-monita-sub-gamen-shoumei-katsuyou',
       ko: 'dyueol-moniteo-bojo-hwamyeon-jomyeong-hwalyong',
+      ru: 'ergonomika-dvuh-monitorov-i-vtoroj-ekran-kak-svet',
     },
   },
   {
@@ -1510,6 +1592,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'rgb-renk-dongusu-ile-takilmis-piksel-onarimi',
       ja: 'rgb-saikuru-dot-ochi-shufuku-houhou',
       ko: 'rgb-saeksang-sunhwan-hwaso-boggui',
+      ru: 'kak-vosstanovit-zastryavshie-pikseli-cherez-rgb',
     },
   },
   {
@@ -1528,6 +1611,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'ekran-parlakligi-ve-goz-konforu-gece-ve-gunduz',
       ja: 'gamen-akarusa-hiru-yoru-me-no-futan-keigen',
       ko: 'hwamyeon-balkgi-nun-pyeon-an-ham-juyaga',
+      ru: 'yarkost-ekrana-i-komfort-dlya-glaz-dnem-i-nochyu',
     },
   },
   {
@@ -1546,6 +1630,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'derin-odaklanma-ve-pomodoro-icin-tam-ekran-renkler',
       ja: 'zen-gamen-kara-shuuchuu-pomodoro-katsuyou',
       ko: 'jeonche-hwamyeon-saeksang-mollip-pomodoro',
+      ru: 'polnoekrannye-cveta-dlya-koncentracii-i-pomodoro',
     },
   },
   {
@@ -1564,6 +1649,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'monitor-piksel-yogunlugu-ppi-ve-4k-8k-duvar-kagitlari',
       ja: 'monita-gaso-mitsudo-ppi-4k-8k-kabegami',
       ko: 'moniteo-hwaso-mild-o-ppi-4k-8k-bae-gyeong-hwamyeon',
+      ru: 'plotnost-pikselej-ppi-i-oboi-4k-8k-dlya-monitora',
     },
   },
   {
@@ -1582,6 +1668,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'satin-almadan-once-laptop-ekrani-nasil-test-edilir',
       ja: 'kounyuu-mae-noto-pasokon-disupurei-kensa',
       ko: 'gumae-jeon-noteubuk-diseupeullei-geomsa',
+      ru: 'kak-proverit-ekran-noutbuka-pered-pokupkoj',
     },
   },
   {
@@ -1600,6 +1687,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'ekran-panelleri-karsilastirmasi-oled-ips-va-tn',
       ja: 'paneru-shurui-hikaku-oled-ips-va-tn',
       ko: 'diseupeullei-paeneol-bigyo-oled-ips-va-tn',
+      ru: 'sravnenie-tipov-matric-oled-ips-va-tn',
     },
   },
 
@@ -1620,6 +1708,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'hakkimizda',
       ja: 'site-ni-tsuite',
       ko: 'sogae',
+      ru: 'o-nas',
     },
   },
   {
@@ -1638,6 +1727,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'iletisim',
       ja: 'otoiawase',
       ko: 'mun-ui',
+      ru: 'kontakty',
     },
   },
   {
@@ -1656,6 +1746,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'gizlilik-politikasi',
       ja: 'puraibashi-porishi',
       ko: 'gaein-jeongbo-cheoribangchim',
+      ru: 'politika-konfidencialnosti',
     },
   },
   {
@@ -1674,6 +1765,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'kullanim-kosullari',
       ja: 'riyou-kiyaku',
       ko: 'iyong-yag-gwan',
+      ru: 'usloviya-ispolzovaniya',
     },
   },
   {
@@ -1692,6 +1784,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'cerez-politikasi',
       ja: 'kukkii-porishi',
       ko: 'kuki-jeongchaek',
+      ru: 'politika-fajlov-cookie',
     },
   },
   {
@@ -1710,6 +1803,7 @@ export const SLUG_REGISTRY: PageSlugMapping[] = [
       tr: 'lisans',
       ja: 'raisensu',
       ko: 'laiseonseu',
+      ru: 'licenziya',
     },
   },
 ];

@@ -140,6 +140,17 @@ This document outlines all architectural, SEO, infrastructure, and technical dec
   - `/sitemap-tr.xml`
   - `/sitemap-ja.xml`
   - `/sitemap-ko.xml`
+  - `/sitemap-ru.xml`
 - **Accurate Lastmod**: Dates extracted from content release records, not build timestamps, preserving crawl budget.
 - **Robots.txt**: Clean allow-all policy with explicit `Sitemap: https://www.thewhitescreen.org/sitemap-index.xml` declaration.
 - **Redirects**: Comprehensive 301 redirection rules for legacy paths and trailing-slash normalization via `_redirects` and `vercel.json`.
+
+---
+
+## 9. Multilingual Expansion: Russian (`ru` - Русский) Rollout
+- **Locale Addition**: Russian (`ru`) integrated across all 94 content entities, expanding the platform to **13 active languages** and **1,223 pre-rendered static pages**.
+- **Localized Slugs**: Clean transliterated ASCII search-intent slugs (e.g. `/ru/belyj-ekran/`, `/ru/test-bityh-pikselej/`, `/ru/ochistka-ekrana/`).
+- **Complete Localization**: 100% native Russian UI dictionaries, 26 color deep dives with `deepDiveHeadings`, 16 themes, 10 wallpapers, 6 legal documents, 15 specialized tools, and 20 comprehensive technical guides.
+- **XML Sitemaps**: Dedicated `/sitemap-ru.xml/` added to `/sitemap-index.xml`.
+- **Hreflang Completeness**: Reciprocal 13-language alternate tags with `x-default` across all pages with zero build-time errors.
+

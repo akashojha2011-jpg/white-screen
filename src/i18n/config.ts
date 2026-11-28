@@ -18,6 +18,7 @@ export const PUBLISHED_LANGUAGES: Record<string, LanguageInfo> = {
   tr: { code: 'tr', name: 'Türkçe', dir: 'ltr' },
   ja: { code: 'ja', name: '日本語', dir: 'ltr' },
   ko: { code: 'ko', name: '한국어', dir: 'ltr' },
+  ru: { code: 'ru', name: 'Русский', dir: 'ltr' },
 };
 
 export const DEFAULT_LANGUAGE = 'en';

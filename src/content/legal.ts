@@ -1,3 +1,4 @@
+import { LEGAL_RU } from './legal_ru';
 import { LEGAL_JA } from './legal_ja';
 import { LEGAL_KO } from './legal_ko';
 import { LEGAL_PL } from './legal_pl';
@@ -992,6 +993,7 @@ export function getLegalById(id: string): LegalDefinition | undefined {
       tr: LEGAL_TR[id] || (item.content as any).tr,
       ja: LEGAL_JA[id] || (item.content as any).ja,
       ko: LEGAL_KO[id] || (item.content as any).ko,
+      ru: LEGAL_RU[id] || (item.content as any).ru,
     } as any,
   };
 }
